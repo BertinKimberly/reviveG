@@ -1,14 +1,26 @@
-import React from 'react'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import AboutUs from "./screens/AboutUs";
+import NotFound from "./screens/NotFound";
 
 const App = () => {
-  return (
-    <div className='h-header bg-main w-full'>
-      
-    </div>
-  )
-}
+   return (
+      <Routes>
+         <Route
+            path='/'
+            element={<HomeScreen />}
+         />
+         <Route
+            path='/about-us'
+            element={<AboutUs />}
+         />
+         <Route
+            path='*'
+            element={<NotFound />}
+         />
+      </Routes>
+   );
+};
 
-export default App
-
-
-
+export default App;

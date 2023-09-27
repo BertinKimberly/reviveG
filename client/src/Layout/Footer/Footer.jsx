@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeScreen = () => {
+const Footer = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default Footer

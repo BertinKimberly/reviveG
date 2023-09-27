@@ -15,7 +15,7 @@ export default {
          },
          colors: {
             main: "#080A1A",
-            subMain: "#F2000",
+            subMain: "#F20000",
             dry: "#0B0F29",
             star: "#FFB000",
             text: "#C0C0C0",
