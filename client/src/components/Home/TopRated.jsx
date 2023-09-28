@@ -11,7 +11,7 @@ const TopRated = () => {
    const [nextEl, setNextEl] = useState(null);
    const [prevEl, setPrevEl] = useState(null);
 
-   const classNames="hover:bg-dry "
+   const classNames="hover:bg-dry transitions text-sm rounded w-8 h-8 flex-colo  bg-subMain text-white";
    return (
       <div className='my-16'>
          <Titles
@@ -30,13 +30,13 @@ const TopRated = () => {
             >
                {Movies.map((movie, index) => (
                   <SwiperSlide key={index}>
-                     <div className='p-4 h-rate border border-border bg-dry rounded-lg overflow-hidden'>
+                     <div className='p-4 h-rate border hovered border-border bg-dry rounded-lg overflow-hidden'>
                         <img
                            src=''
                            alt={movie.name}
                            className='w-full h-full object-cover rounded-lg '
                         />
-                        <div className='px-4 gap-6 text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0'>
+                        <div className='px-4 gap-6 hovers text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0'>
                            <button className='w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white '>
                               <FaHeart />
                            </button>
@@ -58,7 +58,7 @@ const TopRated = () => {
               <button className={classNames} ref={(node)=>setPrevEl(node)}>
                 <BsCaretLeft/>
               </button>
-              <button className={classNames} ref={(node)=>setPrevEl(node)}>
+              <button className={classNames} ref={(node)=>setNextEl(node)}>
                 <BsCaretRight/>
               </button>
             </div>
