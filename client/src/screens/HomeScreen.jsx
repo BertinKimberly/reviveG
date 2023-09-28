@@ -5,7 +5,9 @@ const HomeScreen = () => {
   return (
 
       <Layout>
-        <h1>Home page</h1>
+         <div className="container mx-auto min-h-screen px-2 mb-6">
+          
+         </div>
       </Layout>
 
   )
