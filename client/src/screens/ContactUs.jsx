@@ -44,7 +44,13 @@ const ContactUs = () => {
                         {item.title}
                      </h5>
                      <p className='mb-0 text-sm text-text leading-7'>
-                        <a href={`mailto:${item.contact}`} className="text-blue-600">{item.contact}</a>
+                        <a
+                           href={`mailto:${item.contact}`}
+                           className='text-blue-600'
+                        >
+                           {item.contact}
+                        </a>
+                        {item.info}
                      </p>
                   </div>
                ))}

@@ -4,6 +4,8 @@ import HomeScreen from "./screens/HomeScreen";
 import AboutUs from "./screens/AboutUs";
 import ContactUs from "./screens/ContactUs";
 import NotFound from "./screens/NotFound";
+import MoviesPage from "./screens/Movies";
+import SingleMovie from "./screens/SingleMovie";
 
 const App = () => {
    return (
@@ -19,6 +21,14 @@ const App = () => {
          <Route
             path='/contac-us'
             element={<ContactUs />}
+         />
+         <Route
+            path='/movies'
+            element={<MoviesPage />}
+         />
+         <Route
+            path='/movie/:id'
+            element={<SingleMovie />}
          />
          <Route
             path='*'
