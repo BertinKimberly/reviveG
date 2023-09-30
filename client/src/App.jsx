@@ -9,7 +9,9 @@ import SingleMovie from "./screens/SingleMovie";
 import WatchPage from "./screens/WatchPage";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
-import Profile from "./screens/dashboard/Profile"
+import Profile from "./screens/dashboard/Profile";
+import Password from "./screens/dashboard/Password";
+import FavoriteMovies from "./screens/dashboard/FavoriteMovies";
 
 const App = () => {
    Aos.init();
@@ -50,6 +52,14 @@ const App = () => {
          <Route
             path='/profile'
             element={<Profile />}
+         />
+         <Route
+            path='/password'
+            element={<Password />}
+         />
+         <Route
+            path='/favorites'
+            element={<FavoriteMovies />}
          />
          <Route
             path='*'
