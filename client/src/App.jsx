@@ -6,6 +6,7 @@ import ContactUs from "./screens/ContactUs";
 import NotFound from "./screens/NotFound";
 import MoviesPage from "./screens/Movies";
 import SingleMovie from "./screens/SingleMovie";
+import WatchPage from "./screens/WatchPage";
 
 const App = () => {
    return (
@@ -29,6 +30,10 @@ const App = () => {
          <Route
             path='/movie/:id'
             element={<SingleMovie />}
+         />
+         <Route
+            path='/watch/:id'
+            element={<WatchPage/>}
          />
          <Route
             path='*'
