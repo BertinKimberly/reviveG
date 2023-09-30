@@ -7,8 +7,12 @@ import NotFound from "./screens/NotFound";
 import MoviesPage from "./screens/Movies";
 import SingleMovie from "./screens/SingleMovie";
 import WatchPage from "./screens/WatchPage";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+import Profile from "./screens/dashboard/Profile"
 
 const App = () => {
+   Aos.init();
    return (
       <Routes>
          <Route
@@ -33,7 +37,19 @@ const App = () => {
          />
          <Route
             path='/watch/:id'
-            element={<WatchPage/>}
+            element={<WatchPage />}
+         />
+         <Route
+            path='/login'
+            element={<Login />}
+         />
+         <Route
+            path='/register'
+            element={<Register />}
+         />
+         <Route
+            path='/profile'
+            element={<Profile />}
          />
          <Route
             path='*'
