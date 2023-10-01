@@ -1,8 +1,53 @@
 import React from "react";
 
+const Head = "text-xs text-left text-main font-semibold px-6 py-2 uppercase";
+const Text = "text-sm text-left  px-5 py-3 leading-6 whitespace-nowrap  ";
+
+const Rows = ({ movie, i, admin }) => {
+   return (
+      <tr key={i}>
+         <td className={`${Text}`}>
+            <div className='w-12 p-1 bg-dry border-border h-12 rounded overflow-hidden'>
+               <img
+                  src={movie.image}
+                  alt={movie.name}
+                  className='h-full w-full rounded-full object-cover'
+               />
+            </div>
+         </td>
+         <td className={`${Text} truncate`}>{movie.name}</td>
+         <td className={`${Text}`}>{movie.category}</td>
+         <td className={`${Text}`}>{movie.language}</td>
+         <td className={`${Text}`}>{movie.year}</td>
+         <td className={`${Text}`}>{movie.time}</td>
+         <td className={`${Text} float-right flex-rows gap-2`}>
+            {admin ? (
+               <>
+                  <button className='bg-main font-medium transitions flex-rows gap-2 border-border text-white '>
+                     Edit <FaEdit />
+                  </button>
+                  <button className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '>
+                     <MdDelete />
+                  </button>
+               </>
+            ) : (
+               <>
+                  <button className='bg-main font-medium transitions flex-rows gap-2 border-border text-white '>
+                     Edit <FaEdit />
+                  </button>
+                  <Link
+                     to={`/movie/${movie?.name}`}
+                     className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '
+                  >
+                     <GoEye />
+                  </Link>
+               </>
+            )}
+         </td>
+      </tr>
+   );
+};
 const Table = ({ data, admin }) => {
-   const Head = "text-xs text-left text-main font-semibold px-6 py-2 uppercase";
-   const Text = "text-sm text-left  px-5 py-3 leading-6 whitespace-nowrap  ";
    return (
       <div className='overflow-x-scroll overflow-hidden relative w-full'>
          <table className='w-full table-auto border border-border divide-y divide-border'>
@@ -53,7 +98,7 @@ const Table = ({ data, admin }) => {
                </tr>
             </thead>
             <tbody className='bg-main divide-y divide-gray-800'>
-               {data.map((movie,i)=>)}
+               {data.map((movie, i, admin) => Rows(movie, i))}
             </tbody>
          </table>
       </div>
