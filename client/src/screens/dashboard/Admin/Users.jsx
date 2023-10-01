@@ -10,6 +10,7 @@ const Users = () => {
             <Table2
                data={UsersData}
                users={true}
+               
             />
          </div>
       </Sidebar>

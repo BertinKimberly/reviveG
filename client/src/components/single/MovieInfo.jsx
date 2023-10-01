@@ -2,7 +2,7 @@ import React from "react";
 import { FaPlay, FaShare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const MovieInfo = ({ movie }) => {
+const MovieInfo = ({ movie, setModalOpen }) => {
    return (
       <div className='w-full xl:h-screen relative text-white'>
          <img
@@ -35,7 +35,10 @@ const MovieInfo = ({ movie }) => {
                      </p>
                      <div className='grid sm:grid-cols-5 grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg'>
                         <div className='col-span-1 flex-colo border border-border '>
-                           <button className='w-10 h-10 flex-colo rounded-lg bg-white bg-opacity-20'>
+                           <button
+                              onClick={() => setModalOpen(true)}
+                              className='w-10 h-10 flex-colo rounded-lg bg-white bg-opacity-20'
+                           >
                               <FaShare />
                            </button>
                         </div>
@@ -59,8 +62,8 @@ const MovieInfo = ({ movie }) => {
                   </div>
                   <div className='col-span-2 md:mt-0 mt-2 flex justify-end'>
                      <button className='md:w-1/4 w-full relative flex-colo bg-subMain hover:bg-transparent border-2 border-subMain transitions md:h-64 h-20 rounded font-medium'>
-                        <div className="flex-rows gap-6 text-md uppercase tracking-widest absolute md:rotate-90">
-                            Download <FiLogIn className="w-6 h-6"/>
+                        <div className='flex-rows gap-6 text-md uppercase tracking-widest absolute md:rotate-90'>
+                           Download <FiLogIn className='w-6 h-6' />
                         </div>
                      </button>
                   </div>

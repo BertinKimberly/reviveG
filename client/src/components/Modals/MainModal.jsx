@@ -49,7 +49,7 @@ const MainModal = ({ modalOpen, setModalOpen, children }) => {
                   <button
                      onClick={() => setModalOpen(false)}
                      type='button'
-                     className='inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-subMain hover:bg-white transitions'
+                     className='  px-4 py-2 text-base font-medium text-white bg-subMain hover:bg-white transitions rounded-full w-12 h-12 flex-colo'
                   >
                      <IoClose />
                   </button>
