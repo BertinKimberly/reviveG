@@ -1,10 +1,10 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Movies } from "../../data/MoviesData";
-import Image from "../images/1.jpg";
 import FlexMovieItems from "../FlexMovieItems";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
+import { Movies } from "../../data/MoviesData";
+
 const Banner = () => {
    return (
       <div className='relative w-full'>
@@ -23,7 +23,7 @@ const Banner = () => {
                   className='relative rounded overflow-hidden'
                >
                   <img
-                     src={Image}
+                     src={`../../images/${movie.image}`}
                      alt={movie.name}
                      className='w-full h-full object-cover'
                   />

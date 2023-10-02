@@ -6,12 +6,14 @@ import { Movies } from "../../data/MoviesData";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Rating from "../Stars";
+import { Autoplay, Navigation } from "swiper/modules";
 
 const TopRated = () => {
    const [nextEl, setNextEl] = useState(null);
    const [prevEl, setPrevEl] = useState(null);
 
-   const classNames="hover:bg-dry transitions text-sm rounded w-8 h-8 flex-colo  bg-subMain text-white";
+   const classNames =
+      "hover:bg-dry transitions text-sm rounded w-8 h-8 flex-colo  bg-subMain text-white";
    return (
       <div className='my-16'>
          <Titles
@@ -54,13 +56,19 @@ const TopRated = () => {
                   </SwiperSlide>
                ))}
             </Swiper>
-            <div className="w-full px-1 flex-rows gap-6 pt-12 ">
-              <button className={classNames} ref={(node)=>setPrevEl(node)}>
-                <BsCaretLeft/>
-              </button>
-              <button className={classNames} ref={(node)=>setNextEl(node)}>
-                <BsCaretRight/>
-              </button>
+            <div className='w-full px-1 flex-rows gap-6 pt-12 '>
+               <button
+                  className={classNames}
+                  ref={(node) => setPrevEl(node)}
+               >
+                  <BsCaretLeft />
+               </button>
+               <button
+                  className={classNames}
+                  ref={(node) => setNextEl(node)}
+               >
+                  <BsCaretRight />
+               </button>
             </div>
          </div>
       </div>

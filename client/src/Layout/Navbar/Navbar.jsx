@@ -52,7 +52,7 @@ const Navbar = () => {
                      Login
                   </NavLink>
                   <NavLink
-                     to='/favorite'
+                     to='/favorites'
                      className={`${Hover} relative`}
                   >
                      <FaHeart className='w-6 h-6' />

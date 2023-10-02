@@ -1,7 +1,8 @@
-import { Listbox } from "@headlessui/react";
+import { Listbox, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
 import { CgSelect } from "react-icons/cg";
 import { FaCheck } from "react-icons/fa";
+import { CategoriesData } from "../data/CategoriesData";
 
 const YearData = [
    { title: "Sort By Year" },
@@ -37,28 +38,28 @@ const Filters = () => {
    const Filter = [
       {
          value: category,
-         onchange: setCategory,
+         onChange: setCategory,
          items: CategoriesData,
       },
       {
          value: year,
-         onchange: setYear,
+         onChange: setYear,
          items: CategoriesData,
       },
       {
          value: times,
-         onchange: setTimes,
+         onChange: setTimes,
          items: CategoriesData,
       },
       {
          value: rates,
-         onchange: setRates,
+         onChange: setRates,
          items: RatesData,
       },
    ];
    return (
       <div className='my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-4 grid-cols-2 lg:gap-12 gap-2 rounded p-6'>
-         {Filter.map((item, index) => (
+         {Filter.map((item, index, onChange) => (
             <Listbox
                key={index}
                value={item.value}

@@ -8,11 +8,14 @@ import "swiper/css/navigation";
 import "aos";
 import "aos/dist/aos.css";
 import { BrowserRouter } from "react-router-dom";
+import DrawerContext from "./context/DrawerContext"; // Import the DrawerContext component
 
 ReactDOM.createRoot(document.getElementById("root")).render(
    <BrowserRouter>
       <React.StrictMode>
-         <App />
+         <DrawerContext>
+            <App />
+         </DrawerContext>
       </React.StrictMode>
    </BrowserRouter>
 );

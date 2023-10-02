@@ -1,9 +1,10 @@
 import React from "react";
+
+import Banner from "../components/Home/Banner";
+import PopularMovies from "../components/Home/PopularMovies";
+import Promos from "../components/Home/Promos";
+import TopRated from "../components/Home/TopRated";
 import Layout from "../Layout/Layout";
-import Banner from "../components/Banner";
-import PopularMovies from "../components/PopularMovies";
-import Promos from "../components/Promos";
-import TopRated from "../components/TopRated";
 
 const HomeScreen = () => {
    return (
@@ -12,7 +13,7 @@ const HomeScreen = () => {
             <Banner />
             <PopularMovies />
             <Promos />
-            <TopRated />
+            <TopRated/>
          </div>
       </Layout>
    );

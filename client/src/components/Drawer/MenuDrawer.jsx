@@ -2,8 +2,7 @@ import React from "react";
 import MainDrawer from "./MainDrawer";
 import { Link, NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
-import { BsCollectionPlay, BsPhone } from "react-icons/bs";
-import { HiCollectionPlay } from "react-icons/hi";
+import { Bs0SquareFill, BsCollectionPlay, BsPhone } from "react-icons/bs";
 
 const MenuDrawer = ({ drawerOpen, toggleDrawer }) => {
    const Links = [
@@ -15,7 +14,7 @@ const MenuDrawer = ({ drawerOpen, toggleDrawer }) => {
       {
          name: "About Us",
          link: "/about-us",
-         icon: HiOutlineUserGroup,
+         icon: Bs0SquareFill,
       },
       {
          name: "Contact Us",

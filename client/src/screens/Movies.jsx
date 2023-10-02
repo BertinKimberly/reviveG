@@ -3,6 +3,7 @@ import Filters from "../components/Filters";
 import Movie from "../components/Movie";
 import { Movies } from "../data/MoviesData";
 import { CgSpinner } from "react-icons/cg";
+import Layout from "../Layout/Layout";
 
 const MoviesPage = () => {
    const maxpage = 10;
