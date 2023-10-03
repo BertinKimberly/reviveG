@@ -1,5 +1,7 @@
 import React from "react";
 import Uploader from "../../components/Uploader";
+import Sidebar from "./Sidebar";
+import { Input } from "../../components/UsedInputs";
 
 const Profile = () => {
    return (

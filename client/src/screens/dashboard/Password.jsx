@@ -1,4 +1,6 @@
 import React from "react";
+import Sidebar from "./Sidebar";
+import { Input } from "../../components/UsedInputs";
 
 const Password = () => {
    return (
