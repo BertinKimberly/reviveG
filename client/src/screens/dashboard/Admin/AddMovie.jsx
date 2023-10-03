@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CastsModal from "../../../components/Modals/CastsModal";
+import Sidebar from "../Sidebar";
+import { Input, Message, Select } from "../../../components/UsedInputs";
+import Uploader from "../../../components/Uploader";
+import { FiDelete, FiUpload } from "react-icons/fi";
+import { CategoriesData } from "../../../data/CategoriesData";
 
 const AddMovie = () => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -111,7 +116,7 @@ const AddMovie = () => {
                         <p>{user.fullName}</p>
                         <div className='flex-rows mt-2 w-full gap-2'>
                            <button className='w-6 h-6 bg-dry border border-border text-subMain rounded flex-colo'>
-                              <MdDelete />
+                              <FiDelete />
                            </button>
                            <button
                               onClick={() => setCast(user)}
@@ -126,7 +131,7 @@ const AddMovie = () => {
             </div>
             <div className='flex justify-end items-center my-4'>
                <button className='bg-subMain transitions hover:bg-main border border-subMain font-medium text-white py-4 rounded w-full sm:w-auto'>
-                  <ImUpload /> Publish Movie
+                  <FiUpload /> Publish Movie
                </button>
             </div>
          </div>

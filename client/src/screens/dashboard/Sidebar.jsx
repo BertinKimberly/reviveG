@@ -1,4 +1,10 @@
 import React from "react";
+import { BsFillGridFill } from "react-icons/bs";
+import { FaHeart, FaListAlt, FaPlus, FaUsers } from "react-icons/fa";
+import { RiLockPasswordFill, RiMovie2Fill } from "react-icons/ri";
+import { FiSettings } from "react-icons/fi";
+import Layout from "../../Layout/Layout";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
    const SideLinks = [
@@ -20,7 +26,7 @@ const Sidebar = ({ children }) => {
       {
          name: "Categories",
          link: "/categories",
-         icon: HiVieGridAdd,
+         icon: FaPlus,
       },
       {
          name: "Users",
@@ -67,9 +73,9 @@ const Sidebar = ({ children }) => {
                </div>
                <div
                   data-aos='fade-up'
-                  data-aos-duration="1000"
-                  data-aos-delay="10"
-                  data-aos-offset="200"
+                  data-aos-duration='1000'
+                  data-aos-delay='10'
+                  data-aos-offset='200'
                   className='col-span-6 rounded-md bg-dry border-gray-800 p-6'
                >
                   {children}

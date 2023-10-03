@@ -1,4 +1,7 @@
 import React from "react";
+import Sidebar from "../Sidebar";
+import { Movies } from "../../../data/MoviesData";
+import Table from "../../../components/Table";
 
 const MoviesList = () => {
    return (

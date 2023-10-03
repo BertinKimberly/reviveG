@@ -1,7 +1,8 @@
 import React from "react";
-import { FaRegListAlt, FaUser } from "react-icons/fa";
+import { FaPlus, FaRegListAlt, FaUser } from "react-icons/fa";
 import Table from "../../../components/Table";
 import { Movies } from "../../../data/MoviesData";
+import Sidebar from "../Sidebar";
 
 const Dashboard = () => {
    const DashboardData = [
@@ -13,7 +14,7 @@ const Dashboard = () => {
       },
       {
          bg: "bg-blue-700",
-         icon: HiViewGridAdd,
+         icon: FaPlus,
          title: "Total Categories",
          total: 8,
       },

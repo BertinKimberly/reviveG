@@ -1,5 +1,7 @@
 import React from "react";
 import Table from "../../components/Table";
+import Sidebar from "./Sidebar";
+import { Movies } from "../../data/MoviesData";
 
 const FavoriteMovies = () => {
    return (

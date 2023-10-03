@@ -1,4 +1,6 @@
 import React from "react";
+import { FiUploadCloud } from "react-icons/fi";
+import { useDropzone } from "react-dropzone";
 
 const Uploader = () => {
    const { getRootProps, getInputProps } = useDropzone({
