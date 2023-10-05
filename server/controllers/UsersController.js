@@ -98,7 +98,7 @@ export const updateUser = asyncHandler(async (req, res) => {
    }
 });
 
-export const deleteUser = asyncHandler(async (req, res) => {
+export const deleteUserProfile = asyncHandler(async (req, res) => {
    try {
       const user = await User.findById(req.user._id);
 
@@ -133,6 +133,78 @@ export const changePassword = asyncHandler(async (req, res) => {
          throw new Error("Invalid old password");
       }
    } catch (error) {
-      res.status(400).json({message:error.message})
+      res.status(400).json({ message: error.message });
    }
 });
+
+export const getLikedMovies = asyncHandler(async (req, res) => {
+   try {
+      const user = await User.findById(req.user._id).populate("likedMovies");
+
+      if (user) {
+         res.json(user.likedMovies);
+      } else {
+         res.status(404);
+         throw new Error("User not found");
+      }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const addLikedMovie = asyncHandler(async (req, res) => {
+   const { movieId } = req.body;
+   try {
+      const user = await User.findById(req.user._id);
+
+      if (user) {
+         if (user.likedMovies.includes(movieId)) {
+            res.status(400);
+            throw new Error("Movie already liked");
+         }
+         user.likedMovies.push(movieId);
+         await user.save();
+         res.json(user.likedMovies);
+      } else {
+         res.status(404);
+         throw new Error("Movie not found");
+      }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const deleteLikedMovie = asyncHandler(async (req, res) => {
+   try {
+      const user = await User.findById(req.user._id);
+      if (user) {
+         user.likedMovies = [];
+         await user.save();
+         res.json({ message: "All liked movies deleted successfully" });
+      } else {
+         res.status(404);
+         throw new Error("user not found");
+      }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const getUsers = asyncHandler(async (req, res) => {
+   try {
+      const users = await User.find({});
+      res.json(users);
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const deleteUser=asyncHandler(async(req,res)=>{
+   const user=await User.findById(req.params.id);
+
+   if(user){
+      if(user.isAdmin){
+         res.status
+      }
+   }
+})

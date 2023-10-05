@@ -1,6 +1,8 @@
 import express from "express";
 import {
    deleteUser,
+   deleteUserProfile,
+   getLikedMovies,
    loginUser,
    registerUser,
    updateUser,
@@ -16,7 +18,8 @@ router.post("/login", loginUser);
 
 // ********************PROTECTED ROUTES**********************
 router.put("/update", protect, updateUser);
-router.delete("/delete", protect, deleteUser);
+router.delete("/delete", protect, deleteUserProfile);
 router.put("/password", protect, updateUser);
+router.get("/favorites",protect,getLikedMovies)
 
 export { router as userRouter };
