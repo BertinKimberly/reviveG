@@ -199,12 +199,22 @@ export const getUsers = asyncHandler(async (req, res) => {
    }
 });
 
-export const deleteUser=asyncHandler(async(req,res)=>{
-   const user=await User.findById(req.params.id);
+export const deleteUser = asyncHandler(async (req, res) => {
+   try {
+      const user = await User.findById(req.params.id);
 
-   if(user){
-      if(user.isAdmin){
-         res.status
+      if (user) {
+         if (user.isAdmin) {
+            res.status(400);
+            throw new Error("can't delete admin user");
+         }
+         await user.remove();
+         res.json({ message: "user deleted successfully" });
+      } else {
+         res.status(404);
+         throw new Error("User not found");
       }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
    }
-})
+});
