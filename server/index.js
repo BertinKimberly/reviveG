@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import { userRouter } from "./routes/userRouter.js";
 import { errorHandler } from "./middlewares/errorMiddleware.js";
+import { moviesRoute } from "./routes/movieRouter.js";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 //other routes
 app.use("/api/users", userRouter);
+app.use("/api/movies", moviesRoute);
 
 const port = process.env.PORT || 5000;
 //error handling
