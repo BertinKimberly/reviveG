@@ -97,3 +97,42 @@ export const updateUser = asyncHandler(async (req, res) => {
       res.status(400).json({ message: error.message });
    }
 });
+
+export const deleteUser = asyncHandler(async (req, res) => {
+   try {
+      const user = await User.findById(req.user._id);
+
+      if (user) {
+         if (user.isAdmin) {
+            res.status(400);
+            throw new Error("Can't delete admin user");
+         }
+         await user.remove();
+         res.json({ message: "User deleted successfully" });
+      } else {
+         res.status(404);
+         throw new Error("User not found");
+      }
+   } catch (error) {}
+});
+
+export const changePassword = asyncHandler(async (req, res) => {
+   const { oldPassword, newPassword } = req.body;
+
+   try {
+      const user = await User.findById(req.user._id);
+      if (user && (await bcrypt.compare(oldPassword, user.password))) {
+         const salt = await bcrypt.genSalt(10);
+         const hashedPassword = await bcrypt.hash(newPassword, salt);
+         user.password = hashedPassword;
+
+         await user.save();
+         res.json({ message: "Password changed" });
+      } else {
+         res.status(401);
+         throw new Error("Invalid old password");
+      }
+   } catch (error) {
+      res.status(400).json({message:error.message})
+   }
+});

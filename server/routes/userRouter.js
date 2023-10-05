@@ -1,5 +1,6 @@
 import express from "express";
 import {
+   deleteUser,
    loginUser,
    registerUser,
    updateUser,
@@ -15,5 +16,7 @@ router.post("/login", loginUser);
 
 // ********************PROTECTED ROUTES**********************
 router.put("/update", protect, updateUser);
+router.delete("/delete", protect, deleteUser);
+router.put("/password", protect, updateUser);
 
 export { router as userRouter };
