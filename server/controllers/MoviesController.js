@@ -51,3 +51,38 @@ export const getMovies = asyncHandler(async (req, res) => {
       res.status(400).json({ message: error.message });
    }
 });
+
+export const getMovieById = asyncHandler(async (req, res) => {
+   try {
+      //find movie by id
+
+      const movie = await Movie.findById(req.params.id);
+
+      if (movie) {
+         res.json(movie);
+      } else {
+         res.status(400).json({ message: error.message });
+      }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const getTopRatedMovies = asyncHandler(async (req, res) => {
+   try {
+      const movies = await Movie.find({}).sort({ rate: -1 });
+      res.json(movies);
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const getRandomMovies = asyncHandler(async (req, res) => {
+   try {
+      const movies = await Movie.aggregate([{ $sample: { size: 8 } }]);
+
+      res.json(movies);
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
