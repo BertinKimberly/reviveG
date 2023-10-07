@@ -6,6 +6,7 @@ import { userRouter } from "./routes/userRouter.js";
 import { errorHandler } from "./middlewares/errorMiddleware.js";
 import { moviesRoute } from "./routes/movieRouter.js";
 import { categoriesRoute } from "./routes/categoryRouter.js";
+import UploadRouter from "./controllers/uploadFile.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/movies", moviesRoute);
 app.use("/api/categories", categoriesRoute);
+app.use("/api/upload", UploadRouter);
 
 const port = process.env.PORT || 5000;
 //error handling
