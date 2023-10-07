@@ -2,7 +2,10 @@ import express from "express";
 
 import { protect, admin } from "../middlewares/Auth.js";
 import {
+   createMovie,
    createMovieReview,
+   deleteAllMovies,
+   deleteMovie,
    getMovieById,
    getMovies,
    getRandomMovies,
@@ -25,5 +28,8 @@ router.post("/:id/reviews", protect, createMovieReview);
 
 // ***********************ADMIN ROUTES****************************
 router.put("/:id",protect,admin,updateMovie)
+router.delete("/:id",protect,admin,deleteMovie)
+router.delete("/",protect,admin,deleteAllMovies)
+router.post("/",protect,admin,createMovie)
 
 export { router as moviesRoute };

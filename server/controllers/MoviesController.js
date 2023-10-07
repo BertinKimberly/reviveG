@@ -186,4 +186,71 @@ export const updateMovie = asyncHandler(async (req, res) => {
    }
 });
 
+export const deleteMovie = asyncHandler(async (req, res) => {
+   try {
+      const movie = await Movie.findById(req.params.id);
+      if (movie) {
+         await movie.remove();
+         res.json({ message: "Movie removed" });
+      } else {
+         res.status(400);
+         throw new Error("Movie not found");
+      }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
 
+export const deleteAllMovies = asyncHandler(async (req, res) => {
+   try {
+      await Movie.deleteMany({});
+      res.json({ message: "All movies removed" });
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
+
+export const createMovie = asyncHandler(async (req, res) => {
+   try {
+      const {
+         name,
+         desc,
+         image,
+         titleImage,
+         rate,
+         numberOfReviews,
+         category,
+         time,
+         language,
+         year,
+         video,
+         casts,
+      } = req.body;
+
+      const movie = new Movie({
+         name,
+         desc,
+         image,
+         titleImage,
+         rate,
+         numberOfReviews,
+         category,
+         time,
+         language,
+         year,
+         video,
+         casts,
+         userId: req.user._id,
+      });
+
+      if (movie) {
+         const createdMovie = await movie.save();
+         res.status(201).json(createMovie);
+      } else {
+         res.status(400);
+         throw new Error("Invalid movie data");
+      }
+   } catch (error) {
+      res.status(400).json({ message: error.message });
+   }
+});
