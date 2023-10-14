@@ -1,54 +1,95 @@
 import React from "react";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaHeart, FaListAlt, FaPlus, FaUsers } from "react-icons/fa";
-import { RiLockPasswordFill, RiMovie2Fill } from "react-icons/ri";
+import {
+   RiLockPasswordFill,
+   RiLogoutBoxFill,
+   RiMovie2Fill,
+} from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
 import Layout from "../../Layout/Layout";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from "../../redux/Actions/userActions";
+import toast from "react-hot-toast";
 
 const Sidebar = ({ children }) => {
-   const SideLinks = [
-      {
-         name: "Dashboard",
-         link: "/dashboard",
-         icon: BsFillGridFill,
-      },
-      {
-         name: "Movies List",
-         link: "/moviesList",
-         icon: FaListAlt,
-      },
-      {
-         name: "Add Movie",
-         link: "/addmovie",
-         icon: RiMovie2Fill,
-      },
-      {
-         name: "Categories",
-         link: "/categories",
-         icon: FaPlus,
-      },
-      {
-         name: "Users",
-         link: "/users",
-         icon: FaUsers,
-      },
-      {
-         name: "Update Profile",
-         link: "/profile",
-         icon: FiSettings,
-      },
-      {
-         name: "Favorite Movies",
-         link: "/favorites",
-         icon: FaHeart,
-      },
-      {
-         name: "Change Password",
-         link: "/password",
-         icon: RiLockPasswordFill,
-      },
-   ];
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   //logout function
+
+   const logOutHandler = () => {
+      dispatch(logoutAction());
+
+      toast.success("Logged out successfully");
+      navigate("/login");
+   };
+   const SideLinks = userInfo?.isAdmin
+      ? [
+           {
+              name: "Dashboard",
+              link: "/dashboard",
+              icon: BsFillGridFill,
+           },
+           {
+              name: "Movies List",
+              link: "/moviesList",
+              icon: FaListAlt,
+           },
+           {
+              name: "Add Movie",
+              link: "/addmovie",
+              icon: RiMovie2Fill,
+           },
+           {
+              name: "Categories",
+              link: "/categories",
+              icon: FaPlus,
+           },
+           {
+              name: "Users",
+              link: "/users",
+              icon: FaUsers,
+           },
+           {
+              name: "Update Profile",
+              link: "/profile",
+              icon: FiSettings,
+           },
+           {
+              name: "Favorite Movies",
+              link: "/favorites",
+              icon: FaHeart,
+           },
+           {
+              name: "Change Password",
+              link: "/password",
+              icon: RiLockPasswordFill,
+           },
+        ]
+      : userInfo
+      ? [
+           {
+              name: "Update Profile",
+              link: "/profile",
+              icon: FiSettings,
+           },
+           {
+              name: "Favorite Movies",
+              link: "/favorites",
+              icon: FaHeart,
+           },
+           {
+              name: "Change Password",
+              link: "/password",
+              icon: RiLockPasswordFill,
+           },
+        ]
+      : [];
+
    const active = "bg-dryGray text-subMain";
    const hover = "hover:text-white hover:bg-main";
    const inActive =
@@ -70,6 +111,12 @@ const Sidebar = ({ children }) => {
                         <link.icon /> <p>{link.name}</p>
                      </NavLink>
                   ))}
+                  <button
+                     onClick={logOutHandler}
+                     className={`${inActive} ${hover} w-full`}
+                  >
+                     <RiLogoutBoxFill /> <p>Log Out</p>
+                  </button>
                </div>
                <div
                   data-aos='fade-up'
