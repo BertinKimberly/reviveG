@@ -19,84 +19,88 @@ import Categories from "./screens/dashboard/Admin/Categories";
 import Users from "./screens/dashboard/Admin/Users";
 import AddMovie from "./screens/dashboard/Admin/AddMovie";
 import ScrollOnTop from "./ScrollOnTop";
+import ToastContainer from "./components/Notifications/ToastContainer";
 
 const App = () => {
    // Aos.init({
    //    duration: 1000,
    // });
    return (
-      <ScrollOnTop>
-         <Routes>
-            <Route
-               path='/'
-               element={<HomeScreen />}
-            />
-            <Route
-               path='/about-us'
-               element={<AboutUs />}
-            />
-            <Route
-               path='/contact-us'
-               element={<ContactUs />}
-            />
-            <Route
-               path='/movies'
-               element={<MoviesPage />}
-            />
-            <Route
-               path='/movie/:id'
-               element={<SingleMovie />}
-            />
-            <Route
-               path='/watch/:id'
-               element={<WatchPage />}
-            />
-            <Route
-               path='/login'
-               element={<Login />}
-            />
-            <Route
-               path='/register'
-               element={<Register />}
-            />
-            <Route
-               path='/profile'
-               element={<Profile />}
-            />
-            <Route
-               path='/password'
-               element={<Password />}
-            />
-            <Route
-               path='/favorites'
-               element={<FavoriteMovies />}
-            />
-            <Route
-               path='/moviesList'
-               element={<MoviesList />}
-            />
-            <Route
-               path='/dashboard'
-               element={<Dashboard />}
-            />
-            <Route
-               path='/categories'
-               element={<Categories />}
-            />
-            <Route
-               path='/users'
-               element={<Users />}
-            />
-            <Route
-               path='/addmovie'
-               element={<AddMovie />}
-            />
-            <Route
-               path='*'
-               element={<NotFound />}
-            />
-         </Routes>
-      </ScrollOnTop>
+      <>
+         <ScrollOnTop>
+            <Routes>
+               <Route
+                  path='/'
+                  element={<HomeScreen />}
+               />
+               <Route
+                  path='/about-us'
+                  element={<AboutUs />}
+               />
+               <Route
+                  path='/contact-us'
+                  element={<ContactUs />}
+               />
+               <Route
+                  path='/movies'
+                  element={<MoviesPage />}
+               />
+               <Route
+                  path='/movie/:id'
+                  element={<SingleMovie />}
+               />
+               <Route
+                  path='/watch/:id'
+                  element={<WatchPage />}
+               />
+               <Route
+                  path='/login'
+                  element={<Login />}
+               />
+               <Route
+                  path='/register'
+                  element={<Register />}
+               />
+               <Route
+                  path='/profile'
+                  element={<Profile />}
+               />
+               <Route
+                  path='/password'
+                  element={<Password />}
+               />
+               <Route
+                  path='/favorites'
+                  element={<FavoriteMovies />}
+               />
+               <Route
+                  path='/moviesList'
+                  element={<MoviesList />}
+               />
+               <Route
+                  path='/dashboard'
+                  element={<Dashboard />}
+               />
+               <Route
+                  path='/categories'
+                  element={<Categories />}
+               />
+               <Route
+                  path='/users'
+                  element={<Users />}
+               />
+               <Route
+                  path='/addmovie'
+                  element={<AddMovie />}
+               />
+               <Route
+                  path='*'
+                  element={<NotFound />}
+               />
+            </Routes>
+         </ScrollOnTop>
+         <ToastContainer />
+      </>
    );
 };
 

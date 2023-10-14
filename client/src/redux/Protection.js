@@ -1,3 +1,4 @@
+import { logoutAction } from "./Actions/userActions";
 import { USER_LOGOUT } from "./Constants/userConstants";
 
 export const ErrorsAction = (error, dispatch, action) => {
@@ -6,7 +7,7 @@ export const ErrorsAction = (error, dispatch, action) => {
          ? error.response.data.message
          : error.message;
    if (message === "Not authorized,token failed") {
-     //logout if token fails
+     dispatch(logoutAction())
    }
    return dispatch({ type: action, payload: message });
 };
