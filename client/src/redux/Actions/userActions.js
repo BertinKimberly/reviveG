@@ -39,3 +39,24 @@ export const logoutAction = () => (dispatch) => {
    dispatch({ type: userConstants.USER_LOGIN_RESET });
    dispatch({ type: userConstants.USER_REGISTER_RESET });
 };
+
+//update profile
+
+export const updateProfileAction = (user) => async (dispatch) => {
+   try {
+      dispatch({ type: userConstants.USER_UPDATE_PROFILE_REQUEST });
+      const response = await userApi.updateProfileService(user);
+
+      dispatch({
+         type: userConstants.USER_UPDATE_PROFILE_SUCCESS,
+         payload: response,
+      });
+      toast.success("Profile Updated");
+      dispatch({
+         type: userConstants.USER_LOGIN_SUCCESS,
+         payload: response,
+      });
+   } catch (error) {
+      ErrorsAction(error, dispatch, userConstants.USER_UPDATE_PROFILE_FAIL);
+   }
+};
