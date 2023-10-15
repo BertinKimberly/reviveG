@@ -30,8 +30,12 @@ const loginService = async (user) => {
 
 //update profile API call
 
-const updateProfileService = async (user) => {
-   const { data } = await Axios.put("/users/profile", user);
+const updateProfileService = async (user, token) => {
+   const { data } = await Axios.put("/users", user, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
    if (data) {
       localStorage.setItem("userInfo", JSON.stringify(data));
    }

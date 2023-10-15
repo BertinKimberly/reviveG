@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Uploader from "../../components/Uploader";
 import Sidebar from "./Sidebar";
 import { Input } from "../../components/UsedInputs";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { ProfileValidation } from "../../components/Validation/UserValidation";
 
 const Profile = () => {
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+   const {  userInfo } = useSelector(
+      (state) => state.userLogin
+   );
+
+   //validate user
+
+   const {
+      register,
+      handleSubmit,
+      formState: { errors },
+   } = useForm({
+      resolver: yupResolver(ProfileValidation),
+   });
+
+   //onSubmit
+   const onSubmit = (data) => {
+      dispatch(loginAction(data));
+   };
+
+   useEffect(() => {
+      if (userInfo) {
+      }
+   }, [userInfo]);
    return (
       <Sidebar>
          <div className='flex flex-col gap-6'>
