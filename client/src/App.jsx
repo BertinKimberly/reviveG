@@ -20,6 +20,7 @@ import Users from "./screens/dashboard/Admin/Users";
 import AddMovie from "./screens/dashboard/Admin/AddMovie";
 import ScrollOnTop from "./ScrollOnTop";
 import ToastContainer from "./components/Notifications/ToastContainer";
+import { AdminProtectedRouter, ProtectedRouter } from "./ProtectedRouter";
 
 const App = () => {
    // Aos.init({
@@ -29,6 +30,7 @@ const App = () => {
       <>
          <ScrollOnTop>
             <Routes>
+               {/* ****************PUBLIC ROUTERS*********************** */}
                <Route
                   path='/'
                   element={<HomeScreen />}
@@ -62,41 +64,48 @@ const App = () => {
                   element={<Register />}
                />
                <Route
-                  path='/profile'
-                  element={<Profile />}
-               />
-               <Route
-                  path='/password'
-                  element={<Password />}
-               />
-               <Route
-                  path='/favorites'
-                  element={<FavoriteMovies />}
-               />
-               <Route
-                  path='/moviesList'
-                  element={<MoviesList />}
-               />
-               <Route
-                  path='/dashboard'
-                  element={<Dashboard />}
-               />
-               <Route
-                  path='/categories'
-                  element={<Categories />}
-               />
-               <Route
-                  path='/users'
-                  element={<Users />}
-               />
-               <Route
-                  path='/addmovie'
-                  element={<AddMovie />}
-               />
-               <Route
                   path='*'
                   element={<NotFound />}
                />
+               {/* ****************PRIVATE PUBLIC ROUTERS*********************** */}
+               <Route element={<ProtectedRouter />}>
+                  <Route
+                     path='/profile'
+                     element={<Profile />}
+                  />
+                  <Route
+                     path='/password'
+                     element={<Password />}
+                  />
+                  <Route
+                     path='/favorites'
+                     element={<FavoriteMovies />}
+                  />
+               </Route>
+
+               {/* ****************ADMIN ROUTERS*********************** */}
+               <Route element={<AdminProtectedRouter />}>
+                  <Route
+                     path='/moviesList'
+                     element={<MoviesList />}
+                  />
+                  <Route
+                     path='/dashboard'
+                     element={<Dashboard />}
+                  />
+                  <Route
+                     path='/categories'
+                     element={<Categories />}
+                  />
+                  <Route
+                     path='/users'
+                     element={<Users />}
+                  />
+                  <Route
+                     path='/addmovie'
+                     element={<AddMovie />}
+                  />
+               </Route>
             </Routes>
          </ScrollOnTop>
          <ToastContainer />
