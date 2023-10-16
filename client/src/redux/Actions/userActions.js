@@ -73,6 +73,25 @@ export const deleteProfileAction = () => async (dispatch, getState) => {
       dispatch(logoutAction());
    } catch (error) {
       ErrorsAction(error, dispatch, userConstants.USER_DELETE_PROFILE_FAIL);
-    
    }
 };
+
+//change password action
+
+export const changePasswordAction =
+   (passwords) => async (dispatch, getState) => {
+      try {
+         dispatch({ type: userConstants.USER_CHANGE_PASSWORD_REQUEST });
+         const response = await userApi.changePasswordService(
+            passwords,
+            tokenProtection(getState)
+         );
+
+         dispatch({
+            type: userConstants.USER_CHANGE_PASSWORD_SUCCESS,
+            payload: response,
+         });
+      } catch (error) {
+         ErrorsAction(error, dispatch, userConstants.USER_CHANGE_PASSWORD_FAIL);
+      }
+   };
