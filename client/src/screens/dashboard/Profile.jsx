@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Uploader from "../../components/Uploader";
 import Sidebar from "./Sidebar";
 import { Input } from "../../components/UsedInputs";
@@ -8,12 +8,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { ProfileValidation } from "../../components/Validation/UserValidation";
+import ImagePreview from "../../components/ImagePreview";
+import { updateProfileAction } from "../../redux/Actions/userActions";
 
 const Profile = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
    const { userInfo } = useSelector((state) => state.userLogin);
+   const [imageUrl, setImageUrl] = useState(userInfo ? userInfo.image : "");
+
+   const { isLoading, isError, isSuccess } = useSelector(
+      (state) => state.userUpdateProfile
+   );
 
    //validate user
 
@@ -28,7 +35,7 @@ const Profile = () => {
 
    //onSubmit
    const onSubmit = (data) => {
-      console.log(data);
+      dispatch(updateProfileAction({ ...data, image: imageUrl }));
    };
 
    useEffect(() => {
@@ -36,7 +43,13 @@ const Profile = () => {
          setValue("fullName", userInfo?.fullName);
          setValue("email", userInfo?.email);
       }
-   }, [userInfo, setValue]);
+      if (isSuccess) {
+         dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
+      }
+      if (isError) {
+         toast.error(isError);
+      }
+   }, [userInfo, setValue, isSuccess, isError, dispatch]);
    return (
       <Sidebar>
          <form
@@ -44,12 +57,19 @@ const Profile = () => {
             className='flex flex-col gap-6'
          >
             <h2 className='text-xl font-bold'>Profile</h2>
-            <div className="w-full grid lg:grid-cols-12 gap-6">
-               <div className="col-span-10">
-               <Uploader />
+            <div className='w-full grid lg:grid-cols-12 gap-6'>
+               <div className='col-span-10'>
+                  <Uploader setImageUrl={setImageUrl} />
+                  {/* image preview */}
+
+                  <div className='col-span-2'>
+                     <ImagePreview
+                        image={imageUrl}
+                        name={userInfo ? userInfo.fullName : "user"}
+                     />
+                  </div>
                </div>
             </div>
-      
 
             <div className='w-full'>
                <Input
@@ -80,7 +100,9 @@ const Profile = () => {
                   Delete Account
                </button>
                <button className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white'>
-                  Update Profile
+                  {isLoading
+                     ? "Updating..."
+                    : "Update Profile"}
                </button>
             </div>
          </form>
