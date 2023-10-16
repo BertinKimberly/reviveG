@@ -13,15 +13,14 @@ const Profile = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   const {  userInfo } = useSelector(
-      (state) => state.userLogin
-   );
+   const { userInfo } = useSelector((state) => state.userLogin);
 
    //validate user
 
    const {
       register,
       handleSubmit,
+      setValue,
       formState: { errors },
    } = useForm({
       resolver: yupResolver(ProfileValidation),
@@ -29,30 +28,53 @@ const Profile = () => {
 
    //onSubmit
    const onSubmit = (data) => {
-      dispatch(loginAction(data));
+      console.log(data);
    };
 
    useEffect(() => {
       if (userInfo) {
+         setValue("fullName", userInfo?.fullName);
+         setValue("email", userInfo?.email);
       }
-   }, [userInfo]);
+   }, [userInfo, setValue]);
    return (
       <Sidebar>
-         <div className='flex flex-col gap-6'>
+         <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='flex flex-col gap-6'
+         >
             <h2 className='text-xl font-bold'>Profile</h2>
-            <Uploader />
-            <Input
-               label='FullName'
-               placeholder='Enter your full name'
-               type='text'
-               bg={true}
-            />
-            <Input
-               label='Email'
-               placeholder='Enter your email'
-               type='email'
-               bg={true}
-            />
+            <div className="w-full grid lg:grid-cols-12 gap-6">
+               <div className="col-span-10">
+               <Uploader />
+               </div>
+            </div>
+      
+
+            <div className='w-full'>
+               <Input
+                  label='FullName'
+                  placeholder='Enter your full name'
+                  type='text'
+                  name='fullName'
+                  register={register("fullName")}
+                  bg={true}
+               />
+               {errors.fullName && (
+                  <InlineError text={errors.fullName.message} />
+               )}
+            </div>
+            <div className='w-full'>
+               <Input
+                  label='Email'
+                  placeholder='Enter your email'
+                  type='email'
+                  name='email'
+                  register={register("email")}
+                  bg={true}
+               />
+               {errors.email && <InlineError text={error.email.message} />}
+            </div>
             <div className='flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4'>
                <button className='bg-subMain transiitions hover:bg-main border border-subMain font-medium text-white'>
                   Delete Account
@@ -61,7 +83,7 @@ const Profile = () => {
                   Update Profile
                </button>
             </div>
-         </div>
+         </form>
       </Sidebar>
    );
 };
