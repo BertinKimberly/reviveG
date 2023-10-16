@@ -3,6 +3,7 @@ import {
    userLoginReducer,
    userRegisterReducer,
    userUpdateProfileReducer,
+   userDeleteProfileReducer,
 } from "./Reducers/userReducer";
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
    userLogin: userLoginReducer,
    userRegister: userRegisterReducer,
    userUpdateProfile: userUpdateProfileReducer,
+   userDeleteProfile: userDeleteProfileReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

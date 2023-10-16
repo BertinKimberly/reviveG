@@ -9,7 +9,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { ProfileValidation } from "../../components/Validation/UserValidation";
 import ImagePreview from "../../components/ImagePreview";
-import { updateProfileAction } from "../../redux/Actions/userActions";
+import {
+   deleteProfileAction,
+   updateProfileAction,
+} from "../../redux/Actions/userActions";
 
 const Profile = () => {
    const dispatch = useDispatch();
@@ -20,6 +23,9 @@ const Profile = () => {
 
    const { isLoading, isError, isSuccess } = useSelector(
       (state) => state.userUpdateProfile
+   );
+   const { isLoading: deleteLoading, isError: deleteError } = useSelector(
+      (state) => state.userDeleteProfile
    );
 
    //validate user
@@ -33,9 +39,16 @@ const Profile = () => {
       resolver: yupResolver(ProfileValidation),
    });
 
-   //onSubmit
+   //update profile
    const onSubmit = (data) => {
       dispatch(updateProfileAction({ ...data, image: imageUrl }));
+   };
+
+   //delete profile
+
+   const deleteProfile = () => {
+      window.confirm("Are you sure you want to delete your profile ? ") &&
+         dispatch(deleteProfileAction());
    };
 
    useEffect(() => {
@@ -46,10 +59,12 @@ const Profile = () => {
       if (isSuccess) {
          dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
       }
-      if (isError) {
+      if (isError || deleteError) {
          toast.error(isError);
+         dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
+         dispatch({ type: " USER_DELETE_PROFILE_RESET" });
       }
-   }, [userInfo, setValue, isSuccess, isError, dispatch]);
+   }, [userInfo, setValue, isSuccess, isError, dispatch, deleteError]);
    return (
       <Sidebar>
          <form
@@ -96,13 +111,18 @@ const Profile = () => {
                {errors.email && <InlineError text={error.email.message} />}
             </div>
             <div className='flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4'>
-               <button className='bg-subMain transiitions hover:bg-main border border-subMain font-medium text-white'>
-                  Delete Account
+               <button
+                  onClick={deleteProfile}
+                  disabled={deleteLoading || isLoading}
+                  className='bg-subMain transiitions hover:bg-main border border-subMain font-medium text-white'
+               >
+                  {deleteLoading ? "Deleting..." : "Delete Account"}
                </button>
-               <button className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white'>
-                  {isLoading
-                     ? "Updating..."
-                    : "Update Profile"}
+               <button
+                  disabled={deleteLoading || isLoading}
+                  className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white'
+               >
+                  {isLoading ? "Updating..." : "Update Profile"}
                </button>
             </div>
          </form>

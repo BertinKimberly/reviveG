@@ -63,3 +63,16 @@ export const updateProfileAction = (user) => async (dispatch, getState) => {
       ErrorsAction(error, dispatch, userConstants.USER_UPDATE_PROFILE_FAIL);
    }
 };
+
+export const deleteProfileAction = () => async (dispatch, getState) => {
+   try {
+      dispatch({ type: userConstants.USER_DELETE_PROFILE_REQUEST });
+      await userApi.deleteProfileService(tokenProtection(getState));
+      dispatch({ type: userConstants.USER_DELETE_PROFILE_SUCCESS });
+      toast.success("Profile Deleted");
+      dispatch(logoutAction());
+   } catch (error) {
+      ErrorsAction(error, dispatch, userConstants.USER_DELETE_PROFILE_FAIL);
+    
+   }
+};
