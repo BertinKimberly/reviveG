@@ -7,6 +7,8 @@ import {
    userChangePasswordReducer,
    userDeleteFavoriteMoviesReducer,
    userGetFavoriteMoviesReducer,
+   adminGetAllUsersReducer,
+   adminDeleteUserReducer,
 } from "./Reducers/userReducer";
 
 const rootReducer = combineReducers({
@@ -16,8 +18,10 @@ const rootReducer = combineReducers({
    userUpdateProfile: userUpdateProfileReducer,
    userDeleteProfile: userDeleteProfileReducer,
    userChangePassword: userChangePasswordReducer,
-   userGerFavoriteMovies:userGetFavoriteMoviesReducer,
+   userGerFavoriteMovies: userGetFavoriteMoviesReducer,
    userDeleteFavoriteMovies: userDeleteFavoriteMoviesReducer,
+   adminGetAllUsers: adminGetAllUsersReducer,
+   adminDeleteUser: adminDeleteUserReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -2,7 +2,7 @@ import Axios from "./Axios";
 
 //register new user
 
-const registerService = async (user) => {
+export const registerService = async (user) => {
    const { data } = await Axios.post("/users", user);
    if (data) {
       localStorage.setItem("userInfo", JSON.stringify(data));
@@ -12,14 +12,14 @@ const registerService = async (user) => {
 
 //logout user Function
 
-const logoutService = () => {
+export const logoutService = () => {
    localStorage.removeItem("userInfo");
    return null;
 };
 
 //login user API call
 
-const loginService = async (user) => {
+export const loginService = async (user) => {
    const { data } = await Axios.post("/users/login", user);
 
    if (data) {
@@ -30,7 +30,7 @@ const loginService = async (user) => {
 
 //update profile API call
 
-const updateProfileService = async (user, token) => {
+export const updateProfileService = async (user, token) => {
    const { data } = await Axios.put("/users", user, {
       headers: {
          Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ const updateProfileService = async (user, token) => {
    return data;
 };
 
-const deleteProfileService = async (token) => {
+export const deleteProfileService = async (token) => {
    const { data } = await Axios.delete("/users", {
       headers: {
          Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ const deleteProfileService = async (token) => {
 
 //change password api call
 
-const changePasswordService = async (passwords, token) => {
+export const changePasswordService = async (passwords, token) => {
    const { data } = await Axios.put("/users/password", passwords, {
       headers: {
          Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ const changePasswordService = async (passwords, token) => {
 
 //get all favorite movies
 
-const getFavoriteMovies = async (token) => {
+export const getFavoriteMovies = async (token) => {
    const { data } = await Axios.get("/users/favorites", {
       headers: {
          Authorization: `Bearer ${token}`,
@@ -78,7 +78,7 @@ const getFavoriteMovies = async (token) => {
 
 //delete all favorite movies
 
-const deleteFavoriteMovies = async (token) => {
+export const deleteFavoriteMovies = async (token) => {
    const { data } = await Axios.delete("/users/favorites", {
       headers: {
          Authorization: `Bearer ${token}`,
@@ -86,13 +86,26 @@ const deleteFavoriteMovies = async (token) => {
    });
    return data;
 };
-export {
-   registerService,
-   loginService,
-   loginService,
-   updateProfileService,
-   deleteProfileService,
-   changePasswordService,
-   getFavoriteMovies,
-   deleteFavoriteMovies
+
+// admin get all users
+
+export const getAllUsersService = async (token) => {
+   const { data } = await Axios.get("/users", {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
+   return data;
 };
+
+//admin delete user
+
+export const deleteUserService = async (id, token) => {
+   const { data } = await Axios.delete(`/users/${id}`, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
+   return data;
+};
+
