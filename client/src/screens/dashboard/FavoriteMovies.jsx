@@ -3,8 +3,12 @@ import Table from "../../components/Table";
 import Sidebar from "./Sidebar";
 import { Movies } from "../../data/MoviesData";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavoriteMoviesAction } from "../../redux/Actions/userActions";
+import {
+   deleteFavoriteMoviesAction,
+   getFavoriteMoviesAction,
+} from "../../redux/Actions/userActions";
 import Loader from "../../components/Notifications/Loader";
+import { Empty } from "../../components/Notifications/Empty";
 
 const FavoriteMovies = () => {
    const dispatch = useDispatch();
@@ -13,23 +17,48 @@ const FavoriteMovies = () => {
       (state) => state.userGetFavoriteMovies
    );
 
+   //delete
+   const {
+      isLoading: deleteLoading,
+      isError: deleteError,
+      isSuccess,
+   } = useSelector((state) => state.userDeleteFavoriteMovies);
+
+   //delete movies handler
+
+   const deleteMoviesHandler = () => {
+      window.confirm("Are you sure you want to delete all movies") &&
+         dispatch(deleteFavoriteMoviesAction());
+   };
+
    //useffect
 
    useEffect(() => {
       dispatch(getFavoriteMoviesAction());
-      if (isError) {
-         toast.error(isError);
-         dispatch({ type: "GET_FAVORITE_MOVIES_RESET" });
+      if (isError || deleteError) {
+         toast.error(isError || deleteError);
+         dispatch({
+            type: isError
+               ? "GET_FAVORITE_MOVIES_RESET"
+               : "DELETE_FAVORITE_MOVIES_RESET",
+         });
       }
-   }, [dispatch, isError]);
+   }, [dispatch, isError, deleteError, isSuccess]);
+
    return (
       <Sidebar>
          <div className='flex flex-col gap-6'>
             <div className='flex-btn gap-2'>
                <h2 className='text-xl font-bold'>Favorite Movies</h2>
-               <button className='bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded'>
-                  Delete All
-               </button>
+               {likedMovies.length > 0 && (
+                  <button
+                     disabled={deleteLoading}
+                     onClick={deleteMoviesHandler}
+                     className='bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded'
+                  >
+                     {deleteLoading ? "Deleting..." : "  Delete All"}
+                  </button>
+               )}
             </div>
             {isLoading ? (
                <Loader />
@@ -39,7 +68,7 @@ const FavoriteMovies = () => {
                   admin={false}
                />
             ) : (
-               <p>Empty</p>
+               <Empty message='You have no favorite movies' />
             )}
          </div>
       </Sidebar>
