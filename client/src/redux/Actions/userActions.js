@@ -95,3 +95,18 @@ export const changePasswordAction =
          ErrorsAction(error, dispatch, userConstants.USER_CHANGE_PASSWORD_FAIL);
       }
    };
+
+export const getFavoriteMoviesAction = () => async (dispatch, getState) => {
+   try {
+      dispatch({ type: userConstants.GET_FAVORITE_MOVIES_REQUEST });
+      const response = await userApi.getFavoriteMovies(
+         tokenProtection(getState)
+      );
+      dispatch({
+         type: userConstants.GET_FAVORITE_MOVIES_SUCCESS,
+         payload: response,
+      });
+   } catch (error) {
+      ErrorsAction(error, dispatch, userConstants.GET_FAVORITE_MOVIES_FAIL);
+   }
+};
