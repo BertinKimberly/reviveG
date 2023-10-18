@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CategoryModal from "../../../components/Modals/CategoryModal";
-import { getAllCategoriesAction } from "../../../redux/Actions/CategoriesActions";
+import {
+   deleteCategoryAction,
+   getAllCategoriesAction,
+} from "../../../redux/Actions/CategoriesActions";
+import { Empty } from "../../../components/Notifications/Empty";
 
 const Categories = () => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -11,9 +15,17 @@ const Categories = () => {
 
    //all categories
 
+   const { isSuccess, isError } = useSelector((state) => state.categoryDelete);
+
+   //delete category
    const { categories, isLoading } = useSelector(
       (state) => state.categoryGetAll
    );
+   const adminDeleteCategory = (id) => {
+      if (window.confirm("Are you sure you want to delete this category?")) {
+         dispatch(deleteCategoryAction(id));
+      }
+   };
 
    const OnEditFunction = (id) => {
       setCategory(id);
@@ -23,10 +35,18 @@ const Categories = () => {
       //get all categories
 
       dispatch(getAllCategoriesAction());
+
+      if (isError) {
+         toast.error(isError);
+         dispatch({ type: "DELETE_CATEGORY_RESET" });
+      }
+      if (isSuccess) {
+         dispatch({ type: "DELETE_CATEGORY_RESET" });
+      }
       if (modalOpen === false) {
          setCategory(null);
       }
-   }, [modalOpen,dispatch]);
+   }, [modalOpen, dispatch, isError, isSuccess]);
    return (
       <Sidebar>
          <CategoryModal
@@ -44,11 +64,18 @@ const Categories = () => {
                   <HiPlus /> Create
                </button>
             </div>
-            <Table2
-               data={CategoriesData}
-               users={false}
-               OnEditFunction={OnEditFunction}
-            />
+            {isLoading ? (
+               <Loader />
+            ) : categories.length > 0 ? (
+               <Table2
+                  data={categories}
+                  users={false}
+                  OnEditFunction={OnEditFunction}
+                  onDeleteFunction={adminDeleteCategory}
+               />
+            ) : (
+               <Empty message='You have no categories' />
+            )}
          </div>
       </Sidebar>
    );

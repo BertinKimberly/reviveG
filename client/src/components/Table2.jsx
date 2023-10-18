@@ -18,10 +18,11 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
                      />
                   </div>
                </td>
-               <td className={`${Text} `}>{data._id ? data._id : "2R75TB"}</td>
-               <td className={`${Text}`}>
-                  {data.createdAt ? data.createdAt : "12,Jan 2023"}
+               <td className={`${Text} `}>
+                  {" "}
+                  {data._id ? shortUppercaseId(data._id) : "2R75TB"}
                </td>
+               <td className={`${Text}`}>{DateFormat(data?.createdAt)}</td>
                <td className={`${Text}`}>{data.fullName}</td>
                <td className={`${Text}`}>{data.email}</td>
                <td className={`${Text}`}>{data?.isAdmin ? "Admin" : "User"}</td>
