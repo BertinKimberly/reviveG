@@ -24,6 +24,7 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
                </td>
                <td className={`${Text}`}>{data.fullName}</td>
                <td className={`${Text}`}>{data.email}</td>
+               <td className={`${Text}`}>{data?.isAdmin ? "Admin" : "User"}</td>
                <td className={`${Text}`}>
                   <button className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '>
                      <MdDelete />
@@ -95,6 +96,12 @@ const Table2 = ({ data, users, OnEditFunction, onDeleteFunction }) => {
                            className={`${Head}`}
                         >
                            Email
+                        </th>
+                        <th
+                           scope='col'
+                           className={`${Head}`}
+                        >
+                           Role
                         </th>
                      </>
                   ) : (

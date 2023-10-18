@@ -3,10 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { FaHeart, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { CgUser } from "react-icons/cg";
+import { useSelector } from "react-redux";
 const Navbar = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
    const hover = "hover:text-subMain transitions text-white";
    const Hover = ({ isActive }) => (isActive ? "hover:text-subMain" : hover);
+
+   const { likedMovies } = useSelector((state) => state.userGetFavoriteMovies);
    return (
       <>
          <div className='bg-main shadow-md sticky top-0 z-20'>
@@ -79,7 +82,7 @@ const Navbar = () => {
                   >
                      <FaHeart className='w-6 h-6' />
                      <div className='w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1'>
-                        3
+                        {likedMovies?.length}
                      </div>
                   </NavLink>
                </div>

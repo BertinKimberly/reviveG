@@ -10,6 +10,12 @@ import {
    adminGetAllUsersReducer,
    adminDeleteUserReducer,
 } from "./Reducers/userReducer";
+import {
+   createCategoryReducer,
+   deleteCategoryReducer,
+   getAllCategoriesReducer,
+   updateCategoryReducer,
+} from "./Reducers/categoriesReducers";
 
 const rootReducer = combineReducers({
    //user reducers
@@ -22,6 +28,12 @@ const rootReducer = combineReducers({
    userDeleteFavoriteMovies: userDeleteFavoriteMoviesReducer,
    adminGetAllUsers: adminGetAllUsersReducer,
    adminDeleteUser: adminDeleteUserReducer,
+
+   //category reducers
+   categoryGetAll: getAllCategoriesReducer,
+   categoryCreate: createCategoryReducer,
+   categoryUpdate: updateCategoryReducer,
+   categoryDelete: deleteCategoryReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

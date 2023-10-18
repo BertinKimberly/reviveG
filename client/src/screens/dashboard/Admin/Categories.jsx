@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CategoryModal from "../../../components/Modals/CategoryModal";
+import { getAllCategoriesAction } from "../../../redux/Actions/CategoriesActions";
 
 const Categories = () => {
    const [modalOpen, setModalOpen] = useState(false);
    const [category, setCategory] = useState();
+
+   const dispatch = useDispatch();
+
+   //all categories
+
+   const { categories, isLoading } = useSelector(
+      (state) => state.categoryGetAll
+   );
 
    const OnEditFunction = (id) => {
       setCategory(id);
       setModalOpen(!modalOpen);
    };
    useEffect(() => {
+      //get all categories
+
+      dispatch(getAllCategoriesAction());
       if (modalOpen === false) {
          setCategory(null);
       }
-   },[modalOpen]);
+   }, [modalOpen,dispatch]);
    return (
       <Sidebar>
          <CategoryModal
