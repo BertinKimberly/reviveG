@@ -34,6 +34,10 @@ const rootReducer = combineReducers({
    categoryCreate: createCategoryReducer,
    categoryUpdate: updateCategoryReducer,
    categoryDelete: deleteCategoryReducer,
+
+   //movies reducer
+
+   getAllMovies: moviesListReducer.moviesListReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")
