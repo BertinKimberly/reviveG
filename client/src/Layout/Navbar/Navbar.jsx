@@ -42,8 +42,9 @@ const Navbar = () => {
                         <FaSearch />
                      </button>
                      <input
-                        type='text'
+                        type='search'
                         placeholder='Search Movie'
+                        value={search}
                         onChange={(e) => e.target.value}
                         className='w-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black'
                      />

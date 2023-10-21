@@ -15,7 +15,7 @@ const ShareModal = ({ modalOpen, setModalOpen, movie }) => {
          shareButton: TwitterShareButton,
       },
    ];
-   const url = `${window.location.protocol}//${window.location.host}/movie/${movie.name}`;
+   const url = `${window.location.protocol}//${window.location.host}/movie/${movie._id}`;
    return (
       <MainModal
          modalOpen={modalOpen}

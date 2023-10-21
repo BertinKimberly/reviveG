@@ -55,7 +55,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 
 //initial state
 
-const initialState = {
+const initialState = { 
    userLogin: { userInfo: userInfoFromStorage },
 };
 
