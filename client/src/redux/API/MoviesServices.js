@@ -18,3 +18,24 @@ export const getAllMoviesService = async ({
    );
    return data;
 };
+
+//get random movies Function
+
+export const getRandomMoviesService = async () => {
+   const { data } = await Axios.get(`/movies/random/all`);
+   return data;
+};
+
+//get movie by id Function
+
+export const getMovieByIdService = async (id) => {
+   const { data } = await Axios.get(`/movies/${id}`);
+   return data;
+};
+
+//get top rated movie function
+
+export const getTopRatedMovieService = async () => {
+   const { data } = await Axios.get(`/movies/rated/top`);
+   return data;
+};

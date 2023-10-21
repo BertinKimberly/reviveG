@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Aos } from "aos";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
@@ -21,11 +21,19 @@ import AddMovie from "./screens/dashboard/Admin/AddMovie";
 import ScrollOnTop from "./ScrollOnTop";
 import ToastContainer from "./components/Notifications/ToastContainer";
 import { AdminProtectedRouter, ProtectedRouter } from "./ProtectedRouter";
+import { useDispatch } from "react-redux";
+import { getAllCategoriesAction } from "./redux/Actions/CategoriesActions";
 
 const App = () => {
-   // Aos.init({
-   //    duration: 1000,
-   // });
+   Aos.init({
+      duration: 1000,
+   });
+
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+      dispatch(getAllCategoriesAction());
+   }, [dispatch]);
    return (
       <>
          <ScrollOnTop>
@@ -45,6 +53,10 @@ const App = () => {
                />
                <Route
                   path='/movies'
+                  element={<MoviesPage />}
+               />
+               <Route
+                  path='/movies/:search'
                   element={<MoviesPage />}
                />
                <Route

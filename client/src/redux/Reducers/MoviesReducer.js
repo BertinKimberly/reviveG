@@ -4,9 +4,9 @@ import * as moviesConstants from "../Constants/moviesConstants";
 
 export const moviesListReducer = (state = { movies: [] }, action) => {
    switch (action.type) {
-      case moviesConstants.MOVIES_LIST_REQUEST:
+      case moviesConstants.MOVIE_DETAILS_REQUEST:
          return { isLoading: true, movies: [] };
-      case moviesConstants.MOVIES_LIST_SUCCESS:
+      case moviesConstants.MOVIE_DETAILS_SUCCESS:
          return {
             isLoading: false,
             movies: action.payload.movies,
@@ -21,3 +21,63 @@ export const moviesListReducer = (state = { movies: [] }, action) => {
          return state;
    }
 };
+
+//get random movies
+
+export const moviesRandomReducer = (state = { movies: [] }, action) => {
+   switch (action.type) {
+      case moviesConstants.MOVIES_RANDOM_REQUEST:
+         return { isLoading: true };
+      case moviesConstants.MOVIES_RANDOM_SUCCESS:
+         return {
+            isLoading: false,
+            movies: action.payload.movies,
+         };
+      case moviesConstants.MOVIES_RANDOM_FAIL:
+         return { isLoading: false, isError: action.payload };
+
+      default:
+         return state;
+   }
+};
+
+//get movie by ID
+
+export const movieDetailsReducer = (state = { movie: {} }, action) => {
+   switch (action.type) {
+      case moviesConstants.MOVIES_LIST_REQUEST:
+         return { isLoading: true };
+      case moviesConstants.MOVIE_DETAILS_SUCCESS:
+         return {
+            isLoading: false,
+            movie: action.payload,
+         };
+      case moviesConstants.MOVIE_DETAILS_FAIL:
+         return { isLoading: false, isError: action.payload };
+      case moviesConstants.MOVIE_DETAILS_RESET:
+         return {};
+
+      default:
+         return state;
+   }
+};
+
+//get top rated movies
+
+export const movieTopRatedReducer=(state={movies},action)=>{
+   switch (action.type) {
+      case moviesConstants.MOVIE_TOP_RATED_REQUEST:
+         return { isLoading: true, movies: [] };
+      case moviesConstants.MOVIE_TOP_RATED_SUCCESS:
+         return {
+            isLoading: false,
+            movies: action.payload,
+        
+         };
+      case moviesConstants.MOVIE_TOP_RATED_FAIL:
+         return { isLoading: false, isError: action.payload };
+
+      default:
+         return state;
+   }
+}

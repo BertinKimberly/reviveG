@@ -1,45 +1,40 @@
 import { Listbox, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { CgSelect } from "react-icons/cg";
 import { FaCheck } from "react-icons/fa";
 import { CategoriesData } from "../data/CategoriesData";
+import { useDispatch } from "react-redux";
 
-const YearData = [
-   { title: "Sort By Year" },
-   { title: "1700-1800" },
-   { title: "1800-2000" },
-   { title: "1900-2000" },
-   { title: "2000-2010" },
-   { title: "2010-2030" },
-];
+import { getAllMoviesAction } from "../redux/Actions/MoviesActions";
 
-const TimesData = [
-   { title: "Sort By Hours" },
-   { title: "1-5 Hours" },
-   { title: "5-10" },
-   { title: "10-15" },
-   { title: "15-20" },
-];
-
-const RatesData = [
-   { title: "Sort By Rates" },
-   { title: "1 Star" },
-   { title: "2 Star" },
-   { title: "3 Star" },
-   { title: "4 Star" },
-   { title: "5 Star" },
-];
-const Filters = () => {
-   const [category, setCategory] = useState({ title: "Category" });
-   const [year, setYear] = useState(YearData[0]);
-   const [times, setTimes] = useState(TimesData[0]);
-   const [rates, setRates] = useState(RatesData[0]);
+const Filters = (props) => {
+   const {
+      categories,
+      category,
+      setCategory,
+      language,
+      setLanguage,
+      year,
+      setYear,
+      times,
+      setTimes,
+      rates,
+      setRates,
+   } = props?.data;
 
    const Filter = [
       {
          value: category,
          onChange: setCategory,
-         items: CategoriesData,
+         items:
+            categories?.length > 0
+               ? [{ title: "All Categories" }, ...categories]
+               : [{ title: "No category found" }],
+      },
+      {
+         value: language,
+         onChange: setLanguage,
+         items: LanguageData,
       },
       {
          value: year,
@@ -57,6 +52,9 @@ const Filters = () => {
          items: RatesData,
       },
    ];
+
+
+
    return (
       <div className='my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-4 grid-cols-2 lg:gap-12 gap-2 rounded p-6'>
          {Filter.map((item, index, onChange) => (

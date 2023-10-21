@@ -16,6 +16,12 @@ import {
    getAllCategoriesReducer,
    updateCategoryReducer,
 } from "./Reducers/categoriesReducers";
+import {
+   movieDetailsReducer,
+   movieTopRatedReducer,
+   moviesListReducer,
+   moviesRandomReducer,
+} from "./Reducers/MoviesReducer";
 
 const rootReducer = combineReducers({
    //user reducers
@@ -37,7 +43,10 @@ const rootReducer = combineReducers({
 
    //movies reducer
 
-   getAllMovies: moviesListReducer.moviesListReducer,
+   getAllMovies: moviesListReducer,
+   getRandomMovies: moviesRandomReducer,
+   getMovieById: movieDetailsReducer,
+   getTopRatedMovie: movieTopRatedReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -13,11 +13,11 @@ const Categories = () => {
 
    const dispatch = useDispatch();
 
-   //all categories
+   //delete
 
    const { isSuccess, isError } = useSelector((state) => state.categoryDelete);
 
-   //delete category
+   //get all categories
    const { categories, isLoading } = useSelector(
       (state) => state.categoryGetAll
    );

@@ -63,7 +63,7 @@ const Login = () => {
                      register={register("email")}
                      bg={true}
                   />
-                  {errors.email && <InlineError text={error.email.message} />}
+                  {errors.email && <InlineError text={errors.email.message} />}
                </div>
                <div className='w-full'>
                   <Input
