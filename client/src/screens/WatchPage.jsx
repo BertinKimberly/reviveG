@@ -1,16 +1,33 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
+import { FaPlay } from "react-icons/fa";
 
 const WatchPage = () => {
    let { id } = useParams();
-   const movie = Movies.find((movie) => movie.name === id);
+   const dispatch = useDispatch();
    const [play, setPlay] = useState(false);
+
+   const sameClass = "w-full gap-6 flex-colo min-h-screen";
+
+   //use selector
+   const { isLoading, isError, movie } = useSelector(
+      (state) => state.getMovieById
+   );
+
+   //useEffect
+
+   useEffect(() => {
+      //movie id
+      dispatch(getMovieByIdAction(id));
+   }, [dispatch, id]);
    return (
       <Layout>
          <div className='container mx-auto bg-dry p-6 mb-12'>
             <div className='flex-btn flex-wrap mb-6 gap-2 bg-main rounded border border-gray-800 p-6'>
                <Link
-                  to={`/movie/${movie?.name}`}
+                  to={`/movie/${movie?._id}`}
                   className='md:text-xl text-sm flex gap-3 items-center font-bold text-dryGray'
                >
                   <BiArrowBack /> {movie?.name}
@@ -25,20 +42,50 @@ const WatchPage = () => {
                </div>
             </div>
             {/* watch video */}
-            {
-              play ? (
-                <video controls autoPlay={play} className="w-full h-screen rounded">
-                  <source src="" type="video/mp4" title={movie?.name}/>
-                </video>
-              ):(<div className="w-full h-full rounded-lg overflow-hidden relative">
-                <div className="absolute top-0 left-0 bottom-0 right-0 bg-main bg-opacity-30 flex-colo">
-                  <button onClick={()=>setPlay(true)} className="bg-main text-subMain flex-colo ">
-                    <FaPlay/>
-                  </button>
-                </div>
-                <img src="" alt={movie?.name} className="w-full h-full object-cover rounded-lg" />
-              </div>)
-            }
+            {play ? (
+               <video
+                  controls
+                  autoPlay={play}
+                  className='w-full h-screen rounded'
+               >
+                  <source
+                     src={movie?.video}
+                     type='video/mp4'
+                     title={movie?.name}
+                  />
+               </video>
+            ) : (
+               <div className='w-full h-full rounded-lg overflow-hidden relative'>
+                  {isLoading ? (
+                     <div className={sameClass}>
+                        <Loader />
+                     </div>
+                  ) : isError ? (
+                     <div className={sameClass}>
+                        <div className='flex-colo w-24 p-5 rounded-full bg-dry text-subMain text-4xl mb-4'>
+                           <RiMovie2Line />
+                        </div>
+                        <p className='text-border text-sm'>{isError}</p>
+                     </div>
+                  ) : (
+                     <>
+                        <div className='absolute top-0 left-0 bottom-0 right-0 bg-main bg-opacity-30 flex-colo'>
+                           <button
+                              onClick={() => setPlay(true)}
+                              className='bg-main text-subMain flex-colo '
+                           >
+                              <FaPlay />
+                           </button>
+                        </div>
+                        <img
+                           src=''
+                           alt={movie?.name}
+                           className='w-full h-full object-cover rounded-lg'
+                        />
+                     </>
+                  )}
+               </div>
+            )}
          </div>
       </Layout>
    );

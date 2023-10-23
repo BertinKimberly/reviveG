@@ -1,35 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Titles from "../Titles";
 import { Message, Select } from "../../components/UsedInputs";
-
+import { useDispatch, useSelector } from "react-redux";
+import { ReviewValidation } from "../Validation/MovieValidation";
+import { Link } from "react-router-dom";
+import { reviewMovieAction } from "../../redux/Actions/MoviesActions";
+const Ratings = [
+   {
+      title: "0-Poor",
+      value: 0,
+   },
+   {
+      title: "1- Fair",
+      value: 1,
+   },
+   {
+      title: "2 - Good",
+      value: 2,
+   },
+   {
+      title: "3 - Very Good",
+      value: 3,
+   },
+   {
+      title: "4 - Excellent",
+      value: 4,
+   },
+   {
+      title: "5 - Masterpiece",
+      value: 5,
+   },
+];
 const MovieRates = ({ movie }) => {
-   const Ratings = [
-      {
-         title: "0-Poor",
-         value: 0,
-      },
-      {
-         title: "1- Fair",
-         value: 1,
-      },
-      {
-         title: "2 - Good",
-         value: 2,
-      },
-      {
-         title: "3 - Very Good",
-         value: 3,
-      },
-      {
-         title: "4 - Excellent",
-         value: 4,
-      },
-      {
-         title: "5 - Masterpiece",
-         value: 5,
-      },
-   ];
-   const [rating, selectRating] = useState(0);
+   const dispatch = useDispatch();
+   //use selector
+
+   const { isLoading, isError } = useSelector((state) => state.createReview);
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   //validate review
+
+   const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+   } = useForm({
+      resolver: yupResolver(ReviewValidation),
+   });
+
+   //onSubmit
+   const onSubmit = (data) => {
+      dispatch(
+         reviewMovieAction({
+            id: movie?._id,
+            review: { ...data },
+         })
+      );
+   };
+
+   useEffect(() => {
+      if (isError) {
+         toast.error(isError);
+         dispatch({ type: "CREATE_REVIEW_RESET" });
+      }
+   }, [isError, dispatch]);
    return (
       <div className='my-12'>
          <Titles
@@ -37,7 +72,10 @@ const MovieRates = ({ movie }) => {
             Icon={BsBookmarkStarFill}
          />
          <div className='mt-10 xl:grid flex-colo grid-cols-5 gap-12 bg-dry xs:p-10 pt-10 px-2 sm:p-20 rounded'>
-            <div className='xl:col-span-2 w-full flex flex-col gap-8'>
+            <form
+               onSubmit={handleSubmit(onSubmit)}
+               className='xl:col-span-2 w-full flex flex-col gap-8'
+            >
                <h3 className='text-xl text-text font-semibold'>
                   Review "{movie?.name}"
                </h3>
@@ -48,20 +86,44 @@ const MovieRates = ({ movie }) => {
                   <Select
                      label='Select Rating'
                      options={Ratings}
-                     onChange={(e) => selectRating(e.target.value)}
+                     name='rating'
+                     register={{ ...register("rating") }}
                   />
                   <div className='flex mt-4 text-lg gap-2 text-star'>
-                     <Rating value={rating} />
+                     <Rating value={watch("rating", false)} />
                   </div>
+                  {errors.rating && (
+                     <InlineError message={errors.rating.message} />
+                  )}
                </div>
-               <Message
-                  label='Message'
-                  placeholder='make it short and sweet'
-               />
-               <button className='bg-subMain text-white py-3 w-full rounded flex-colo'>
-                  Submit
-               </button>
-            </div>
+               <div className='w-full'>
+                  <Message
+                     label='Message'
+                     placeholder='make it short and sweet'
+                     name='comment'
+                     register={{ ...register("comment") }}
+                  />
+                  {errors.comment && (
+                     <InlineError text={errors.comment.message} />
+                  )}
+               </div>
+               {userInfo ? (
+                  <button
+                     disabled={isLoading}
+                     type='submit'
+                     className='bg-subMain text-white py-3 w-full rounded flex-colo'
+                  >
+                     {isLoading ? "Loading" : "Submit"}
+                  </button>
+               ) : (
+                  <Link
+                     to='/login'
+                     className='bg-main border border-subMain text-white py-3 w-full rounded flex-colo'
+                  >
+                     Login to review this movie
+                  </Link>
+               )}
+            </form>
             <div className='col-span-3  flex flex-col gap-6'>
                <h3 className='text-text font-semibold'>Reviews (56)</h3>
                <div className='w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-scroll'>

@@ -1,4 +1,4 @@
-export const Message = ({ label, placeholder }) => {
+export const Message = ({ label, placeholder, name, register }) => {
    return (
       <div className='text-sm w-full'>
          <label
@@ -10,12 +10,14 @@ export const Message = ({ label, placeholder }) => {
          <textarea
             className='w-full h-40 mt-2 p-6 border border-border rounded '
             placeholder={placeholder}
+            {...register}
+            name={name}
          ></textarea>
       </div>
    );
 };
 
-export const Select = ({ label, options, onChange }) => {
+export const Select = ({ label, options, register, name }) => {
    return (
       <>
          <label
@@ -24,7 +26,11 @@ export const Select = ({ label, options, onChange }) => {
          >
             {label}
          </label>
-         <select className='w-full mt-2 px-6 py-4 text-text bg-main border-border'>
+         <select
+            className='w-full mt-2 px-6 py-4 text-text bg-main border-border'
+            {...register}
+            name={name}
+         >
             {options.map((option, i) => (
                <option
                   key={i}
