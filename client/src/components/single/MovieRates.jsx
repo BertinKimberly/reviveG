@@ -65,26 +65,33 @@ const MovieRates = ({ movie }) => {
             <div className='col-span-3  flex flex-col gap-6'>
                <h3 className='text-text font-semibold'>Reviews (56)</h3>
                <div className='w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-scroll'>
-                  {UsersData.map((user, i) => (
-                     <div className='md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg'>
-                        <div className='col-span-2 hidden md:block'>
-                           <img
-                              src={user.image}
-                              alt={user.name}
-                              className='w-full h-24 rounded-lg object-cover'
-                           />
+                  {movie?.reviews?.length > 0 ? (
+                     movie?.reviews?.map((review) => (
+                        <div
+                           key={review?._id}
+                           className='md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg'
+                        >
+                           <div className='col-span-2 hidden md:block'>
+                              <img
+                                 src={review.image}
+                                 alt={review.username}
+                                 className='w-full h-24 rounded-lg object-cover'
+                              />
+                           </div>
+                           <div className='col-span-7 flex flex-col gap-2'>
+                              <h2>{review?.fullName}</h2>
+                              <p className='text-xs leading-6 font-medium text-text'>
+                                 {review?.comment}
+                              </p>
+                           </div>
+                           <div className='col-span-3 flex-rows border-l border-border text-xs gap-1 text-star '>
+                              <Rating value={review?.rating} />
+                           </div>
                         </div>
-                        <div className='col-span-7 flex flex-col gap-2'>
-                           <h2>{user?.fullName}</h2>
-                           <p className='text-xs leading-6 font-medium text-text'>
-                              {user?.message}
-                           </p>
-                        </div>
-                        <div className='col-span-3 flex-rows border-l border-border text-xs gap-1 text-star '>
-                           <Rating value={user?.rate} />
-                        </div>
-                     </div>
-                  ))}
+                     ))
+                  ) : (
+                     <Empty message='No reviews yet' />
+                  )}
                </div>
             </div>
          </div>

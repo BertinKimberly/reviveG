@@ -57,22 +57,25 @@ const SingleMovie = () => {
                   setModalOpen={setModalOpen}
                />
                <div className='container mx-auto min-h-screen px-2 my-6'>
-                  <MovieCasts />
+                  <MovieCasts movie={movie} />
                   <MovieRates movie={movie} />
-                  <div className='my-16'>
-                     <Titles
-                        title='Related Movies'
-                        Icon={BsCollectionFill}
-                     />
-                     <div className='grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-4'>
-                        {movies.map((movie, index) => (
-                           <RelatedMovies
-                              key={index}
-                              movie={movie}
-                           />
-                        ))}
+                  //related movies
+                  {RelatedMovies.length > 0 && (
+                     <div className='my-16'>
+                        <Titles
+                           title='Related Movies'
+                           Icon={BsCollectionFill}
+                        />
+                        <div className='grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-4'>
+                           {movies.map((movie) => (
+                              <RelatedMovies
+                                 key={movie?._id}
+                                 movie={movie}
+                              />
+                           ))}
+                        </div>
                      </div>
-                  </div>
+                  )}
                </div>
             </>
          )}

@@ -33,6 +33,7 @@ const App = () => {
 
    useEffect(() => {
       dispatch(getAllCategoriesAction());
+      dispatch(getAllCategoriesAction({}));
    }, [dispatch]);
    return (
       <>
