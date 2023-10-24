@@ -100,3 +100,39 @@ export const createReviewReducer = (state = {}, action) => {
          return state;
    }
 };
+
+//delete movie
+
+export const deleteMovieReducer = (state = {}, action) => {
+   switch (action.type) {
+      case moviesConstants.DELETE_MOVIE_REQUEST:
+         return { isLoading: true };
+      case moviesConstants.DELETE_MOVIE_SUCCESS:
+         return {
+            isLoading: false,
+            isSuccess: true,
+         };
+      case moviesConstants.DELETE_MOVIE_FAIL:
+         return { isLoading: false, isError: action.payload };
+      default:
+         return state;
+   }
+};
+
+//delete all movies
+
+export const deleteAllMoviesReducer = (state = {}, action) => {
+   switch (action.type) {
+      case moviesConstants.DELETE_ALL_REQUEST:
+         return { isLoading: true };
+      case moviesConstants.DELETE_ALL_SUCCESS:
+         return {
+            isLoading: false,
+            isSuccess: true,
+         };
+      case moviesConstants.DELETE_ALL_FAIL:
+         return { isLoading: false, isError: action.payload };
+      default:
+         return state;
+   }
+};

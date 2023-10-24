@@ -18,6 +18,8 @@ import {
    updateCategoryReducer,
 } from "./Reducers/categoriesReducers";
 import {
+   deleteAllMoviesReducer,
+   deleteMovieReducer,
    movieDetailsReducer,
    movieTopRatedReducer,
    moviesListReducer,
@@ -50,6 +52,8 @@ const rootReducer = combineReducers({
    getMovieById: movieDetailsReducer,
    getTopRatedMovie: movieTopRatedReducer,
    createReview: createCategoryReducer,
+   deleteMovie: deleteMovieReducer,
+   deleteAllMovies: deleteAllMoviesReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

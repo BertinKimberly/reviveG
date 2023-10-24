@@ -8,17 +8,43 @@ import { Empty } from "../../../components/Notifications/Empty";
 
 const MoviesList = () => {
    const dispatch = useDispatch();
+   //all movies
    const { isLoading, isError, movies, pages, page } = useSelector(
       (state) => state.getAllMovies
    );
+   //delete
+   const { isLoading: deleteLoading, isError: deleteError } = useSelector(
+      (state) => state.deleteMovie
+   );
+
+   //delete all
+   const { isLoading: allLoading, isError: allError } = useSelector(
+      (state) => state.deleteAllMovies
+   );
+
+   //delete movie handler
+
+   const deleteMovieHandler = (id) => {
+      window.confirm("Are you sure you want to delete this movie ?") &&
+         dispatch(deleteMovieAction(id));
+   };
+
+   //delete all movies handler
+
+   const deleteAllMoviesHandler = () => {
+      confirm("Are you sure you want to delete all movies ? ") &&
+         dispatch(deleteAllMoviesAction());
+   };
+
+   //useEffect
 
    useEffect(() => {
       //errors
-      if (isError) {
-         TransformStream.error(isError);
+      if (isError || deleteError || allError) {
+         toast.error(isError || deleteError || allError);
       }
       dispatch(getAllMoviesAction({}));
-   }, [dispatch, isError]);
+   }, [dispatch, isError, deleteError, allError]);
 
    //pagination next and prev pages
 
@@ -41,17 +67,24 @@ const MoviesList = () => {
          <div className='flex flex-col gap-6'>
             <div className='flex-btn gap-2'>
                <h2 className='text-xl font-bold'> Movies List</h2>
-               <button className='bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded'>
-                  Delete All
-               </button>
+               {movies?.length > 0 && (
+                  <button
+                     disabled={allLoading}
+                     onClick={deleteAllMoviesHandler}
+                     className='bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded'
+                  >
+                     {allLoading ? "Deleting..." : " Delete All"}
+                  </button>
+               )}
             </div>
-            {isLoading ? (
+            {isLoading || deleteLoading ? (
                <Loader />
             ) : movies.length > 0 ? (
                <>
                   <Table
                      data={movies}
                      admin={false}
+                     onDeleteHandler={deleteMovieHandler}
                   />
                   <div className='w-full flex-rows md:my-20 my-10 gap-6'>
                      <button

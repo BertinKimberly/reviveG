@@ -1,28 +1,87 @@
 import React from "react";
 import { FaPlus, FaRegListAlt, FaUser } from "react-icons/fa";
 import Table from "../../../components/Table";
-import { Movies } from "../../../data/MoviesData";
+
 import Sidebar from "../Sidebar";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsersAction } from "../../../redux/Actions/userActions";
+import {
+   deleteMovieAction,
+   getAllMoviesAction,
+} from "../../../redux/Actions/MoviesActions";
+import { getAllCategoriesAction } from "../../../redux/Actions/CategoriesActions";
+import Loader from "../../../components/Notifications/Loader";
+import { Empty } from "../../../components/Notifications/Empty";
 
 const Dashboard = () => {
+   const dispatch = useDispatch();
+
+   //use selectors
+   const {
+      isLoading: catLoading,
+      isError: catError,
+      categories,
+   } = useSelector((state) => state.categoryGetAll);
+   const {
+      isLoading: userLoading,
+      isError: userError,
+      users,
+   } = useSelector((state) => state.adminGetAllUsers);
+
+   const { isLoading, isError, movies, totalMovies } = useSelector(
+      (state) => state.getAllMovies
+   );
+
+   //delete
+   const { isLoading: deleteLoading, isError: deleteError } = useSelector(
+      (state) => state.deleteMovie
+   );
+
+   //delete movie handler
+
+   const deleteMovieHandler = (id) => {
+      window.confirm("Are you sure you want to delete this movie ?") &&
+         dispatch(deleteMovieAction(id));
+   };
+
+   //useEffect
+
+   useEffect(() => {
+      //get all users
+      dispatch(getAllUsersAction());
+
+      //get all movies
+      dispatch(getAllMoviesAction({}));
+
+      //get all categories
+      dispatch(getAllCategoriesAction({}));
+
+      //errors
+      if (isError || catError || userError || deleteError) {
+         toast.error(isError || catError || userError || deleteError);
+      }
+   }, [dispatch, isError, catError, userError, deleteError]);
+
+   //dashboard datas
+
    const DashboardData = [
       {
          bg: "bg-orange-600",
          icon: FaRegListAlt,
          title: "Total Movies",
-         total: 90,
+         total: isLoading ? "Loading..." : totalMovies,
       },
       {
          bg: "bg-blue-700",
          icon: FaPlus,
          title: "Total Categories",
-         total: 8,
+         total: catLoading ? "Loading..." : categories?.length,
       },
       {
          bg: "bg-green-600",
          icon: FaUser,
          title: "Total Users",
-         total: 120,
+         total: userLoading ? "Loading..." : users?.length,
       },
    ];
    return (
@@ -47,10 +106,17 @@ const Dashboard = () => {
             ))}
          </div>
          <h3 className='text-md font-medium mt-6'>Recent Movies</h3>
-         <Table
-            data={Movies.slice(0, 5)}
-            admin={true}
-         />
+         {isLoading || deleteLoading ? (
+            <Loader />
+         ) : movies.length > 0 ? (
+            <Table
+               data={movies?.slice(0, 5)}
+               admin={true}
+               onDeleteHandler={deleteMovieHandler}
+            />
+         ) : (
+            <Empty message='Empty' />
+         )}
       </Sidebar>
    );
 };

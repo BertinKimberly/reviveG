@@ -60,16 +60,6 @@ const FavoriteMovies = () => {
                   </button>
                )}
             </div>
-            {isLoading ? (
-               <Loader />
-            ) : likedMovies.length > 0 ? (
-               <Table
-                  data={likedMovies}
-                  admin={false}
-               />
-            ) : (
-               <Empty message='You have no favorite movies' />
-            )}
          </div>
       </Sidebar>
    );

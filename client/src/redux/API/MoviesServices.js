@@ -50,3 +50,25 @@ export const reviewMovieService = async (token, id, review) => {
    });
    return data;
 };
+
+//delete movie function
+
+export const deleteMovieService = async (token, id) => {
+   const { data } = await Axios.delete(`/movies/${id}`, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
+   return data;
+};
+
+//delete all movies function
+
+export const deleteAllMoviesService = async (token) => {
+   const { data } = await Axios.delete(`/movies`, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
+   return data;
+};
