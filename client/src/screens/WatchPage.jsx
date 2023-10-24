@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
 import { FaPlay } from "react-icons/fa";
+import { LikeMovie } from "../context/Functionalities";
 
 const WatchPage = () => {
    let { id } = useParams();
@@ -15,6 +16,13 @@ const WatchPage = () => {
    const { isLoading, isError, movie } = useSelector(
       (state) => state.getMovieById
    );
+
+   const { isLoading: likeLoading } = useSelector(
+      (state) => state.userLikeMovies
+   );
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   const isLiked = (move) => IfMovieLiked(movie);
 
    //useEffect
 
@@ -36,7 +44,11 @@ const WatchPage = () => {
                   <button className='bg-white hover:text-subMain transitions bg-opacity-30 text-white rounded px-4 py-3 text-sm'>
                      <FaHeart />
                   </button>
-                  <button className='bg-subMain hover:text-main transitions  text-white rounded px-8 py-3 text-sm flex-rows font-medium'>
+                  <button
+                     onClick={() => LikeMovie(movie, dispatch, userInfo)}
+                     disabled={isLiked(movie) || likeLoading}
+                     className='bg-subMain hover:text-main transitions  text-white rounded px-8 py-3 text-sm flex-rows font-medium'
+                  >
                      <FaCloud /> Download
                   </button>
                </div>

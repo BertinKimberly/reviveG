@@ -7,8 +7,20 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Rating from "../Stars";
 import { Autoplay, Navigation } from "swiper/modules";
+import { useDispatch, useSelector } from "react-redux";
+import { IfMovieLiked } from "../../context/Functionalities";
 
 const SwiperTop = ({ prevEl, nextEl, movies }) => {
+   const { isLoading } = useSelector((state) => state.userLikeMovie);
+   const dispatch = useDispatch();
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   //if liked function
+
+   const isLiked = (movie) => {
+      return IfMovieLiked(movie);
+   };
+
    return (
       <Swiper
          navigation={{ nextEl, prevEl }}
@@ -28,7 +40,11 @@ const SwiperTop = ({ prevEl, nextEl, movies }) => {
                      className='w-full h-full object-cover rounded-lg '
                   />
                   <div className='px-4 gap-6 hovers text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0'>
-                     <button className='w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white '>
+                     <button
+                        onClick={() => LikeMovie(movie, dispatch, userInfo)}
+                        disabled={isLiked(movie) || isLoading}
+                        className='w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white '
+                     >
                         <FaHeart />
                      </button>
                      <Link

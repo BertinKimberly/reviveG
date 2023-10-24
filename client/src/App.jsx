@@ -21,20 +21,34 @@ import AddMovie from "./screens/dashboard/Admin/AddMovie";
 import ScrollOnTop from "./ScrollOnTop";
 import ToastContainer from "./components/Notifications/ToastContainer";
 import { AdminProtectedRouter, ProtectedRouter } from "./ProtectedRouter";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoriesAction } from "./redux/Actions/CategoriesActions";
+import { getFavoriteMoviesAction } from "./redux/Actions/userActions";
 
 const App = () => {
    Aos.init({
       duration: 1000,
    });
-
+   const { userInfo } = useSelector((state) => state.userLogin);
+   const { isError, isSuccess } = useSelector((state) => state.userLikeMovie);
+   const { isError: catError } = useSelector((state) => state.categoryGetAll);
    const dispatch = useDispatch();
 
    useEffect(() => {
       dispatch(getAllCategoriesAction());
       dispatch(getAllCategoriesAction({}));
-   }, [dispatch]);
+
+      if (userInfo) {
+         dispatch(getFavoriteMoviesAction());
+      }
+      if (isError || catError) {
+         toast.error("Something went wrong, please try again later");
+         dispatch({ type: "LIKE_MOVIE_RESET" });
+      }
+      if (isSuccess) {
+         dispatch({ type: "LIKE_MOVIE_RESET" });
+      }
+   }, [dispatch, userInfo, isError, catError, isSuccess]);
    return (
       <>
          <ScrollOnTop>

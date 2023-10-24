@@ -9,6 +9,7 @@ import {
    userGetFavoriteMoviesReducer,
    adminGetAllUsersReducer,
    adminDeleteUserReducer,
+   userLikeMovieReducer,
 } from "./Reducers/userReducer";
 import {
    createCategoryReducer,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
    userDeleteFavoriteMovies: userDeleteFavoriteMoviesReducer,
    adminGetAllUsers: adminGetAllUsersReducer,
    adminDeleteUser: adminDeleteUserReducer,
+   userLikeMovie: userLikeMovieReducer,
 
    //category reducers
    categoryGetAll: getAllCategoriesReducer,
@@ -47,7 +49,7 @@ const rootReducer = combineReducers({
    getRandomMovies: moviesRandomReducer,
    getMovieById: movieDetailsReducer,
    getTopRatedMovie: movieTopRatedReducer,
-   createReview:createCategoryReducer
+   createReview: createCategoryReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -56,7 +58,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 
 //initial state
 
-const initialState = { 
+const initialState = {
    userLogin: { userInfo: userInfoFromStorage },
 };
 
