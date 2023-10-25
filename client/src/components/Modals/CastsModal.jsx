@@ -1,8 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainModal from "./MainModal";
 import { Input } from "../UsedInputs";
+import { useDispatch } from "react-redux";
+import * as yup from "yup";
+import {
+   addCastAction,
+   updateCastAction,
+} from "../../redux/Actions/MoviesActions";
 
 const CastsModal = ({ modalOpen, setModalOpen, cast }) => {
+   const dispatch = useDispatch();
+   const [castImage, setCastImage] = useState("");
+   const generateId = Math.floor(Math.random() * 1000);
+   const image = castImage ? castImage : cast?.image;
+
+   //validate cast
+
+   const {
+      register,
+      handleSubmit,
+      reset,
+      setValue,
+      formState: { errors },
+   } = useForm({
+      resolver: yupResolver(
+         yup.object().shape({
+            name: yup.string().required("Cast Name is required"),
+         })
+      ),
+   });
+
+   //onSubmit
+   const onSubmit = (data) => {
+      if (cast) {
+         dispatch(
+            updateCastAction({
+               ...data,
+               image: image,
+               id: cast.id,
+            })
+         );
+         toast.success("Cast updated successfully");
+      } else {
+         dispatch(
+            addCastAction({
+               ...data,
+               image: image,
+               id: generateId,
+            })
+         );
+         toast.success("Cast created successfully");
+      }
+      reset();
+      setCastImage("");
+      setModalOpen(false);
+   };
+
+   useEffect(() => {
+      if (cast) {
+         setValue("name", cast?.name);
+      }
+   }, [cast, setValue]);
    return (
       <MainModal
          modalOpen={modalOpen}
@@ -12,27 +70,34 @@ const CastsModal = ({ modalOpen, setModalOpen, cast }) => {
             <h2 className='text-3xl font-bold'>
                {cast ? "Update" : "Create Cast"}
             </h2>
-            <form className='flex flex-col gap-6 text-left mt-6'>
-               <Input
-                  label='cast Name'
-                  placeholder={cast ? cast.title : "Actions"}
-                  bg={false}
-               />
+            <form
+               onSubmit={handleSubmit(onSubmit)}
+               className='flex flex-col gap-6 text-left mt-6'
+            >
+               <div className='w-full'>
+                  <Input
+                     label='Cast name'
+                     placeholder='John Doe'
+                     type='text'
+                     bg={true}
+                     name='name'
+                     register={register("name")}
+                  />
+                  {errors.name && <InlineError text={errors.name.message} />}
+               </div>
+
                <div className='flex flex-col gap-2'>
-               <p className='text-border font-semibold text-sm'>
-                  Cast Image
-               </p>
-               <Uploader />
-               <div className='w-32 h-32 bg-main border border-border rounded'>
-                  <img
-                     src=''
-                     alt={cast?.fullName}
-                     className='w-full h-full object-cover rounded'
+                  <p className='text-border font-semibold text-sm'>
+                     Cast Image
+                  </p>
+                  <Uploader setImageUrl={setCastImage} />
+                  <Imagepreview
+                     image={image ? image : ""}
+                     name='castImage'
                   />
                </div>
-            </div>
                <button
-                  onClick={() => setModalOpen(false)}
+                  type='submit'
                   className='w-full flex-colo py-4 rounded bg-subMain text-white hover:bg-transparent border-2'
                >
                   {cast ? "Update" : "Create"}

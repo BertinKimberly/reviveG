@@ -72,3 +72,14 @@ export const deleteAllMoviesService = async (token) => {
    });
    return data;
 };
+
+//create movie Function
+
+export const createMovieService = async (token, movie) => {
+   const { data } = await Axios.post(`/movies`, movie, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
+   return data;
+};

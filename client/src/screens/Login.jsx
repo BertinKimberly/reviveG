@@ -22,6 +22,7 @@ const Login = () => {
    const {
       register,
       handleSubmit,
+      reset,
       formState: { errors },
    } = useForm({
       resolver: yupResolver(LoginValidation),
@@ -32,6 +33,10 @@ const Login = () => {
       dispatch(loginAction(data));
    };
 
+
+
+
+//useEffect
    useEffect(() => {
       if (userInfo.isAdmin) {
          navigate("/dashboard");
