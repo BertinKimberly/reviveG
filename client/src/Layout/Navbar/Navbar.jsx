@@ -3,7 +3,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaHeart, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { CgUser } from "react-icons/cg";
-import { useSelector } from "react-redux";
 const Navbar = () => {
    const [search, setSearch] = useState("");
    const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import { v4 as uuidv4 } from "uuid-v4";
-import storage from "../config/firebaseStorage";
+import uuidv4 from "uuid-v4"; // Fix the import statement
+import storage from "../config/firebaseStorage.js";
 
 const UploadRouter = express.Router();
 
@@ -42,6 +42,5 @@ UploadRouter.post("/", upload.single("file"), async (req, res) => {
       res.status(400).json({ message: error.message });
    }
 });
-
 
 export default UploadRouter;

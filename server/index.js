@@ -21,11 +21,11 @@ app.use("/api/movies", moviesRoute);
 app.use("/api/categories", categoriesRoute);
 app.use("/api/upload", UploadRouter);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 //error handling
 app.use(errorHandler);
 //connect db
 connectDB();
 app.listen(port, () =>
-   console.log(`server is running on http://localhost:/${port}`)
+   console.log(`server is running on http://localhost:${port}`)
 );

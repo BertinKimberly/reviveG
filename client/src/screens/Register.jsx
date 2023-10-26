@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../Layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCheck } from "react-icons/fa";
 import { Input } from "../components/UsedInputs";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import {
-   LoginValidation,
-   RegisterValidation,
-} from "../components/Validation/UserValidation";
+import { RegisterValidation } from "../components/Validation/UserValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
@@ -20,8 +17,7 @@ const Register = () => {
       (state) => state.userLogin
    );
 
-   //validate user
-
+   // Validate user
    const {
       register,
       handleSubmit,
@@ -30,7 +26,7 @@ const Register = () => {
       resolver: yupResolver(RegisterValidation),
    });
 
-   //onSubmit
+   // onSubmit
    const onSubmit = (data) => {
       dispatch(registerAction(data));
    };
@@ -42,7 +38,7 @@ const Register = () => {
          navigate("/profile");
       }
       if (isSuccess) {
-         toast.success(`Welcome  ${userInfo?.fullName}`);
+         toast.success(`Welcome ${userInfo?.fullName}`);
          dispatch({ type: "USER_REGISTER_RESET" });
       }
       if (isError) {
@@ -50,6 +46,7 @@ const Register = () => {
          dispatch({ type: "USER_REGISTER_RESET" });
       }
    }, [userInfo, isSuccess, isError, navigate, dispatch]);
+
    return (
       <Layout>
          <div className='container mx-auto px-2 my-24 flex-colo'>
@@ -70,31 +67,34 @@ const Register = () => {
                      placeholder='Enter your full name'
                      type='text'
                      bg={true}
-                     name='email'
+                     name='fullName'
                      register={register("fullName")}
                   />
-                  {errors.fullName && <InlineError text={errors.fullName.message} />}
+                  {errors.fullName && (
+                     <InlineError text={errors.fullName.message} />
+                  )}
                </div>
-                  <Input
-                     label='Email'
-                     placeholder='Enter your email'
-                     type='email'
-                     name='email'
-                     register={register("email")}
-                     bg={true}
-                  />
-                  {errors.email && <InlineError text={errors.email.message} />}
-               </div>
+               <Input
+                  label='Email'
+                  placeholder='Enter your email'
+                  type='email'
+                  name='email'
+                  register={register("email")}
+                  bg={true}
+               />
+               {errors.email && <InlineError text={errors.email.message} />}
                <div className='w-full'>
                   <Input
                      label='Password'
                      placeholder='Enter your password'
-                     type='passwordl'
+                     type='password'
                      bg={true}
                      name='password'
                      register={register("password")}
                   />
-                  {errors.password && <InlineError text={error.password.message} />}
+                  {errors.password && (
+                     <InlineError text={errors.password.message} />
+                  )}
                </div>
                <button
                   type='submit'
@@ -104,9 +104,9 @@ const Register = () => {
                   {isLoading ? (
                      "Loading"
                   ) : (
-                     <>
-                        <FaUserCheck /> Sign Up
-                     </>
+                     <p>
+                        <FaUserCheck /> Sign up
+                     </p>
                   )}
                </button>
                <p className='text-center text-border'>

@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Table from "../../components/Table";
 import Sidebar from "./Sidebar";
-import { Movies } from "../../data/MoviesData";
 import { useDispatch, useSelector } from "react-redux";
 import {
    deleteFavoriteMoviesAction,
@@ -9,10 +8,11 @@ import {
 } from "../../redux/Actions/userActions";
 import Loader from "../../components/Notifications/Loader";
 import { Empty } from "../../components/Notifications/Empty";
+import { SidebarContext } from "../../context/DrawerContext";
 
 const FavoriteMovies = () => {
    const dispatch = useDispatch();
-
+   const { progress, setProgress } = useContext(SidebarContext);
    const { isLoading, isError, likedMovies } = useSelector(
       (state) => state.userGetFavoriteMovies
    );
@@ -29,6 +29,14 @@ const FavoriteMovies = () => {
    const deleteMoviesHandler = () => {
       window.confirm("Are you sure you want to delete all movies") &&
          dispatch(deleteFavoriteMoviesAction());
+   };
+
+   //download video
+   const DownloadMovieVideo = async (videoUrl, name) => {
+      await DownloadMovieVideo(videoUrl, setProgress).then((data) => {
+         setProgress(0);
+         FileSaver.saveAs(data, name);
+      });
    };
 
    //useffect
@@ -60,6 +68,18 @@ const FavoriteMovies = () => {
                   </button>
                )}
             </div>
+            {isLoading ? (
+               <Loader />
+            ) : likedMovies.length > 0 ? (
+               <Table
+                  data={likedMovies}
+                  admin={false}
+                  downloadVideo={DownloadMovieVideo}
+                  progress={progress}
+               />
+            ) : (
+               <Empty message='You have no favorite movies' />
+            )}
          </div>
       </Sidebar>
    );

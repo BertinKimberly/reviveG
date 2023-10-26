@@ -26,6 +26,7 @@ import {
    movieTopRatedReducer,
    moviesListReducer,
    moviesRandomReducer,
+   updateMovieReducer,
 } from "./Reducers/MoviesReducer";
 
 const rootReducer = combineReducers({
@@ -57,7 +58,8 @@ const rootReducer = combineReducers({
    deleteMovie: deleteMovieReducer,
    deleteAllMovies: deleteAllMoviesReducer,
    createMovie: createMovieReducer,
-   casts: CastsReducer
+   casts: CastsReducer,
+   updateMovie: updateMovieReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

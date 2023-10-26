@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
 import { FaPlay } from "react-icons/fa";
 import { LikeMovie } from "../context/Functionalities";
+import { SidebarContext } from "../context/DrawerContext";
 
 const WatchPage = () => {
    let { id } = useParams();
@@ -11,7 +12,7 @@ const WatchPage = () => {
    const [play, setPlay] = useState(false);
 
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
-
+   const { progress, setProgress } = useContext(SidebarContext);
    //use selector
    const { isLoading, isError, movie } = useSelector(
       (state) => state.getMovieById
@@ -23,6 +24,19 @@ const WatchPage = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
 
    const isLiked = (move) => IfMovieLiked(movie);
+
+
+   //download video
+   const DownloadMovieVideo = async (videoUrl, name) => {
+      await DownloadMovieVideo(videoUrl, setProgress).then((data) => {
+         setProgress(0);
+         FileSaver.saveAs(data, name);
+      });
+   };
+
+
+
+
 
    //useEffect
 

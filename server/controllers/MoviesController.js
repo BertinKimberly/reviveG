@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Movie from "../models/MovieModel";
+import Movie from "../models/MovieModel.js";
 //*****************PUBLIC CONTROLLERS********************* */
 
 export const importMovies = asyncHandler(async (req, res) => {

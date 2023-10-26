@@ -4,7 +4,7 @@ import {
    deleteCategory,
    getCategories,
    updateCategory,
-} from "../controllers/CategoriesController";
+} from "../controllers/CategoriesController.js";
 import { protect, admin } from "../middlewares/Auth.js";
 
 const router = express.Router();

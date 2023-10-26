@@ -24,6 +24,7 @@ import { AdminProtectedRouter, ProtectedRouter } from "./ProtectedRouter";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoriesAction } from "./redux/Actions/CategoriesActions";
 import { getFavoriteMoviesAction } from "./redux/Actions/userActions";
+import EditMovie from "./screens/dashboard/Admin/EditMovie";
 
 const App = () => {
    Aos.init({
@@ -131,6 +132,10 @@ const App = () => {
                   <Route
                      path='/addmovie'
                      element={<AddMovie />}
+                  />
+                  <Route
+                     path='/edit/:id'
+                     element={<EditMovie />}
                   />
                </Route>
             </Routes>

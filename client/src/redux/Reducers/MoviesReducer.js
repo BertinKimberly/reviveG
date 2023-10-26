@@ -176,3 +176,20 @@ export const CastsReducer = (state = { casts: [] }, action) => {
          return state;
    }
 };
+
+//UPDATE MOVIE
+
+export const updateMovieReducer = (state = {}, action) => {
+   switch (action.type) {
+      case moviesConstants.UPDATE_MOVIE_REQUEST:
+         return { isLoading: true };
+      case moviesConstants.UPDATE_MOVIE_SUCCESS:
+         return { isLoading: false, isSuccess: true };
+      case moviesConstants.UPDATE_MOVIE_FAIL:
+         return { isLoading: false, isError: action.payload };
+      case moviesConstants.UPDATE_MOVIE_RESET:
+         return {};
+      default:
+         return state;
+   }
+};

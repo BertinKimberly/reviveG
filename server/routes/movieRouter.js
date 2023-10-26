@@ -12,7 +12,7 @@ import {
    getTopRatedMovies,
    importMovies,
    updateMovie,
-} from "../controllers/MoviesController";
+} from "../controllers/MoviesController.js";
 
 const router = express.Router();
 

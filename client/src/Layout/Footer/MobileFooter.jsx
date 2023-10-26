@@ -5,9 +5,13 @@ import { FaHeart, FaUserCheck } from "react-icons/fa";
 import { CgMenuBoxed } from "react-icons/cg";
 import MenuDrawer from "../../components/Drawer/MenuDrawer";
 import { SidebarContext } from "../../context/DrawerContext";
+import { useSelector } from "react-redux";
 
 const MobileFooter = () => {
    const { mobileDrawer, toggleDrawer } = useContext(SidebarContext);
+   const { likedMovies } = useSelector((state) => state.userGetFavoriteMovies);
+   const { userInfo } = useSelector((state) => state.userLogin);
+
    const active = "bg-white text-main";
    const inActive =
       "transitions text-2xl flex-colo hover:bg-white hover:text-main text-white rounded-md px-4 py-3";
@@ -17,7 +21,10 @@ const MobileFooter = () => {
    return (
       <>
          <div className='flex flex-col align-middle h-full bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full'>
-            <MenuDrawer drawerOpen={mobileDrawer} toggleDrawer={toggleDrawer}/>
+            <MenuDrawer
+               drawerOpen={mobileDrawer}
+               toggleDrawer={toggleDrawer}
+            />
          </div>
          <footer className='lg:hidden fixed z-50 bottom-0 w-full px-1'>
             <div className='bg-dry rounded-md flex-btn w-full p-1'>
@@ -29,20 +36,31 @@ const MobileFooter = () => {
                </NavLink>
                <NavLink
                   to='/favorites'
-                  className={`${Hover} relative`}
+                  className={`${Hover}`}
                >
-                  <FaHeart />
-                  <div className='w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1'>
-                     3
+                  <div className='relative'>
+                     <div className='w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1'>
+                        {likedMovies?.length > 0 ? likedMovies?.length : 0}
+                     </div>
+                     <FaHeart />
                   </div>
                </NavLink>
                <NavLink
-                  to='/login'
+                  to={
+                     userInfo
+                        ? userInfo.isAdmin
+                           ? "/dashboard"
+                           : "/profile"
+                        : "/login"
+                  }
                   className={Hover}
                >
                   <FaUserCheck />
                </NavLink>
-               <button onClick={toggleDrawer} className={inActive}>
+               <button
+                  onClick={toggleDrawer}
+                  className={inActive}
+               >
                   <CgMenuBoxed />
                </button>
             </div>

@@ -1,4 +1,4 @@
-import Category from "../models/CategoryModel";
+import Category from "../models/CategoryModel.js";
 import asyncHandler from "express-async-handler";
 
 // **************PUBLIC CONTROLLERS******************
