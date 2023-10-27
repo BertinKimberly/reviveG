@@ -6,6 +6,7 @@ import { CategoriesData } from "../data/CategoriesData";
 import { useDispatch } from "react-redux";
 
 import { getAllMoviesAction } from "../redux/Actions/MoviesActions";
+import { LanguageData, RatesData } from "../data/FilterData";
 
 const Filters = (props) => {
    const {

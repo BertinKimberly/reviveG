@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaHeart, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { CgUser } from "react-icons/cg";
+import Avatar from "../../assets/user.png";
 const Navbar = () => {
    const [search, setSearch] = useState("");
    const navigate = useNavigate();
@@ -80,11 +81,7 @@ const Navbar = () => {
                   >
                      {userInfo ? (
                         <img
-                           src={
-                              userInfo?.image
-                                 ? userInfo?.image
-                                 : "/images/user.png"
-                           }
+                           src={userInfo?.image ? userInfo?.image : Avatar}
                            alt={userInfo?.fullName}
                            className='w-8 h-8 rounded-full border object-cover border-subMain'
                         />

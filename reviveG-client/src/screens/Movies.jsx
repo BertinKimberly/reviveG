@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMoviesAction } from "../redux/Actions/MoviesActions";
 import Loader from "../components/Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
+import toast from "react-hot-toast";
 import {
    LanguageData,
    RatesData,
@@ -109,7 +110,7 @@ const MoviesPage = () => {
             ) : movies?.length > 0 ? (
                <>
                   <div className='grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6'>
-                     {Movies?.map((movie, index) => (
+                     {movies?.map((movie, index) => (
                         <Movie
                            key={index}
                            movie={movie}

@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { ProfileValidation } from "../../components/Validation/UserValidation";
 import ImagePreview from "../../components/ImagePreview";
+import userImage from "../../assets/user.png";
 import {
    deleteProfileAction,
    updateProfileAction,
@@ -19,7 +20,9 @@ const Profile = () => {
    const navigate = useNavigate();
 
    const { userInfo } = useSelector((state) => state.userLogin);
-   const [imageUrl, setImageUrl] = useState(userInfo ? userInfo.image : "");
+   const [imageUrl, setImageUrl] = useState(
+      userInfo ? userInfo.image : userImage
+   );
 
    const { isLoading, isError, isSuccess } = useSelector(
       (state) => state.userUpdateProfile
@@ -69,10 +72,10 @@ const Profile = () => {
       <Sidebar>
          <form
             onSubmit={handleSubmit(onSubmit)}
-            className='flex flex-col gap-6'
+            className='flex flex-col gap-6 '
          >
             <h2 className='text-xl font-bold'>Profile</h2>
-            <div className='w-full grid lg:grid-cols-12 gap-6'>
+            <div className='w-full grid lg:grid-cols-12 gap-6 '>
                <div className='col-span-10'>
                   <Uploader setImageUrl={setImageUrl} />
                   {/* image preview */}
@@ -108,7 +111,7 @@ const Profile = () => {
                   register={register("email")}
                   bg={true}
                />
-               {errors.email && <InlineError text={error.email.message} />}
+               {errors.email && <InlineError text={errors.email.message} />}
             </div>
             <div className='flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4'>
                <button

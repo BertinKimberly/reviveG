@@ -6,8 +6,10 @@ import { Input } from "../components/UsedInputs";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { RegisterValidation } from "../components/Validation/UserValidation";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup"
 import toast from "react-hot-toast";
+import { InlineError } from "../components/Notifications/Error";
+import { registerAction } from "../redux/Actions/userActions";
 
 const Register = () => {
    const dispatch = useDispatch();
@@ -57,9 +59,9 @@ const Register = () => {
          <div className='container mx-auto px-2 my-24 flex-colo'>
             <form
                onSubmit={handleSubmit(onSubmit)}
-               className='w-full 2xl:w-2/5 flex-colo md:w-3/5 bg-dry rounded-lg border border-border'
+               className='w-full 2xl:w-2/5 flex-colo md:w-3/5 bg-dry rounded-lg border border-border p-4 gap-5'
             >
-               <h1>NETFLIXO</h1>
+               <h1>reviveG</h1>
                <div className='w-full'>
                   <Input
                      label='FullName'
@@ -103,7 +105,7 @@ const Register = () => {
                   {isLoading ? (
                      "Loading"
                   ) : (
-                     <p>
+                     <p className="flex gap-3 items-center">
                         <FaUserCheck /> Sign up
                      </p>
                   )}
