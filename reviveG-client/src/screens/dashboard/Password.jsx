@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { useForm } from "react-hook-form";
-
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../../components/UsedInputs";
 import { useDispatch, useSelector } from "react-redux";
 import { PasswordValidation } from "../../components/Validation/UserValidation";

@@ -1,5 +1,6 @@
 import React, { Fragment, useRef } from "react";
-
+import { Transition, Dialog } from "@headlessui/react";
+import { FaTimes } from "react-icons/fa";
 const MainModal = ({ modalOpen, setModalOpen, children }) => {
    const cancleButtonRef = useRef();
    return (
@@ -51,7 +52,7 @@ const MainModal = ({ modalOpen, setModalOpen, children }) => {
                      type='button'
                      className='  px-4 py-2 text-base font-medium text-white bg-subMain hover:bg-white transitions rounded-full w-12 h-12 flex-colo'
                   >
-                     <IoClose />
+                     <FaTimes />
                   </button>
                </div>
             </Dialog>

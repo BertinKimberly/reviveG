@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {FaPlus} from 'react-icons/fa'
 import CategoryModal from "../../../components/Modals/CategoryModal";
 import {
    deleteCategoryAction,
    getAllCategoriesAction,
 } from "../../../redux/Actions/CategoriesActions";
 import { Empty } from "../../../components/Notifications/Empty";
+import Sidebar from "../Sidebar";
+import Loader from "../../../components/Notifications/Loader";
 
 const Categories = () => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -61,11 +64,11 @@ const Categories = () => {
                   onClick={() => setModalOpen(true)}
                   className='bg-subMain font-medium transitions hover:bg-main border border-subMain text-white py-2 px-4 rounded flex-rows gap-4'
                >
-                  <HiPlus /> Create
+                  <FaPlus /> Create
                </button>
             </div>
             {isLoading ? (
-               <Loader />
+               <Loader/>
             ) : categories.length > 0 ? (
                <Table2
                   data={categories}

@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import MainModal from "./MainModal";
 import { Input } from "../UsedInputs";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import {
    addCastAction,
    updateCastAction,
 } from "../../redux/Actions/MoviesActions";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Uploader from "../Uploader";
+import ImagePreview from "../ImagePreview";
 
 const CastsModal = ({ modalOpen, setModalOpen, cast }) => {
    const dispatch = useDispatch();
@@ -91,7 +95,7 @@ const CastsModal = ({ modalOpen, setModalOpen, cast }) => {
                      Cast Image
                   </p>
                   <Uploader setImageUrl={setCastImage} />
-                  <Imagepreview
+                  <ImagePreview
                      image={image ? image : ""}
                      name='castImage'
                   />

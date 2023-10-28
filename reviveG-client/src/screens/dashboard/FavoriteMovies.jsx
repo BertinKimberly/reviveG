@@ -58,7 +58,7 @@ const FavoriteMovies = () => {
          <div className='flex flex-col gap-6'>
             <div className='flex-btn gap-2'>
                <h2 className='text-xl font-bold'>Favorite Movies</h2>
-               {likedMovies.length > 0 && (
+               {likedMovies?.length > 0 && (
                   <button
                      disabled={deleteLoading}
                      onClick={deleteMoviesHandler}
@@ -70,7 +70,7 @@ const FavoriteMovies = () => {
             </div>
             {isLoading ? (
                <Loader />
-            ) : likedMovies.length > 0 ? (
+            ) : likedMovies?.length > 0 ? (
                <Table
                   data={likedMovies}
                   admin={false}

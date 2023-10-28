@@ -5,6 +5,8 @@ import Table from "../../../components/Table";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Notifications/Loader";
 import { Empty } from "../../../components/Notifications/Empty";
+import toast from "react-hot-toast";
+import { getAllMoviesAction } from "../../../redux/Actions/MoviesActions";
 
 const MoviesList = () => {
    const dispatch = useDispatch();
@@ -79,7 +81,7 @@ const MoviesList = () => {
             </div>
             {isLoading || deleteLoading ? (
                <Loader />
-            ) : movies.length > 0 ? (
+            ) : movies?.length > 0 ? (
                <>
                   <Table
                      data={movies}

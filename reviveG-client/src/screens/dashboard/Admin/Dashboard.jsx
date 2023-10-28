@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { FaPlus, FaRegListAlt, FaUser } from "react-icons/fa";
 import Table from "../../../components/Table";
 
@@ -12,6 +12,7 @@ import {
 import { getAllCategoriesAction } from "../../../redux/Actions/CategoriesActions";
 import Loader from "../../../components/Notifications/Loader";
 import { Empty } from "../../../components/Notifications/Empty";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
    const dispatch = useDispatch();
@@ -108,7 +109,7 @@ const Dashboard = () => {
          <h3 className='text-md font-medium mt-6'>Recent Movies</h3>
          {isLoading || deleteLoading ? (
             <Loader />
-         ) : movies.length > 0 ? (
+         ) : movies?.length > 0 ? (
             <Table
                data={movies?.slice(0, 5)}
                admin={true}

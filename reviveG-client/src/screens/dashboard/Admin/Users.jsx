@@ -6,13 +6,15 @@ import {
 import { Empty } from "../../../components/Notifications/Empty";
 import Table2 from "../../../components/Table2";
 import Loader from "../../../components/Notifications/Loader";
-
+import { useDispatch, useSelector } from "react-redux";
+import Sidebar from "../Sidebar";
 const Users = () => {
    const dispatch = useDispatch();
 
    const { isLoading, isError, users } = useSelector(
       (state) => state.adminGetAllUsers
    );
+   const { likedMovies } = useSelector((state) => state.userGetFavoriteMovies);
 
    //delete
    const {
@@ -33,6 +35,7 @@ const Users = () => {
 
    useEffect(() => {
       dispatch(getAllUsersAction());
+
       if (isError || deleteError) {
          toast.error(isError || deleteError);
          dispatch({
@@ -47,7 +50,7 @@ const Users = () => {
                <h2 className='text-xl font-bold'> Users</h2>
                {isLoading ? (
                   <Loader />
-               ) : likedMovies.length > 0 ? (
+               ) : likedMovies?.length > 0 ? (
                   <Table2
                      data={users}
                      admin={true}
