@@ -14,7 +14,6 @@ const Users = () => {
    const { isLoading, isError, users } = useSelector(
       (state) => state.adminGetAllUsers
    );
-   const { likedMovies } = useSelector((state) => state.userGetFavoriteMovies);
 
    //delete
    const {
@@ -35,7 +34,7 @@ const Users = () => {
 
    useEffect(() => {
       dispatch(getAllUsersAction());
-
+console.log("These are users meaning that api is working",users);
       if (isError || deleteError) {
          toast.error(isError || deleteError);
          dispatch({
@@ -50,11 +49,11 @@ const Users = () => {
                <h2 className='text-xl font-bold'> Users</h2>
                {isLoading ? (
                   <Loader />
-               ) : likedMovies?.length > 0 ? (
+               ) : users?.length > 0 ? (
                   <Table2
                      data={users}
                      admin={true}
-                     onDeleteFunction={deleteMoviesHandler}
+                     onDeleteFunction={deleteUserHandler}
                   />
                ) : (
                   <Empty message='You dont have any user' />

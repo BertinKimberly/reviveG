@@ -18,8 +18,8 @@ select:focus {
 }
 
 /* Basic class for tailwind */
-.linear-bg{
-   background:linear-gradient(269.82deg, #07091c00 0.17, #080a1ad6 99.87%)
+.linear-bg {
+   background: linear-gradient(269.82deg, #07091c00 0.17, #080a1ad6 99.87%);
 }
 .hovers {
    @apply hidden;
@@ -46,7 +46,22 @@ select:focus {
    z-index: 1000;
 }
 
-
-h{
+h {
    background: #46c3f9;
+}
+
+.container {
+   @apply px-[4rem];
+}
+
+@media screen and (max-width: 992px) {
+   .container {
+      @apply px-[1rem];
+   }
+}
+
+@media screen and (max-width: 600px) {
+   .container {
+      @apply px-[0.8rem];
+   }
 }

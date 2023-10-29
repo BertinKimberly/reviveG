@@ -187,14 +187,14 @@ export const deleteLikedMovie = asyncHandler(async (req, res) => {
    }
 });
 
-export const getUsers = asyncHandler(async (req, res) => {
+export const getUsers = async (req, res) => {
    try {
       const users = await User.find({});
       res.json(users);
    } catch (error) {
       res.status(400).json({ message: error.message });
    }
-});
+};
 
 export const deleteUser = asyncHandler(async (req, res) => {
    try {
