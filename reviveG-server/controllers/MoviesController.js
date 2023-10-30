@@ -246,7 +246,7 @@ export const createMovie = asyncHandler(async (req, res) => {
 
       if (movie) {
          const createdMovie = await movie.save();
-         res.status(201).json(createMovie);
+         res.status(201).json(createdMovie);
       } else {
          res.status(400);
          throw new Error("Invalid movie data");
