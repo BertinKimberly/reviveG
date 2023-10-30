@@ -9,6 +9,7 @@ import { LoginValidation } from "../components/Validation/UserValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { loginAction } from "../redux/Actions/userActions";
+import Table2 from "../components/Table2";
 
 const Login = () => {
    const dispatch = useDispatch();
@@ -31,31 +32,28 @@ const Login = () => {
 
    //onSubmit
    const onSubmit = (data) => {
-      dispatch( loginAction(data));
+      dispatch(loginAction(data));
    };
 
-
-
-
-//useEffect
-useEffect(() => {
-   if (userInfo) {
-      if (userInfo.isAdmin) {
-         navigate("/dashboard");
-      } else {
-         navigate("/profile");
+   //useEffect
+   useEffect(() => {
+      if (userInfo) {
+         if (userInfo.isAdmin) {
+            navigate("/dashboard");
+         } else {
+            navigate("/profile");
+         }
       }
-   }
 
-   if (isSuccess) {
-      toast.success(`Welcome back ${userInfo?.fullName}`);
-   }
+      if (isSuccess) {
+         toast.success(`Welcome back ${userInfo?.fullName}`);
+      }
 
-   if (isError) {
-      toast.error(isError);
-      dispatch({ type: "USER_LOGIN_RESET" });
-   }
-}, [userInfo, isSuccess, isError, navigate, dispatch]);
+      if (isError) {
+         toast.error(isError);
+         dispatch({ type: "USER_LOGIN_RESET" });
+      }
+   }, [userInfo, isSuccess, isError, navigate, dispatch]);
 
    return (
       <Layout>

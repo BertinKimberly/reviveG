@@ -34,7 +34,6 @@ const Users = () => {
 
    useEffect(() => {
       dispatch(getAllUsersAction());
-console.log("These are users meaning that api is working",users);
       if (isError || deleteError) {
          toast.error(isError || deleteError);
          dispatch({
@@ -54,6 +53,7 @@ console.log("These are users meaning that api is working",users);
                      data={users}
                      admin={true}
                      onDeleteFunction={deleteUserHandler}
+      
                   />
                ) : (
                   <Empty message='You dont have any user' />
