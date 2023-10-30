@@ -13,9 +13,9 @@ export const Empty = ({ message }) => {
 };
 
 export const shortUppercaseId = (id) => {
-   return id.slice(0, 8).toUperCase();
+   return id.slice(0, 8).toUpperCase();
 };
 
 export const DateFormat = (date) => {
-   return moment(date.format("LL"));
+   return moment(date).format("LL");
 };
