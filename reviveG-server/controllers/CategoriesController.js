@@ -22,6 +22,7 @@ export const createCategory = asyncHandler(async (req, res) => {
          title,
       });
       const createdCategory = await category.save();
+      res.json({message: "Category created successfully"})
    } catch (error) {
       res.status(400).json({ message: error.message });
    }
