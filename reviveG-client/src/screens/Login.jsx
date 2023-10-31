@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { loginAction } from "../redux/Actions/userActions";
 import Table2 from "../components/Table2";
+import Sidebar from "./dashboard/Sidebar";
 
 const Login = () => {
    const dispatch = useDispatch();
@@ -110,6 +111,7 @@ const Login = () => {
                </p>
             </form>
          </div>
+  
       </Layout>
    );
 };

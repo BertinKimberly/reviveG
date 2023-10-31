@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import Axios from "../redux/API/Axios";
 import { IoMdCloudDownload } from "react-icons/io";
-
+import {useSelector} from 'react-redux'
 //check if movie is aded to favorites
 
 export const IfMovieLiked = (movie) => {

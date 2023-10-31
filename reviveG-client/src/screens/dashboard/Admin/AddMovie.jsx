@@ -15,6 +15,7 @@ import {
    removeCastAction,
 } from "../../../redux/Actions/MoviesActions";
 import ImagePreview from "../../../components/ImagePreview";
+import { InlineError } from "../../../components/Notifications/Error";
 
 const AddMovie = () => {
    const [modalOpen, setModalOpen] = useState(false);

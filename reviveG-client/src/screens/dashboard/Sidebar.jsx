@@ -117,13 +117,7 @@ const Sidebar = ({ children }) => {
                      <RiLogoutBoxFill /> <p>Log Out</p>
                   </button>
                </div>
-               <div
-                  data-aos='fade-up'
-                  data-aos-duration='1000'
-                  data-aos-delay='10'
-                  data-aos-offset='200'
-                  className='col-span-6 rounded-md bg-dry border-gray-800 p-6'
-               >
+               <div className='col-span-6 rounded-md bg-dry border-gray-800 p-6 ml-3'>
                   {children}
                </div>
             </div>
