@@ -88,7 +88,7 @@ export const reviewMovieAction =
             type: moviesConstants.CREATE_REVIEW_SUCCESS,
             payload: response,
          });
-         toast.successs("Review added successfully");
+         toast.success("Review added successfully");
          dispatch({ type: moviesConstants.CREATE_REVIEW_RESET });
          dispatch(getMovieByIdAction(id));
       } catch (error) {

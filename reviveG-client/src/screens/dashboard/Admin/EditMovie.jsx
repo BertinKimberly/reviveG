@@ -4,7 +4,6 @@ import Sidebar from "../Sidebar";
 import { Input, Message, Select } from "../../../components/UsedInputs";
 import Uploader from "../../../components/Uploader";
 import { FiDelete, FiUpload } from "react-icons/fi";
-import { CategoriesData } from "../../../data/CategoriesData";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { movieValidation } from "../../../components/Validation/MovieValidation";

@@ -31,7 +31,7 @@ export const loginService = async (user) => {
 //update profile API call
 
 export const updateProfileService = async (user, token) => {
-   const { data } = await Axios.put("/users", user, {
+   const { data } = await Axios.put("/users/update", user, {
       headers: {
          Authorization: `Bearer ${token}`,
       },

@@ -112,7 +112,7 @@ const Table = ({ data, admin, onDeleteHandler, downloadVideo, progress }) => {
                </tr>
             </thead>
             <tbody className='bg-main divide-y divide-gray-800'>
-               {data.map(
+               {data?.map(
                   (
                      movie,
                      onDeleteHandler,

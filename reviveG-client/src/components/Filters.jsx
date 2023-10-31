@@ -2,7 +2,6 @@ import { Listbox, Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { CgSelect } from "react-icons/cg";
 import { FaCheck } from "react-icons/fa";
-import { CategoriesData } from "../data/CategoriesData";
 import { useDispatch } from "react-redux";
 
 import { getAllMoviesAction } from "../redux/Actions/MoviesActions";

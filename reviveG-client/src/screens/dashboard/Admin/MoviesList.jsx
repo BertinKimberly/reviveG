@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import Sidebar from "../Sidebar";
-import { Movies } from "../../../data/MoviesData";
 import Table from "../../../components/Table";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Notifications/Loader";
 import { Empty } from "../../../components/Notifications/Empty";
 import toast from "react-hot-toast";
-import { getAllMoviesAction } from "../../../redux/Actions/MoviesActions";
+import { deleteAllMoviesAction, deleteMovieAction, getAllMoviesAction } from "../../../redux/Actions/MoviesActions";
 
 const MoviesList = () => {
    const dispatch = useDispatch();

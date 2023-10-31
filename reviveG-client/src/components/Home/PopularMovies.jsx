@@ -1,7 +1,6 @@
 import React from "react";
 import Titles from "../Titles";
 import { BsCollectionFill } from "react-icons/bs";
-import { Movies } from "../../data/MoviesData";
 import Movie from "../Movie";
 import { Empty } from "../Notifications/Empty";
 import Loader from "../Notifications/Loader";

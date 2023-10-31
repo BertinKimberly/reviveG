@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {FaPlus} from 'react-icons/fa'
+import { FaPlus } from "react-icons/fa";
 import CategoryModal from "../../../components/Modals/CategoryModal";
 import {
    deleteCategoryAction,
@@ -9,6 +9,8 @@ import {
 import { Empty } from "../../../components/Notifications/Empty";
 import Sidebar from "../Sidebar";
 import Loader from "../../../components/Notifications/Loader";
+import Table2 from "../../../components/Table2";
+import Table from "../../../components/Table";
 
 const Categories = () => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -68,7 +70,7 @@ const Categories = () => {
                </button>
             </div>
             {isLoading ? (
-               <Loader/>
+               <Loader />
             ) : categories.length > 0 ? (
                <Table2
                   data={categories}

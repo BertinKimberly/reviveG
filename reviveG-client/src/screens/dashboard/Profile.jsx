@@ -14,6 +14,7 @@ import {
    deleteProfileAction,
    updateProfileAction,
 } from "../../redux/Actions/userActions";
+import { InlineError } from "../../components/Notifications/Error";
 
 const Profile = () => {
    const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const Profile = () => {
          >
             <h2 className='text-xl font-bold'>Profile</h2>
             <div className='w-full grid lg:grid-cols-12 gap-6 '>
-               <div className='col-span-10'>
+               <div className='col-span-12  w-full flex gap-3 items-center '>
                   <Uploader setImageUrl={setImageUrl} />
                   {/* image preview */}
 
@@ -117,13 +118,13 @@ const Profile = () => {
                <button
                   onClick={deleteProfile}
                   disabled={deleteLoading || isLoading}
-                  className='bg-subMain transiitions hover:bg-main border border-subMain font-medium text-white'
+                  className='bg-subMain transiitions hover:bg-main border border-subMain font-medium text-white p-2'
                >
                   {deleteLoading ? "Deleting..." : "Delete Account"}
                </button>
                <button
                   disabled={deleteLoading || isLoading}
-                  className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white'
+                  className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white p-2'
                >
                   {isLoading ? "Updating..." : "Update Profile"}
                </button>

@@ -6,7 +6,6 @@ import { Input, Message, Select } from "../../../components/UsedInputs";
 import Uploader from "../../../components/Uploader";
 import { FiDelete, FiUpload } from "react-icons/fi";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CategoriesData } from "../../../data/CategoriesData";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { movieValidation } from "../../../components/Validation/MovieValidation";
