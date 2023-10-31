@@ -17,7 +17,7 @@ import {
 const router = express.Router();
 
 // ****************PUBLIC ROUTES*******************
-// router.post("/import", importMovies);
+router.post("/import", importMovies);
 router.get("/", getMovies);
 router.get("/:id", getMovieById);
 router.get("/rated/top", getTopRatedMovies);

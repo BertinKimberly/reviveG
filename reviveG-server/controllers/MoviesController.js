@@ -28,13 +28,13 @@ export const getMovies = asyncHandler(async (req, res) => {
       //load more movies
 
       const page = Number(req.query.pageNumber) || 1;
-      const limit = 2;
+      const limit = 10;
       const skip = (page - 1) * limit;
 
       //find movies by query, skip and limit
 
       const movies = await Movie.find(query)
-         .sort({ createdArt: -1 })
+         .sort({ createdAt: -1 })
          .skip(skip)
          .limit(limit);
 

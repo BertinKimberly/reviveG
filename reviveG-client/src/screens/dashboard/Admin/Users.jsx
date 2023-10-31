@@ -8,6 +8,7 @@ import Table2 from "../../../components/Table2";
 import Loader from "../../../components/Notifications/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../Sidebar";
+import toast from "react-hot-toast";
 const Users = () => {
    const dispatch = useDispatch();
 
@@ -44,16 +45,16 @@ const Users = () => {
    return (
       <Sidebar>
          <div className='flex flex-col gap-6'>
-            <div className='flex-btn gap-2'>
+            <div className='flex-btn gap-4 flex flex-col '>
                <h2 className='text-xl font-bold'> Users</h2>
                {isLoading ? (
                   <Loader />
                ) : users?.length > 0 ? (
                   <Table2
                      data={users}
+                     users={users}
                      admin={true}
                      onDeleteFunction={deleteUserHandler}
-      
                   />
                ) : (
                   <Empty message='You dont have any user' />

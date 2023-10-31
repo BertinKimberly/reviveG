@@ -11,6 +11,7 @@ import Sidebar from "../Sidebar";
 import Loader from "../../../components/Notifications/Loader";
 import Table2 from "../../../components/Table2";
 import Table from "../../../components/Table";
+import toast from "react-hot-toast";
 
 const Categories = () => {
    const [modalOpen, setModalOpen] = useState(false);

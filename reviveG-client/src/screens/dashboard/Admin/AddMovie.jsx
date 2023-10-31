@@ -155,27 +155,29 @@ const AddMovie = () => {
                   {errors.year && <InlineError text={errors.year.message} />}
                </div>
             </div>
+
             <div className='w-full grid md:grid-cols-2 gap-6'>
                <div className='flex flex-col gap-2'>
                   <p className='text-border font-semibold text-sm'>
                      Image without Title
                   </p>
                   <Uploader setImageUrl={setImageWithoutTitle} />
-                  < ImagePreview
+                  <ImagePreview
                      image={imageWithoutTitle}
                      name='imagewithoutTitle'
                   />
                </div>
-            </div>
-            <div className='flex flex-col gap-2'>
-               <p className='text-border font-semibold text-sm'>
-                  Image with Title
-               </p>
-               <Uploader setImageUrl={setImageTitle} />
-               <ImagePreview
-                  image={imageTitle}
-                  name='imageTitle'
-               />
+
+               <div className='flex flex-col gap-2'>
+                  <p className='text-border font-semibold text-sm'>
+                     Image with Title
+                  </p>
+                  <Uploader setImageUrl={setImageTitle} />
+                  <ImagePreview
+                     image={imageTitle}
+                     name='imageTitle'
+                  />
+               </div>
             </div>
             <div className='w-full'>
                <Message

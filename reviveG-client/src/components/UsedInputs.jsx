@@ -8,7 +8,7 @@ export const Message = ({ label, placeholder, name, register }) => {
             {label}
          </label>
          <textarea
-            className='w-full h-40 mt-2 p-6 border border-border rounded '
+            className='w-full h-40 mt-2 p-6 border border-border rounded bg-transparent'
             placeholder={placeholder}
             {...register}
             name={name}

@@ -29,7 +29,10 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
                <td className={`${Text}`}>{data.email}</td>
                <td className={`${Text}`}>{data?.isAdmin ? "Admin" : "User"}</td>
                <td className={`${Text}`}>
-                  <button className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '>
+                  <button
+                     onClick={() => onDeleteFunction(data._id)}
+                     className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '
+                  >
                      <MdDelete />
                   </button>
                </td>
@@ -42,23 +45,21 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
                <td className={`${Text}`}>{DateFormat(data?.createdAt)}</td>
                <td className={`${Text}`}>{data.title}</td>
                <td className={`${Text} float-right flex-rows gap-2`}>
-                  {data.isAdmin && (
-                     <>
-                        <button
-                           onClick={() => OnEditFunction(data)}
-                           className='bg-main font-medium transitions flex-rows gap-2 border-border text-white '
-                        >
-                           Edit <FaEdit />
-                        </button>
+                  <div className='flex gap-4'>
+                     <button
+                        onClick={() => OnEditFunction(data._id)}
+                        className='bg-main font-medium transitions flex-rows gap-2 border-border text-white '
+                     >
+                        <FaEdit />
+                     </button>
 
-                        <button
-                           onClick={() => onDeleteFunction(data?._id)}
-                           className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '
-                        >
-                           <MdDelete />
-                        </button>
-                     </>
-                  )}
+                     <button
+                        onClick={() => onDeleteFunction(data?._id)}
+                        className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '
+                     >
+                        <MdDelete />
+                     </button>
+                  </div>
                </td>
             </>
          )}

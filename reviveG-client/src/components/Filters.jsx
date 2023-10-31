@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 import { getAllMoviesAction } from "../redux/Actions/MoviesActions";
-import { LanguageData, RatesData } from "../data/FilterData";
+import { LanguageData, RatesData, TimesData, YearData } from "../data/FilterData";
 
 const Filters = (props) => {
    const {
@@ -39,12 +39,12 @@ const Filters = (props) => {
       {
          value: year,
          onChange: setYear,
-         items: CategoriesData,
+         items: YearData,
       },
       {
          value: times,
          onChange: setTimes,
-         items: CategoriesData,
+         items: TimesData,
       },
       {
          value: rates,

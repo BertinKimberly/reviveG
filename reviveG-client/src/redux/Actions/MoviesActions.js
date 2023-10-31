@@ -12,13 +12,13 @@ export const getAllMoviesAction =
             type: moviesConstants.MOVIES_LIST_REQUEST,
          });
          const response = await moviesAPIs.getAllMoviesService(
-            (category = ""),
-            (time = ""),
-            (language = ""),
-            (rate = ""),
-            (year = ""),
-            (search = ""),
-            (pageNumber = "")
+            category,
+            time,
+            language,
+            rate,
+            year,
+            search,
+            pageNumber
          );
          dispatch({
             type: moviesConstants.MOVIES_LIST_SUCCESS,

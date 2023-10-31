@@ -31,6 +31,7 @@ const MoviesPage = () => {
    const { isLoading, isError, movies, isSuccess, pages, page } = useSelector(
       (state) => state.getAllMovies
    );
+   console.log("Test 12", movies);
 
    //get all categories
    const { categories } = useSelector((state) => state.categoryGetAll);

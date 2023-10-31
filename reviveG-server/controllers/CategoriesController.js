@@ -49,7 +49,7 @@ export const deleteCategory = asyncHandler(async (req, res) => {
       const category = await Category.findById(req.params.id);
 
       if (category) {
-         await category.remove();
+         await category.remove;
          res.json({ message: "Category removed" });
       } else {
          res.status(404).json({ message: "Category not found" });
