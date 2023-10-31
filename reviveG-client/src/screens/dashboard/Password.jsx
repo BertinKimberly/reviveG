@@ -6,6 +6,8 @@ import { Input } from "../../components/UsedInputs";
 import { useDispatch, useSelector } from "react-redux";
 import { PasswordValidation } from "../../components/Validation/UserValidation";
 import { changePasswordAction } from "../../redux/Actions/userActions";
+import { InlineError } from "../../components/Notifications/Error";
+import toast from "react-hot-toast";
 
 const Password = () => {
    const dispatch = useDispatch();
@@ -17,7 +19,6 @@ const Password = () => {
    const {
       register,
       handleSubmit,
-      setValue,
       reset,
       formState: { errors },
    } = useForm({
@@ -40,6 +41,7 @@ const Password = () => {
       }
       if (message) {
          toast.success(message);
+         reset();
       }
    }, [isSuccess, isError, dispatch, reset, message]);
    return (

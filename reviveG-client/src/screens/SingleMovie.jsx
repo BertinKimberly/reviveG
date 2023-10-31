@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
 import { SidebarContext } from "../context/DrawerContext";
 import FileSaver from "file-saver";
+import Loader from "../components/Notifications/Loader";
+import { RiMovie2Line } from "react-icons/ri";
+import { BsCollectionFill } from "react-icons/bs";
 const SingleMovie = () => {
    const [modalOpen, setModalOpen] = useState(false);
    const { progress, setProgress } = useContext(SidebarContext);
@@ -44,6 +47,7 @@ const SingleMovie = () => {
    }, [dispatch, id]);
    return (
       <Layout>
+         
          {isLoading ? (
             <div className={sameClass}>
                <Loader />
@@ -71,8 +75,8 @@ const SingleMovie = () => {
                <div className='container mx-auto min-h-screen px-2 my-6'>
                   <MovieCasts movie={movie} />
                   <MovieRates movie={movie} />
-                  //related movies
-                  {RelatedMovies.length > 0 && (
+                  {/* Related Movies */}
+                  {RelatedMovies?.length > 0 && (
                      <div className='my-16'>
                         <Titles
                            title='Related Movies'

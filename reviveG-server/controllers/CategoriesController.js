@@ -22,7 +22,7 @@ export const createCategory = asyncHandler(async (req, res) => {
          title,
       });
       const createdCategory = await category.save();
-      res.json({message: "Category created successfully"})
+      res.json({ message: "Category created successfully" });
    } catch (error) {
       res.status(400).json({ message: error.message });
    }
@@ -46,10 +46,9 @@ export const updateCategory = asyncHandler(async (req, res) => {
 
 export const deleteCategory = asyncHandler(async (req, res) => {
    try {
-      const category = await Category.findById(req.params.id);
+      const category = await Category.findByIdAndDelete(req.params.id);
 
       if (category) {
-         await category.remove;
          res.json({ message: "Category removed" });
       } else {
          res.status(404).json({ message: "Category not found" });

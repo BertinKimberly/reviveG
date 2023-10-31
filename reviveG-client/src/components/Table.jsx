@@ -122,10 +122,12 @@ const Table = ({ data, admin, onDeleteHandler, downloadVideo, progress }) => {
                      progress
                   ) => (
                      <Rows
-                        key={i}
+                        key={movie._id}
                         movie={movie}
-                        i={i}
                         admin={admin}
+                        downloadVideo={downloadVideo}
+                        progress={progress}
+                        onDeleteHandler={onDeleteHandler}
                      />
                   )
                )}

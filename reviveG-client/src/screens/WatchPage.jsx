@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
-import { FaPlay } from "react-icons/fa";
-import { LikeMovie } from "../context/Functionalities";
+import { FaCloud, FaHeart, FaPlay } from "react-icons/fa";
+import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
 import { SidebarContext } from "../context/DrawerContext";
+import Layout from "../Layout/Layout";
+import { BiArrowBack} from 'react-icons/bi'
+import { RiMovie2Line} from 'react-icons/ri'
 
 const WatchPage = () => {
    let { id } = useParams();
@@ -19,12 +22,11 @@ const WatchPage = () => {
    );
 
    const { isLoading: likeLoading } = useSelector(
-      (state) => state.userLikeMovies
+      (state) => state.userLikeMovie
    );
    const { userInfo } = useSelector((state) => state.userLogin);
 
    const isLiked = (move) => IfMovieLiked(movie);
-
 
    //download video
    const DownloadMovieVideo = async (videoUrl, name) => {
@@ -33,10 +35,6 @@ const WatchPage = () => {
          FileSaver.saveAs(data, name);
       });
    };
-
-
-
-
 
    //useEffect
 
@@ -63,7 +61,7 @@ const WatchPage = () => {
                      disabled={isLiked(movie) || likeLoading}
                      className='bg-subMain hover:text-main transitions  text-white rounded px-8 py-3 text-sm flex-rows font-medium'
                   >
-                     <FaCloud /> Download
+                     <FaCloud/> Download
                   </button>
                </div>
             </div>

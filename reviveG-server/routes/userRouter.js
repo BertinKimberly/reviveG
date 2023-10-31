@@ -1,7 +1,8 @@
 import express from "express";
 import {
    addLikedMovie,
-   deleteLikedMovie,
+   changePassword,
+   deleteLikedMovies,
    deleteUser,
    deleteUserProfile,
    getLikedMovies,
@@ -22,10 +23,10 @@ router.post("/login", loginUser);
 // ********************PROTECTED ROUTES**********************
 router.put("/update", protect, updateUser);
 router.delete("/delete", protect, deleteUserProfile);
-router.put("/password", protect, updateUser);
+router.put("/password", protect, changePassword);
 router.get("/favorites", protect, getLikedMovies);
 router.post("/favorites", protect, addLikedMovie);
-router.delete("/favorites", protect, deleteLikedMovie);
+router.delete("/favorites", protect, deleteLikedMovies);
 
 // ******************ADMIN ROUTES*********************
 

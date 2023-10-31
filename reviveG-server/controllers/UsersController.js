@@ -101,16 +101,18 @@ export const deleteUserProfile = asyncHandler(async (req, res) => {
 
       if (user) {
          if (user.isAdmin) {
-            res.status(400);
-            throw new Error("Can't delete admin user");
+            return res.status(400).json({ message: "Can't delete admin user" });
          }
-         await user.remove();
-         res.json({ message: "User deleted successfully" });
+         const deletedUser = await User.findByIdAndDelete(req.user._id);
+         return res
+            .status(200)
+            .json({ message: `${deletedUser.fullName} deleted successfully` });
       } else {
-         res.status(404);
-         throw new Error("User not found");
+         return res.status(404).json({ message: "User not found" });
       }
-   } catch (error) {}
+   } catch (error) {
+      res.status(500).json({ error: error.message });
+   }
 });
 
 export const changePassword = asyncHandler(async (req, res) => {
@@ -124,13 +126,12 @@ export const changePassword = asyncHandler(async (req, res) => {
          user.password = hashedPassword;
 
          await user.save();
-         res.json({ message: "Password changed" });
+         return res.status(200).json({ message: "Password changed" });
       } else {
-         res.status(401);
-         throw new Error("Invalid old password");
+         return res.status(401).json({ message: "Invalid old password" });
       }
    } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ error: error.message });
    }
 });
 
@@ -171,7 +172,7 @@ export const addLikedMovie = asyncHandler(async (req, res) => {
    }
 });
 
-export const deleteLikedMovie = asyncHandler(async (req, res) => {
+export const deleteLikedMovies = asyncHandler(async (req, res) => {
    try {
       const user = await User.findById(req.user._id);
       if (user) {
@@ -195,7 +196,6 @@ export const getUsers = asyncHandler(async (req, res) => {
       res.status(400).json({ message: error.message });
    }
 });
-
 export const deleteUser = asyncHandler(async (req, res) => {
    try {
       const user = await User.findById(req.params.id);
@@ -203,10 +203,18 @@ export const deleteUser = asyncHandler(async (req, res) => {
       if (user) {
          if (user.isAdmin) {
             res.status(400);
-            throw new Error("can't delete admin user");
+            throw new Error("Can't delete admin user");
          }
-         await user.remove();
-         res.json({ message: "user deleted successfully" });
+
+         // Use findByIdAndDelete to delete the user
+         const deletedUser = await User.findByIdAndDelete(req.params.id);
+
+         if (deletedUser) {
+            res.json({ message: "User deleted successfully" });
+         } else {
+            res.status(404);
+            throw new Error("User not found");
+         }
       } else {
          res.status(404);
          throw new Error("User not found");

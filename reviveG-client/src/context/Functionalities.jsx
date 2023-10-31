@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux'
 
 export const IfMovieLiked = (movie) => {
    const { likedMovies } = useSelector((state) => state.userGetFavoriteMovies);
-   return likedMovies?.find((likedMovie) => likedMovie._id === movie._id);
+   return likedMovies?.find((likedMovie) => likedMovie?._id === movie?._id);
 };
 
 //like movie functionality
@@ -16,7 +16,7 @@ export const LikeMovie = (movie, dispatch, userInfo) => {
       ? toast.error("Please Login to add to favorites")
       : dispatch(
            likeMovieAction({
-              movieId: movie._id,
+              movieId: movie?._id,
            })
         );
 };

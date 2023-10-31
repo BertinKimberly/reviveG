@@ -43,7 +43,7 @@ export const updateProfileService = async (user, token) => {
 };
 
 export const deleteProfileService = async (token) => {
-   const { data } = await Axios.delete("/users", {
+   const { data } = await Axios.delete("/users/delete", {
       headers: {
          Authorization: `Bearer ${token}`,
       },

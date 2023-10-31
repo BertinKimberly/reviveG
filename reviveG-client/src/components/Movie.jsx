@@ -17,11 +17,11 @@ const Movie = ({ movie }) => {
       <>
          <div className='border border-border p-1 hover:scale-95 transitions relative rounded overflow-hidden'>
             <Link
-               to={`/movies/${movie?._id}`}
+               to={`/movie/${movie?._id}`}
                className='w-full'
             >
                <img
-                  src={`/images/movies/${movie?.image}`}
+                  src={`movie?.image}`}
                   alt={movie?.name}
                   className='w-full h-64 object-cover'
                />
