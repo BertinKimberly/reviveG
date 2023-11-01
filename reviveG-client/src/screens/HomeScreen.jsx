@@ -24,10 +24,10 @@ const HomeScreen = () => {
       isLoading: topLoading,
       isError: topError,
       movies: topMovies,
-   } = useSelector((state) => state. getTopRatedMovies);
-   
+   } = useSelector((state) => state.getTopRatedMovies);
 
-   const { isLoading, isError, movies } = useSelector(
+   //all movies
+   const { isLoading, isError, movies, pages, page } = useSelector(
       (state) => state.getAllMovies
    );
 
@@ -69,8 +69,6 @@ const HomeScreen = () => {
                isLoading={topLoading}
             />
             {/* test */}
-
-            
          </div>
       </Layout>
    );

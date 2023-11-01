@@ -33,12 +33,12 @@ const App = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
    const { isError, isSuccess } = useSelector((state) => state.userLikeMovie);
    const { isError: catError } = useSelector((state) => state.categoryGetAll);
-   const { movies } = useSelector((state) => state.getAllMovies);
    const dispatch = useDispatch();
+
 
    useEffect(() => {
       dispatch(getAllCategoriesAction({}));
-
+     
       if (userInfo) {
          dispatch(getFavoriteMoviesAction());
       }

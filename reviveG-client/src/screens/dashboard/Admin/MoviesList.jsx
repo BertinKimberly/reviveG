@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Notifications/Loader";
 import { Empty } from "../../../components/Notifications/Empty";
 import toast from "react-hot-toast";
+import { BsCaretLeft, BsCaretRight } from "react-icons/bs";
 import {
    deleteAllMoviesAction,
    deleteMovieAction,
@@ -17,7 +18,7 @@ const MoviesList = () => {
    const { isLoading, isError, movies, pages, page } = useSelector(
       (state) => state.getAllMovies
    );
-   console.log("Hey God, I know u can do all things", movies);
+
    //delete
    const { isLoading: deleteLoading, isError: deleteError } = useSelector(
       (state) => state.deleteMovie
@@ -98,14 +99,14 @@ const MoviesList = () => {
                         disabled={page === 1}
                         className='text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain'
                      >
-                        <TbPlayerTrackPrev className='text-xl' />
+                        <BsCaretLeft className='text-xl' />
                      </button>
                      <button
                         onClick={nextPage}
                         disabled={page === pages}
                         className='text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain'
                      >
-                        <TbPlayerTrackNext className='text-xl' />
+                        <BsCaretRight className='text-xl' />
                      </button>
                   </div>
                </>

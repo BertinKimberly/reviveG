@@ -19,6 +19,10 @@ import { useParams } from "react-router-dom";
 const MoviesPage = () => {
    const { search } = useParams();
    const dispatch = useDispatch();
+   //all movies
+   const { isLoading, isError, movies, pages, page } = useSelector(
+      (state) => state.getAllMovies
+   );
 
    //get all categories
    const { categories } = useSelector((state) => state.categoryGetAll);
@@ -30,35 +34,6 @@ const MoviesPage = () => {
    const [language, setLanguage] = useState(LanguageData[0]);
 
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
-
-   const { isLoading, isError, movies, isSuccess, pages, page } = useSelector(
-      (state) => state.getAllMovies
-   );
-
-   // Error handling
-   useEffect(() => {
-      if (isError) {
-         toast.error(isError.message);
-      }
-   }, [isError]);
-
-   // Pagination next and prev pages
-   const nextPage = () => {
-      dispatch(
-         getAllMoviesAction({
-            ...queries,
-            pageNumber: page + 1,
-         })
-      );
-   };
-   const prevPage = () => {
-      dispatch(
-         getAllMoviesAction({
-            ...queries,
-            pageNumber: page - 1,
-         })
-      );
-   };
 
    // Queries
    const queries = useMemo(() => {
@@ -79,13 +54,41 @@ const MoviesPage = () => {
       category: category,
       setCategory: setCategory,
       language: language,
+      setLanguage,
       rates: rates,
       setRates: setRates,
       times: times,
+      setTimes,
       year: year,
       setYear: setYear,
    };
+   // Error handling
+   useEffect(() => {
+      if (isError) {
+         toast.error(isError.message);
+      }
+      //get all movies
 
+      dispatch(getAllMoviesAction(queries));
+   }, [isError, dispatch, queries]);
+
+   // Pagination next and prev pages
+   const nextPage = () => {
+      dispatch(
+         getAllMoviesAction({
+            ...queries,
+            pageNumber: page + 1,
+         })
+      );
+   };
+   const prevPage = () => {
+      dispatch(
+         getAllMoviesAction({
+            ...queries,
+            pageNumber: page - 1,
+         })
+      );
+   };
    return (
       <Layout>
          <div className='min-h-screen container mx-auto px-2 my-6'>
@@ -108,7 +111,7 @@ const MoviesPage = () => {
                         <Movie
                            key={movie?._id}
                            movie={movie}
-                        /> // Use a unique identifier for the key
+                        />
                      ))}
                   </div>
 
