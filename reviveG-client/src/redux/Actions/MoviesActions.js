@@ -5,12 +5,20 @@ import { ErrorsAction, tokenProtection } from "../Protection";
 //get all movies action
 
 export const getAllMoviesAction =
-   ({ category, time, language, rate, year, search, pageNumber }) =>
+   ({
+      category = "",
+      time="" ,
+      language = "",
+      rate="" ,
+      year="" ,
+      search = "",
+      pageNumber="" ,
+   }) =>
    async (dispatch) => {
       try {
          dispatch({
-            type: moviesConstants.MOVIES_LIST_REQUEST,
-         });
+            type: moviesConstants.MOVIES_LIST_REQUEST});
+            
          const response = await moviesAPIs.getAllMoviesService(
             category,
             time,

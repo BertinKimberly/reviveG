@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Aos } from "aos";
+import Aos from "aos";
 import toast from "react-hot-toast";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
@@ -26,18 +26,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoriesAction } from "./redux/Actions/CategoriesActions";
 import { getFavoriteMoviesAction } from "./redux/Actions/userActions";
 import EditMovie from "./screens/dashboard/Admin/EditMovie";
+import { getAllMoviesAction } from "./redux/Actions/MoviesActions";
 
 const App = () => {
-   // Aos.init({
-   //    duration: 1000,
-   // });
+   Aos.init();
    const { userInfo } = useSelector((state) => state.userLogin);
    const { isError, isSuccess } = useSelector((state) => state.userLikeMovie);
    const { isError: catError } = useSelector((state) => state.categoryGetAll);
+   const { movies } = useSelector((state) => state.getAllMovies);
    const dispatch = useDispatch();
 
    useEffect(() => {
-      dispatch(getAllCategoriesAction());
       dispatch(getAllCategoriesAction({}));
 
       if (userInfo) {

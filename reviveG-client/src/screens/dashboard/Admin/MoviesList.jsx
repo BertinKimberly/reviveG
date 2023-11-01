@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Notifications/Loader";
 import { Empty } from "../../../components/Notifications/Empty";
 import toast from "react-hot-toast";
-import { deleteAllMoviesAction, deleteMovieAction, getAllMoviesAction } from "../../../redux/Actions/MoviesActions";
+import {
+   deleteAllMoviesAction,
+   deleteMovieAction,
+   getAllMoviesAction,
+} from "../../../redux/Actions/MoviesActions";
 
 const MoviesList = () => {
    const dispatch = useDispatch();
@@ -13,6 +17,7 @@ const MoviesList = () => {
    const { isLoading, isError, movies, pages, page } = useSelector(
       (state) => state.getAllMovies
    );
+   console.log("Hey God, I know u can do all things", movies);
    //delete
    const { isLoading: deleteLoading, isError: deleteError } = useSelector(
       (state) => state.deleteMovie

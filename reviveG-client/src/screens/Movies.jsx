@@ -20,6 +20,7 @@ const MoviesPage = () => {
    const { search } = useParams();
    const dispatch = useDispatch();
 
+   //get all categories
    const { categories } = useSelector((state) => state.categoryGetAll);
 
    const [category, setCategory] = useState({ title: "All Categories" });
@@ -37,7 +38,7 @@ const MoviesPage = () => {
    // Error handling
    useEffect(() => {
       if (isError) {
-         toast.error(isError.message); // Display a user-friendly error message
+         toast.error(isError.message);
       }
    }, [isError]);
 
@@ -110,6 +111,9 @@ const MoviesPage = () => {
                         /> // Use a unique identifier for the key
                      ))}
                   </div>
+
+                  {/* loading more */}
+
                   <div className='w-full flex-rows md:my-20 my-10 gap-6'>
                      <button
                         onClick={prevPage}

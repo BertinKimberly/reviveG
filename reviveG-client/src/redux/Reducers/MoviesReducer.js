@@ -5,7 +5,7 @@ import * as moviesConstants from "../Constants/moviesConstants";
 export const moviesListReducer = (state = { movies: [] }, action) => {
    switch (action.type) {
       case moviesConstants.MOVIE_DETAILS_REQUEST:
-         return { isLoading: true, movies: [] };
+         return { isLoading: true };
       case moviesConstants.MOVIE_DETAILS_SUCCESS:
          return {
             isLoading: false,

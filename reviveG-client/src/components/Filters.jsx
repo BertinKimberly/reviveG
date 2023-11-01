@@ -1,11 +1,14 @@
 import { Listbox, Transition } from "@headlessui/react";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { CgSelect } from "react-icons/cg";
 import { FaCheck } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 
-import { getAllMoviesAction } from "../redux/Actions/MoviesActions";
-import { LanguageData, RatesData, TimesData, YearData } from "../data/FilterData";
+import {
+   LanguageData,
+   RatesData,
+   TimesData,
+   YearData,
+} from "../data/FilterData";
 
 const Filters = (props) => {
    const {
@@ -53,22 +56,20 @@ const Filters = (props) => {
       },
    ];
 
-
-
    return (
-      <div className='my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-4 grid-cols-2 lg:gap-12 gap-2 rounded p-6'>
-         {Filter.map((item, index, onChange) => (
+      <div className='my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-5 grid-cols-2 lg:gap-12 gap-2 rounded p-6'>
+         {Filter.map((item, index) => (
             <Listbox
                key={index}
                value={item.value}
-               onChange={item - onChange}
+               onChange={item.onChange}
             >
                <div className='relative'>
                   <Listbox.Button className='relative border border-gray-800 w-full  text-white bg-main rounded-lg  cursor-default py-4 pl-6 pr-10 text-left text-xs'>
                      <span className='block truncate'>{item.value.title}</span>
                      <span className='absolute inset-y-0 right-0 flex items-center pointer-events-none pr-2'>
                         <CgSelect
-                           className='h-5 w-5'
+                           className='h-4 w-4 '
                            aria-hidden='true'
                         />
                      </span>
@@ -79,15 +80,15 @@ const Filters = (props) => {
                      leaveFrom='opacity-100'
                      leaveTo='opacity-0'
                   >
-                     <Listbox.Options className='absolute z-10 mt-1 bg-dry border border-gray-800 text-dryGray ring-opacity-5 overflow-auto focus:outline-none sm:text-sm'>
+                     <Listbox.Options className='absolute z-10 mt-1 bg-dry border border-gray-800 text-dryGray ring-opacity-5 overflow-auto focus:outline-none sm:text-sm w-full'>
                         {item.items.map((item, i) => (
                            <Listbox.Option
                               key={i}
                               className={({ active }) =>
-                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                                 `relative cursor-default select-none py-2 pl-10 pr-5 ${
                                     active
                                        ? "bg-subMain text-white"
-                                       : "text-main"
+                                       : "text-white"
                                  }`
                               }
                               value={item}
@@ -95,7 +96,7 @@ const Filters = (props) => {
                               {({ selected }) => (
                                  <>
                                     <span
-                                       className={`block truncated ${
+                                       className={`block truncate ${
                                           selected
                                              ? "font-semibold"
                                              : "font-normal"
@@ -104,9 +105,9 @@ const Filters = (props) => {
                                        {item.title}
                                     </span>
                                     {selected ? (
-                                       <span className='absolute inset-y-0 flex items-center pl-3'>
+                                       <span className='absolute inset-y-0 flex items-center '>
                                           <FaCheck
-                                             className='h-5 w-5'
+                                             className='h-4 w-4'
                                              aria-hidden='true'
                                           />
                                        </span>
