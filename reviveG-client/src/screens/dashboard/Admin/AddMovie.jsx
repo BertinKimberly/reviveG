@@ -255,7 +255,7 @@ const AddMovie = () => {
                      ))}
                </div>
             </div>
-            <div className='flex justify-end items-center my-4'>
+            <div className='flex justify-center items-center my-4 p-2'>
                <button
                   disabled={isLoading}
                   type='submit'

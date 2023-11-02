@@ -34,8 +34,6 @@ const HomeScreen = () => {
 
    //useEffect
    useEffect(() => {
-      //all movies
-      dispatch(getAllMoviesAction({}));
       // Get random movies
       dispatch(getRandomMoviesAction());
 
@@ -47,7 +45,7 @@ const HomeScreen = () => {
          toast.error("Something went wrong");
       }
    }, [dispatch, isError, randomError, topError]);
-
+   console.log("Test one two", movies);
    return (
       <Layout>
          <div className='container mx-auto min-h-screen px-2 mb-6'>

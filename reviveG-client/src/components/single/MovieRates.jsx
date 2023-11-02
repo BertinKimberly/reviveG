@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReviewValidation } from "../Validation/MovieValidation";
 import { Link } from "react-router-dom";
 import { reviewMovieAction } from "../../redux/Actions/MoviesActions";
-import {useForm} from 'react-hook-form'
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import Rating from "../Stars";
 import { InlineError } from "../Notifications/Error";
 import { Empty } from "../Notifications/Empty";
+import Avatar from "../../assets/user.png";
+import toast from "react-hot-toast";
 const Ratings = [
    {
       title: "0-Poor",
@@ -43,7 +45,7 @@ const MovieRates = ({ movie }) => {
 
    const { isLoading, isError } = useSelector((state) => state.createReview);
    const { userInfo } = useSelector((state) => state.userLogin);
-
+   console.log("Mana mfasha kbx", isError);
    //validate review
 
    const {
@@ -130,9 +132,11 @@ const MovieRates = ({ movie }) => {
                   </Link>
                )}
             </form>
-            <div className='col-span-3  flex flex-col gap-6'>
-               <h3 className='text-text font-semibold'>Reviews (56)</h3>
-               <div className='w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-scroll'>
+            <div className='col-span-3  flex flex-col gap-6  w-full'>
+               <h3 className='text-text font-semibold'>
+                  Reviews " {movie?.reviews?.length} "
+               </h3>
+               <div className='w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-scroll '>
                   {movie?.reviews?.length > 0 ? (
                      movie?.reviews?.map((review) => (
                         <div
@@ -141,7 +145,7 @@ const MovieRates = ({ movie }) => {
                         >
                            <div className='col-span-2 hidden md:block'>
                               <img
-                                 src={review.image}
+                                 src={review?.image ? review.image : Avatar}
                                  alt={review.username}
                                  className='w-full h-24 rounded-lg object-cover'
                               />

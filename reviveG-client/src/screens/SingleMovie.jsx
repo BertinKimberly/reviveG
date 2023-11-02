@@ -13,6 +13,7 @@ import FileSaver from "file-saver";
 import Loader from "../components/Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
 import { BsCollectionFill } from "react-icons/bs";
+import { DownloadVideo } from "../context/Functionalities";
 const SingleMovie = () => {
    const [modalOpen, setModalOpen] = useState(false);
    const { progress, setProgress } = useContext(SidebarContext);
@@ -34,7 +35,7 @@ const SingleMovie = () => {
 
    //download video
    const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadMovieVideo(videoUrl, setProgress).then((data) => {
+      await DownloadVideo(videoUrl, setProgress).then((data) => {
          setProgress(0);
          FileSaver.saveAs(data, name);
       });

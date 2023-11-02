@@ -73,7 +73,8 @@ const MoviesPage = () => {
       };
       return query;
    }, [category, times, language, rates, year, search]);
-
+console.log("let me know u're loading",isLoading);
+console.log("movies",movies);
    const datas = {
       categories: categories,
       category: category,

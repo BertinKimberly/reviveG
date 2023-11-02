@@ -35,10 +35,10 @@ const App = () => {
    const { isError: catError } = useSelector((state) => state.categoryGetAll);
    const dispatch = useDispatch();
 
-
    useEffect(() => {
+      dispatch(getAllMoviesAction({}));
       dispatch(getAllCategoriesAction({}));
-     
+
       if (userInfo) {
          dispatch(getFavoriteMoviesAction());
       }

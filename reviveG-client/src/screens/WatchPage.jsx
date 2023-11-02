@@ -10,6 +10,9 @@ import { BiArrowBack } from "react-icons/bi";
 import { RiMovie2Line } from "react-icons/ri";
 
 const WatchPage = () => {
+   const { isLoading, isError, movie } = useSelector(
+      (state) => state.getMovieById
+   );
    const { id } = useParams();
    const dispatch = useDispatch();
    const [play, setPlay] = useState(false);
@@ -17,9 +20,7 @@ const WatchPage = () => {
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
    const { progress, setProgress } = useContext(SidebarContext);
    //use selector
-   const { isLoading, isError, movie } = useSelector(
-      (state) => state.getMovieById
-   );
+
    console.log("Please Almighty help me ", movie);
    const { isLoading: likeLoading } = useSelector(
       (state) => state.userLikeMovie
