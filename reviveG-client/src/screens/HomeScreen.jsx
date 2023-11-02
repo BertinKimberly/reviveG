@@ -28,7 +28,7 @@ const HomeScreen = () => {
    } = useSelector((state) => state.getTopRatedMovies);
 
    //all movies
-   const { isLoading, isError, movies, pages, page } = useSelector(
+   const { isLoading, isError, movies } = useSelector(
       (state) => state.getAllMovies
    );
 
@@ -47,7 +47,6 @@ const HomeScreen = () => {
          toast.error("Something went wrong");
       }
    }, [dispatch, isError, randomError, topError]);
-
 
    return (
       <Layout>

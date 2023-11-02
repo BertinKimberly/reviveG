@@ -9,8 +9,7 @@ import { LoginValidation } from "../components/Validation/UserValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { loginAction } from "../redux/Actions/userActions";
-import Table2 from "../components/Table2";
-import Sidebar from "./dashboard/Sidebar";
+
 
 const Login = () => {
    const dispatch = useDispatch();
@@ -53,6 +52,7 @@ const Login = () => {
       if (isError) {
          toast.error(isError);
          dispatch({ type: "USER_LOGIN_RESET" });
+         reset();
       }
    }, [userInfo, isSuccess, isError, navigate, dispatch]);
 

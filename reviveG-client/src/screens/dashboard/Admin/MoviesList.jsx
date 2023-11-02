@@ -28,6 +28,7 @@ const MoviesList = () => {
    const { isLoading: allLoading, isError: allError } = useSelector(
       (state) => state.deleteAllMovies
    );
+   const { userInfo } = useSelector((state) => state.userLogin);
 
    //delete movie handler
 
@@ -90,7 +91,7 @@ const MoviesList = () => {
                <>
                   <Table
                      data={movies}
-                     admin={false}
+                     admin={userInfo?.isAdmin}
                      onDeleteHandler={deleteMovieHandler}
                   />
                   <div className='w-full flex-rows md:my-20 my-10 gap-6'>

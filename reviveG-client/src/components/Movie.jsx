@@ -3,7 +3,7 @@ import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
-
+import NoImage from "../assets/NoImage.jpg";
 const Movie = ({ movie }) => {
    const { isLoading } = useSelector((state) => state.userGetFavoriteMovies);
    const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Movie = ({ movie }) => {
                className='w-full'
             >
                <img
-                  src={`movie?.image}`}
+                  src={movie?.image ? movie?.image : NoImage}
                   alt={movie?.name}
                   className='w-full h-64 object-cover'
                />

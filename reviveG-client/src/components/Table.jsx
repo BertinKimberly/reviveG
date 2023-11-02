@@ -112,25 +112,16 @@ const Table = ({ data, admin, onDeleteHandler, downloadVideo, progress }) => {
                </tr>
             </thead>
             <tbody className='bg-main divide-y divide-gray-800'>
-               {data?.map(
-                  (
-                     movie,
-                     onDeleteHandler,
-                     i,
-                     admin,
-                     downloadVideo,
-                     progress
-                  ) => (
-                     <Rows
-                        key={movie._id}
-                        movie={movie}
-                        admin={admin}
-                        downloadVideo={downloadVideo}
-                        progress={progress}
-                        onDeleteHandler={onDeleteHandler}
-                     />
-                  )
-               )}
+               {data?.map((movie) => (
+                  <Rows
+                     key={movie._id}
+                     movie={movie}
+                     admin={admin}
+                     downloadVideo={downloadVideo}
+                     progress={progress}
+                     onDeleteHandler={onDeleteHandler}
+                  />
+               ))}
             </tbody>
          </table>
       </div>

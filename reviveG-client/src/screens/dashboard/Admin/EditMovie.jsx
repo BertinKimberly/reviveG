@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CastsModal from "../../../components/Modals/CastsModal";
 import Sidebar from "../Sidebar";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 import { Input, Message, Select } from "../../../components/UsedInputs";
 import Uploader from "../../../components/Uploader";
 import { FiDelete, FiUpload } from "react-icons/fi";
@@ -8,13 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { movieValidation } from "../../../components/Validation/MovieValidation";
 import {
-   createMovieAction,
    getMovieByIdAction,
    removeCastAction,
    updateCastAction,
    updateMovieAction,
 } from "../../../redux/Actions/MoviesActions";
 import Loader from "../../../components/Notifications/Loader";
+import ImagePreview from "../../../components/ImagePreview";
 
 const EditMovie = () => {
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
@@ -191,7 +194,7 @@ const EditMovie = () => {
                         Image without Title
                      </p>
                      <Uploader setImageUrl={setImageWithoutTitle} />
-                     <ImagePreview
+                     < ImagePreview
                         image={imageWithoutTitle}
                         name='imagewithoutTitle'
                      />

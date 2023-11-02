@@ -6,11 +6,11 @@ import { FaCloud, FaHeart, FaPlay } from "react-icons/fa";
 import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
 import { SidebarContext } from "../context/DrawerContext";
 import Layout from "../Layout/Layout";
-import { BiArrowBack} from 'react-icons/bi'
-import { RiMovie2Line} from 'react-icons/ri'
+import { BiArrowBack } from "react-icons/bi";
+import { RiMovie2Line } from "react-icons/ri";
 
 const WatchPage = () => {
-   let { id } = useParams();
+   const { id } = useParams();
    const dispatch = useDispatch();
    const [play, setPlay] = useState(false);
 
@@ -20,13 +20,11 @@ const WatchPage = () => {
    const { isLoading, isError, movie } = useSelector(
       (state) => state.getMovieById
    );
-
+   console.log("Please Almighty help me ", movie);
    const { isLoading: likeLoading } = useSelector(
       (state) => state.userLikeMovie
    );
    const { userInfo } = useSelector((state) => state.userLogin);
-
-   const isLiked = (move) => IfMovieLiked(movie);
 
    //download video
    const DownloadMovieVideo = async (videoUrl, name) => {
@@ -58,10 +56,10 @@ const WatchPage = () => {
                   </button>
                   <button
                      onClick={() => LikeMovie(movie, dispatch, userInfo)}
-                     disabled={isLiked(movie) || likeLoading}
+                     disabled={IfMovieLiked(movie) || likeLoading}
                      className='bg-subMain hover:text-main transitions  text-white rounded px-8 py-3 text-sm flex-rows font-medium'
                   >
-                     <FaCloud/> Download
+                     <FaCloud /> Download
                   </button>
                </div>
             </div>

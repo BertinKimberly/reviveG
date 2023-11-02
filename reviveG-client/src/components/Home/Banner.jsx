@@ -7,6 +7,7 @@ import { RiMovie2Line } from "react-icons/ri";
 import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Notifications/Loader";
+import NoImage from "../../assets/NoImage.jpg";
 
 const Swipper = ({ sameClass, movies }) => {
    const { isLoading } = useSelector((state) => state.userGetFavoriteMovies);
@@ -35,7 +36,7 @@ const Swipper = ({ sameClass, movies }) => {
                className='relative rounded overflow-hidden'
             >
                <img
-                  src={movie?.image}
+                  src={movie?.image ? movie.image : NoImage}
                   alt={movie?.name}
                   className='w-full h-full object-cover'
                />

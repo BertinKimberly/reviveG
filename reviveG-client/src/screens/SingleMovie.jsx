@@ -47,7 +47,6 @@ const SingleMovie = () => {
    }, [dispatch, id]);
    return (
       <Layout>
-         
          {isLoading ? (
             <div className={sameClass}>
                <Loader />
