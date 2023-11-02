@@ -11,8 +11,6 @@ const Movie = ({ movie }) => {
 
    //if liked function
 
-   const isLiked = IfMovieLiked(movie);
-
    return (
       <>
          <div className='border border-border p-1 hover:scale-95 transitions relative rounded overflow-hidden'>
@@ -30,7 +28,7 @@ const Movie = ({ movie }) => {
                <h3 className='font-semibold truncate'>{movie?.name}</h3>
                <button
                   onClick={() => LikeMovie(movie, dispatch, userInfo)}
-                  disabled={isLiked(movie) || isLoading}
+                  disabled={IfMovieLiked(movie) || isLoading}
                   className='h-9 w-9 text-sm flex-colo transitions hover:bg-transparent border-subMain rounded-md border-2 bg-subMain text-white'
                >
                   <FaHeart />

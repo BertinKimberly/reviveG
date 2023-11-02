@@ -7,6 +7,7 @@ import TopRated from "../components/Home/TopRated";
 import Layout from "../Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import {
+   getAllMoviesAction,
    getRandomMoviesAction,
    getTopRatedMovieAction,
 } from "../redux/Actions/MoviesActions";
@@ -32,25 +33,21 @@ const HomeScreen = () => {
    );
 
    //useEffect
-
    useEffect(() => {
-      //get random movies
-
+      //all movies
+      dispatch(getAllMoviesAction({}));
+      // Get random movies
       dispatch(getRandomMoviesAction());
 
-      //get all movies
+      // Get top rated movies
+      dispatch(getTopRatedMovieAction());
 
-      dispatch(getRandomMoviesAction({}));
-
-      //get top rated movies
-      dispatch(getTopRatedMovieAction({}));
-
-      //errors
-
+      // Handle errors
       if (isError || randomError || topError) {
          toast.error("Something went wrong");
       }
    }, [dispatch, isError, randomError, topError]);
+
 
    return (
       <Layout>

@@ -3,9 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import FlexMovieItems from "../FlexMovieItems";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import { RiMovie2Fill, RiMovie2Line } from "react-icons/ri";
+import { RiMovie2Line } from "react-icons/ri";
 import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../Notifications/Loader";
 
 const Swipper = ({ sameClass, movies }) => {
    const { isLoading } = useSelector((state) => state.userGetFavoriteMovies);

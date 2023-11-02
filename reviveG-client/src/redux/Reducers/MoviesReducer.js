@@ -31,11 +31,10 @@ export const moviesRandomReducer = (state = { movies: [] }, action) => {
       case moviesConstants.MOVIES_RANDOM_SUCCESS:
          return {
             isLoading: false,
-            movies: action.payload.movies,
+            movies: action.payload,
          };
       case moviesConstants.MOVIES_RANDOM_FAIL:
          return { isLoading: false, isError: action.payload };
-
       default:
          return state;
    }

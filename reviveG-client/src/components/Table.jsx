@@ -50,7 +50,7 @@ const Rows = ({ movie, admin, onDeleteHandler, downloadVideo, progress }) => {
                      Download <FaCloudDownloadAlt className='text-green-500' />
                   </button>
                   <Link
-                     to={`/movie/${movie?.name}`}
+                     to={`/movie/${movie?._id}`}
                      className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '
                   >
                      <GoEye />
