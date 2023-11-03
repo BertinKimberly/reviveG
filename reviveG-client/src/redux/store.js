@@ -18,7 +18,6 @@ import {
    updateCategoryReducer,
 } from "./Reducers/categoriesReducers";
 import {
-   CastsReducer,
    createMovieReducer,
    deleteAllMoviesReducer,
    deleteMovieReducer,
@@ -58,7 +57,6 @@ const rootReducer = combineReducers({
    deleteMovie: deleteMovieReducer,
    deleteAllMovies: deleteAllMoviesReducer,
    createMovie: createMovieReducer,
-   casts: CastsReducer,
    updateMovie: updateMovieReducer,
 });
 //get userinfo from local storage

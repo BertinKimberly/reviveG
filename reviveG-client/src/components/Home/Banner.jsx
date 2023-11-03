@@ -8,6 +8,7 @@ import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Notifications/Loader";
 import NoImage from "../../assets/NoImage.jpg";
+import { Autoplay } from "swiper/modules";
 
 const Swipper = ({ sameClass, movies }) => {
    const { isLoading } = useSelector((state) => state.userGetFavoriteMovies);
@@ -19,14 +20,13 @@ const Swipper = ({ sameClass, movies }) => {
    const isLiked = (movie) => {
       return IfMovieLiked(movie);
    };
-
    return (
       <Swiper
          direction='vertical'
          slidesPerView={1}
          loop={true}
          speed={1000}
-         // modules={[Autoplay]}
+         modules={[Autoplay]}
          autoplay={{ delay: 4000, disableOnInteraction: false }}
          className={sameClass}
       >
@@ -75,7 +75,7 @@ const Banner = ({ movies, isLoading }) => {
       <div className='relative w-full'>
          {isLoading ? (
             <div className={sameClass}>
-               <Loader />
+               <Loader/>
             </div>
          ) : movies?.length > 0 ? (
             <Swipper

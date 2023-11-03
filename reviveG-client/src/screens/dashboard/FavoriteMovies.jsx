@@ -9,6 +9,7 @@ import {
 import Loader from "../../components/Notifications/Loader";
 import { Empty } from "../../components/Notifications/Empty";
 import { SidebarContext } from "../../context/DrawerContext";
+import { DownloadVideo } from "../../context/Functionalities";
 
 const FavoriteMovies = () => {
    const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const FavoriteMovies = () => {
 
    //download video
    const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadMovieVideo(videoUrl, setProgress).then((data) => {
+      await DownloadVideo(videoUrl, setProgress).then((data) => {
          setProgress(0);
          FileSaver.saveAs(data, name);
       });

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 import { useParams } from "react-router-dom";
 import MovieInfo from "../components/single/MovieInfo";
-import MovieCasts from "../components/single/MovieCasts";
 import MovieRates from "../components/single/MovieRates";
 import Titles from "../components/Titles";
 import ShareModal from "../components/Modals/ShareModal";
@@ -14,6 +13,7 @@ import Loader from "../components/Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
 import { BsCollectionFill } from "react-icons/bs";
 import { DownloadVideo } from "../context/Functionalities";
+import Movie from "../components/Movie";
 const SingleMovie = () => {
    const [modalOpen, setModalOpen] = useState(false);
    const { progress, setProgress } = useContext(SidebarContext);
@@ -69,11 +69,10 @@ const SingleMovie = () => {
                <MovieInfo
                   movie={movie}
                   setModalOpen={setModalOpen}
-                  DownloadVideo={DownloadMovieVideo}
+                  DownloadMovieVideo={DownloadMovieVideo}
                   progress={progress}
                />
                <div className='container mx-auto min-h-screen px-2 my-6'>
-                  <MovieCasts movie={movie} />
                   <MovieRates movie={movie} />
                   {/* Related Movies */}
                   {RelatedMovies?.length > 0 && (
@@ -82,11 +81,11 @@ const SingleMovie = () => {
                            title='Related Movies'
                            Icon={BsCollectionFill}
                         />
-                        <div className='grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-4'>
-                           {movies.map((movie) => (
-                              <RelatedMovies
-                                 key={movie?._id}
+                        <div className='grid sm:mt-10 mt-6 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-4 gap-6'>
+                           {RelatedMovies.map((movie) => (
+                              <Movie
                                  movie={movie}
+                                 key={movie._id}
                               />
                            ))}
                         </div>

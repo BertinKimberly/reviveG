@@ -1,11 +1,15 @@
 import React from "react";
 import { FaPlay, FaShare } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FlexMovieItems from "../FlexMovieItems";
 import Rating from "../Stars";
 
 const MovieInfo = ({ movie, setModalOpen, DownloadMovieVideo, progress }) => {
+   const navigate = useNavigate();
+   const handleClick = (movie) => {
+      navigate(`/watch/${movie?._id}`);
+   };
    return (
       <div className='w-full xl:h-screen relative text-white'>
          <img
@@ -36,7 +40,7 @@ const MovieInfo = ({ movie, setModalOpen, DownloadMovieVideo, progress }) => {
                      <p className='text-text text-sm leading-7'>
                         {movie?.desc}
                      </p>
-                                 {/* ratings */}
+                     {/* ratings */}
                      <div className='flex mb-6 text-lg gap-2 text-star '>
                         <Rating value={movie?.rate} />
                      </div>
@@ -57,18 +61,16 @@ const MovieInfo = ({ movie, setModalOpen, DownloadMovieVideo, progress }) => {
                               </span>
                            </p>
                         </div>
-                
+
                         <div className='sm:col-span-2 col-span-3 flex justify-end font-medium text-sm'>
-                           <Link
-                              to={`/watch/${movie?.name}`}
+                           <button
                               className='bg-dry hover:bg-subMain transitions border-2 border-subMain rounded-full flex-rows gap-4 w-full sm:py-3'
+                              onClick={() => handleClick(movie)}
                            >
                               <FaPlay className='w-3 h-3' /> Watch
-                           </Link>
+                           </button>
                         </div>
                      </div>
-
-                 
                   </div>
                   <div className='col-span-2 md:mt-0 mt-2 flex justify-end'>
                      <button

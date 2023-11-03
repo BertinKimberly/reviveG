@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CastsModal from "../../../components/Modals/CastsModal";
 import Sidebar from "../Sidebar";
 import { useForm } from "react-hook-form";
 import { Input, Message, Select } from "../../../components/UsedInputs";
@@ -11,14 +10,11 @@ import { useNavigate } from "react-router-dom";
 import { movieValidation } from "../../../components/Validation/MovieValidation";
 import {
    createMovieAction,
-   removeCastAction,
 } from "../../../redux/Actions/MoviesActions";
 import ImagePreview from "../../../components/ImagePreview";
 import { InlineError } from "../../../components/Notifications/Error";
 
 const AddMovie = () => {
-   const [modalOpen, setModalOpen] = useState(false);
-   const [cast, setCast] = useState(null);
    const [imageWithoutTitle, setImageWithoutTitle] = useState("");
    const [imageTitle, setImageTitle] = useState("");
    const [videoUrl, setVideoUrl] = useState("");
@@ -95,11 +91,7 @@ const AddMovie = () => {
    }, [modalOpen, isSuccess, isError, dispatch, reset, navigate]);
    return (
       <Sidebar>
-         <CastsModal
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            cast={cast}
-         />
+       
          <form
             onSubmit={handleSubmit(onSubmit)}
             className='flex flex-col gap-6'

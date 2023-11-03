@@ -35,31 +35,6 @@ const MoviesPage = () => {
       (state) => state.getAllMovies
    );
 
-   // Error handling
-   useEffect(() => {
-      if (isError) {
-         toast.error(isError.message);
-      }
-   }, [isError]);
-
-   // Pagination next and prev pages
-   const nextPage = () => {
-      dispatch(
-         getAllMoviesAction({
-            ...queries,
-            pageNumber: page + 1,
-         })
-      );
-   };
-   const prevPage = () => {
-      dispatch(
-         getAllMoviesAction({
-            ...queries,
-            pageNumber: page - 1,
-         })
-      );
-   };
-
    // Queries
    const queries = useMemo(() => {
       const query = {
@@ -67,14 +42,13 @@ const MoviesPage = () => {
          time: times?.title.replace(/\D/g, ""),
          language:
             language?.title === "Sort By Language" ? "" : language?.title,
-         rate: rates?.title.replace(/\D/g),
-         year: year?.title.replace(/\D/g),
+         rate: rates?.title.replace(/\D/g, ""),
+         year: year?.title.replace(/\D/g, ""),
          search: search || "",
       };
       return query;
    }, [category, times, language, rates, year, search]);
-console.log("let me know u're loading",isLoading);
-console.log("movies",movies);
+
    const datas = {
       categories: categories,
       category: category,
@@ -88,6 +62,16 @@ console.log("movies",movies);
       year: year,
       setYear: setYear,
    };
+
+   // Error handling
+   useEffect(() => {
+      if (isError) {
+         toast.error(isError.message);
+      }
+
+      //get all movies by sorting
+      dispatch(getAllMoviesAction(queries));
+   }, [isError, dispatch, queries]);
 
    return (
       <Layout>
@@ -113,27 +97,6 @@ console.log("movies",movies);
                            movie={movie}
                         />
                      ))}
-                  </div>
-
-                  {/* loading more */}
-
-                  <div className='w-full flex-rows md:my-20 my-10 gap-6'>
-                     <button
-                        onClick={prevPage}
-                        disabled={page === 1}
-                        className='text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain'
-                        aria-label='Previous Page'
-                     >
-                        <BsCaretLeft className='text-xl' />
-                     </button>
-                     <button
-                        onClick={nextPage}
-                        disabled={page === pages}
-                        className='text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain'
-                        aria-label='Next Page'
-                     >
-                        <BsCaretRight className='text-xl' />
-                     </button>
                   </div>
                </>
             ) : (

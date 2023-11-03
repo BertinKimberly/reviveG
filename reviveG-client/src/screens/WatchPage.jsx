@@ -3,17 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
 import { FaCloud, FaHeart, FaPlay } from "react-icons/fa";
-import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
+import NoImage from "../assets/NoImage.jpg";
+import {
+   DownloadVideo,
+   IfMovieLiked,
+   LikeMovie,
+} from "../context/Functionalities";
 import { SidebarContext } from "../context/DrawerContext";
 import Layout from "../Layout/Layout";
 import { BiArrowBack } from "react-icons/bi";
 import { RiMovie2Line } from "react-icons/ri";
+import Loader from "../components/Notifications/Loader";
 
 const WatchPage = () => {
    const { isLoading, isError, movie } = useSelector(
       (state) => state.getMovieById
    );
    const { id } = useParams();
+
+
    const dispatch = useDispatch();
    const [play, setPlay] = useState(false);
 
@@ -21,7 +29,6 @@ const WatchPage = () => {
    const { progress, setProgress } = useContext(SidebarContext);
    //use selector
 
-   console.log("Please Almighty help me ", movie);
    const { isLoading: likeLoading } = useSelector(
       (state) => state.userLikeMovie
    );
@@ -29,7 +36,7 @@ const WatchPage = () => {
 
    //download video
    const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadMovieVideo(videoUrl, setProgress).then((data) => {
+      await DownloadVideo(videoUrl, setProgress).then((data) => {
          setProgress(0);
          FileSaver.saveAs(data, name);
       });
@@ -52,12 +59,18 @@ const WatchPage = () => {
                   <BiArrowBack /> {movie?.name}
                </Link>
                <div className='flex-btn sm:w-auto w-full gap-5'>
-                  <button className='bg-white hover:text-subMain transitions bg-opacity-30 text-white rounded px-4 py-3 text-sm'>
-                     <FaHeart />
-                  </button>
                   <button
                      onClick={() => LikeMovie(movie, dispatch, userInfo)}
                      disabled={IfMovieLiked(movie) || likeLoading}
+                     className='bg-white hover:text-subMain transitions bg-opacity-30 text-white rounded px-4 py-3 text-sm'
+                  >
+                     <FaHeart />
+                  </button>
+                  <button
+                     onClick={() =>
+                        DownloadMovieVideo(movie?.video, movie?.name)
+                     }
+                     disabled={progress > 0 && progress < 100}
                      className='bg-subMain hover:text-main transitions  text-white rounded px-8 py-3 text-sm flex-rows font-medium'
                   >
                      <FaCloud /> Download
@@ -95,13 +108,13 @@ const WatchPage = () => {
                         <div className='absolute top-0 left-0 bottom-0 right-0 bg-main bg-opacity-30 flex-colo'>
                            <button
                               onClick={() => setPlay(true)}
-                              className='bg-main text-subMain flex-colo '
+                              className='bg-main text-subMain flex-colo p-5 rounded-full'
                            >
                               <FaPlay />
                            </button>
                         </div>
                         <img
-                           src=''
+                           src={movie?.image ? movie.image : NoImage}
                            alt={movie?.name}
                            className='w-full h-full object-cover rounded-lg'
                         />

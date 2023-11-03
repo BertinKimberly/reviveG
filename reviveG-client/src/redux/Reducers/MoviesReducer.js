@@ -153,28 +153,7 @@ export const createMovieReducer = (state = {}, action) => {
          return state;
    }
 };
-//casts
 
-export const CastsReducer = (state = { casts: [] }, action) => {
-   switch (action.type) {
-      case moviesConstants.ADD_CAST:
-         return { casts: [...state.casts, action.payload] };
-      case moviesConstants.EDIT_CAST:
-         const updatedCasts = state.casts.map((cast) =>
-            cast.id === action.payload.id ? action.payload : cast
-         );
-         return { casts: updatedCasts };
-      case moviesConstants.DELETE_CAST:
-         return {
-            ...state,
-            casts: state.casts.filter((cast) => cast.id !== action.payload),
-         };
-      case moviesConstants.RESET_CAST:
-         return { casts: [] };
-      default:
-         return state;
-   }
-};
 
 //UPDATE MOVIE
 

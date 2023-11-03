@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
 import NoImage from "../assets/NoImage.jpg";
+
+
 const Movie = ({ movie }) => {
    const { isLoading } = useSelector((state) => state.userGetFavoriteMovies);
    const dispatch = useDispatch();

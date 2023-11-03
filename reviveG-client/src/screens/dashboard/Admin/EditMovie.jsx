@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CastsModal from "../../../components/Modals/CastsModal";
 import Sidebar from "../Sidebar";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,8 +11,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { movieValidation } from "../../../components/Validation/MovieValidation";
 import {
    getMovieByIdAction,
-   removeCastAction,
-   updateCastAction,
    updateMovieAction,
 } from "../../../redux/Actions/MoviesActions";
 import Loader from "../../../components/Notifications/Loader";
@@ -21,8 +18,6 @@ import ImagePreview from "../../../components/ImagePreview";
 
 const EditMovie = () => {
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
-   const [modalOpen, setModalOpen] = useState(false);
-   const [cast, setCast] = useState(null);
    const [imageWithoutTitle, setImageWithoutTitle] = useState("");
    const [imageTitle, setImageTitle] = useState("");
    const [videoUrl, setVideoUrl] = useState("");
@@ -72,11 +67,7 @@ const EditMovie = () => {
 
    //delete cast handler
 
-   const deleteCastHandler = (id) => {
-      dispatch(removeCastAction(id));
-      toast.success("Cast deleted successfully");
-   };
-
+  
    //useEffect
    useEffect(() => {
       if (movie?._id !== id) {
@@ -92,9 +83,7 @@ const EditMovie = () => {
          setImageTitle(movie?.titleImage);
          setVideoUrl(movie?.video);
       }
-      if (modalOpen === false) {
-         setCast();
-      }
+     
       if (isSuccess) {
          dispatch({ type: "UPDATE_MOVIE_RESET" });
          navigate(`/edit/${id}`);
@@ -116,11 +105,6 @@ const EditMovie = () => {
    ]);
    return (
       <Sidebar>
-         <CastsModal
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            cast={cast}
-         />
          {isLoading ? (
             <div className={sameClass}>
                <Loader />
@@ -194,7 +178,7 @@ const EditMovie = () => {
                         Image without Title
                      </p>
                      <Uploader setImageUrl={setImageWithoutTitle} />
-                     < ImagePreview
+                     <ImagePreview
                         image={imageWithoutTitle}
                         name='imagewithoutTitle'
                      />
@@ -250,44 +234,6 @@ const EditMovie = () => {
                   </div>
                </div>
 
-               <div className='w-full grid lg:grid-cols-2 gap-6 items-start'>
-                  <button
-                     onClick={() => setModalOpen(true)}
-                     className='w-full py-4 bg-main border border-subMain border-dashed text-white rounded'
-                  >
-                     Add Cast
-                  </button>
-                  <div className='grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-4'>
-                     {casts?.length > 0 &&
-                        casts.map((user) => (
-                           <div
-                              key={user.id}
-                              className='p-2 italic text-xs text-text rounded flex-colo bg-main border border-border'
-                           >
-                              <img
-                                 src={`${user?.image ? user.image : ""}`}
-                                 alt={user.name}
-                                 className='w-full h-24 object-cover rounded mb-2'
-                              />
-                              <p>{user.name}</p>
-                              <div className='flex-rows mt-2 w-full gap-2'>
-                                 <button
-                                    onClick={() => deleteCastHandler(user?.id)}
-                                    className='w-6 h-6 bg-dry border border-border text-subMain rounded flex-colo'
-                                 >
-                                    <FiDelete />
-                                 </button>
-                                 <button
-                                    onClick={() => setCast(user)}
-                                    className='w-6 h-6 bg-dry border border-border  rounded flex-colo'
-                                 >
-                                    <FaEdit />
-                                 </button>
-                              </div>
-                           </div>
-                        ))}
-                  </div>
-               </div>
                <div className='flex justify-end items-center my-4'>
                   <button
                      disabled={isLoading}
