@@ -27,6 +27,7 @@ import {
    moviesRandomReducer,
    updateMovieReducer,
 } from "./Reducers/MoviesReducer";
+import { getAllFaqsReducer } from "./Reducers/faqsReducer";
 
 const rootReducer = combineReducers({
    //user reducers
@@ -58,6 +59,10 @@ const rootReducer = combineReducers({
    deleteAllMovies: deleteAllMoviesReducer,
    createMovie: createMovieReducer,
    updateMovie: updateMovieReducer,
+
+   //faqs reducer
+
+   getAllFaqs: getAllFaqsReducer,
 });
 //get userinfo from local storage
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -7,6 +7,7 @@ import { errorHandler } from "./middlewares/errorMiddleware.js";
 import { moviesRoute } from "./routes/movieRouter.js";
 import { categoriesRoute } from "./routes/categoryRouter.js";
 import UploadRouter from "./controllers/uploadFile.js";
+import { faqRoute } from "./routes/faqRouter.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use("/api/users", userRouter);
 app.use("/api/movies", moviesRoute);
 app.use("/api/categories", categoriesRoute);
 app.use("/api/upload", UploadRouter);
+app.use("/api/faqs", faqRoute);
 
 const port = process.env.PORT || 5000;
 //error handling

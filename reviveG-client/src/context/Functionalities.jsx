@@ -28,7 +28,7 @@ export const DownloadVideo = async (videoUrl, setProgress) => {
    const { data } = await Axios({
       url: videoUrl,
       method: "GET",
-      responseType: "blog",
+      responseType: "blob",
       onDownloadProgress: (ProgressEvent) => {
          const { loaded, total } = ProgressEvent;
          let percent = Math.floor((loaded * 100) / total);

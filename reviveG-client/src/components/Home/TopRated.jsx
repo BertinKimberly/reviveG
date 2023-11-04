@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Titles from "../Titles";
 import { BsBookmarkStarFill, BsCaretLeft, BsCaretRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,8 +10,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { IfMovieLiked } from "../../context/Functionalities";
 import { Empty } from "../Notifications/Empty";
 import Loader from "../Notifications/Loader";
-
+import NoImage from "../../assets/NoImage.jpg";
 const SwiperTop = ({ prevEl, nextEl, movies }) => {
+   const [slidesPerView, setSlidesPerView] = useState(4); // Default number of slides
+
+   // Function to update the number of slides based on screen width
+   const updateSlidesPerView = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth >= 1280) {
+         setSlidesPerView(4); // Show 4 slides on large screens
+      } else if (screenWidth >= 768) {
+         setSlidesPerView(3); // Show 3 slides on medium screens
+      } else if (screenWidth >= 400) {
+         setSlidesPerView(2); // Show 2 slides on small screens
+      } else {
+         setSlidesPerView(1);
+      }
+   };
+
+   useEffect(() => {
+      // Initial update
+      updateSlidesPerView();
+
+      // Update the number of slides whenever the window is resized
+      window.addEventListener("resize", updateSlidesPerView);
+
+      // Clean up the event listener when the component unmounts
+      return () => {
+         window.removeEventListener("resize", updateSlidesPerView);
+      };
+   }, []);
+
    const { isLoading } = useSelector((state) => state.userLikeMovie);
    const dispatch = useDispatch();
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -25,7 +54,7 @@ const SwiperTop = ({ prevEl, nextEl, movies }) => {
    return (
       <Swiper
          navigation={{ nextEl, prevEl }}
-         slidesPerView={4}
+         slidesPerView={slidesPerView}
          spaceBetween={40}
          autoplay={true}
          speed={1000}
@@ -36,7 +65,7 @@ const SwiperTop = ({ prevEl, nextEl, movies }) => {
             <SwiperSlide key={index}>
                <div className='p-4 h-rate border hovered border-border bg-dry rounded-lg overflow-hidden'>
                   <img
-                     src=''
+                     src={movie?.image ? movie?.image : NoImage}
                      alt={movie.name}
                      className='w-full h-full object-cover rounded-lg '
                   />
@@ -70,9 +99,9 @@ const TopRated = ({ movies, isLoading }) => {
    const [prevEl, setPrevEl] = useState(null);
 
    const classNames =
-      "hover:bg-dry transitions text-sm rounded w-8 h-8 flex-colo  bg-subMain text-white";
+      "hover:bg-dry transitions text-sm rounded w-8 h-8 flex-colo  bg-subMain text-white ";
    return (
-      <div className='my-16'>
+      <div className='my-16 p-6'>
          <Titles
             title='Top Rated'
             Icon={BsBookmarkStarFill}
