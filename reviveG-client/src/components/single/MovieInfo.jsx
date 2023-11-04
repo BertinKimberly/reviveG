@@ -1,11 +1,11 @@
 import React from "react";
 import { FaPlay, FaShare } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FlexMovieItems from "../FlexMovieItems";
 import Rating from "../Stars";
 
-const MovieInfo = ({ movie, setModalOpen, DownloadMovieVideo, progress }) => {
+const MovieInfo = ({ movie, setModalOpen }) => {
    const navigate = useNavigate();
    const handleClick = (movie) => {
       navigate(`/watch/${movie?._id}`);
@@ -73,17 +73,14 @@ const MovieInfo = ({ movie, setModalOpen, DownloadMovieVideo, progress }) => {
                      </div>
                   </div>
                   <div className='col-span-2 md:mt-0 mt-2 flex justify-end'>
-                     <button
-                        disabled={progress}
-                        onClick={() =>
-                           DownloadMovieVideo(movie?.video, movie?.name)
-                        }
+                     <a
+                        href={movie?.video}
                         className='md:w-1/4 w-full relative flex-colo bg-subMain hover:bg-transparent border-2 border-subMain transitions md:h-64 h-20 rounded font-medium'
                      >
                         <div className='flex-rows gap-6 text-md uppercase tracking-widest absolute md:rotate-90'>
                            Download <FiLogIn className='w-6 h-6' />
                         </div>
-                     </button>
+                     </a>
                   </div>
                </div>
             </div>

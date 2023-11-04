@@ -1,20 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
 import { FaCloud, FaHeart, FaPlay } from "react-icons/fa";
 import NoImage from "../assets/NoImage.jpg";
-import {
-   DownloadVideo,
-   IfMovieLiked,
-   LikeMovie,
-} from "../context/Functionalities";
-import { SidebarContext } from "../context/DrawerContext";
+import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
+
 import Layout from "../Layout/Layout";
 import { BiArrowBack } from "react-icons/bi";
 import { RiMovie2Line } from "react-icons/ri";
 import Loader from "../components/Notifications/Loader";
-import FileSaver from "file-saver";
 
 const WatchPage = () => {
    const { isLoading, isError, movie } = useSelector(
@@ -22,26 +17,17 @@ const WatchPage = () => {
    );
    const { id } = useParams();
 
-
    const dispatch = useDispatch();
    const [play, setPlay] = useState(false);
 
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
-   const { progress, setProgress } = useContext(SidebarContext);
+
    //use selector
 
    const { isLoading: likeLoading } = useSelector(
       (state) => state.userLikeMovie
    );
    const { userInfo } = useSelector((state) => state.userLogin);
-
-   //download video
-   const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadVideo(videoUrl, setProgress).then((data) => {
-         setProgress(0);
-         FileSaver.saveAs(data, name);
-      });
-   };
 
    //useEffect
 
@@ -67,15 +53,12 @@ const WatchPage = () => {
                   >
                      <FaHeart />
                   </button>
-                  <button
-                     onClick={() =>
-                        DownloadMovieVideo(movie?.video, movie?.name)
-                     }
-                     disabled={progress > 0 && progress < 100}
+                  <a
+                     href={movie?.video}
                      className='bg-subMain hover:text-main transitions  text-white rounded px-8 py-3 text-sm flex-rows font-medium'
                   >
                      <FaCloud /> Download
-                  </button>
+                  </a>
                </div>
             </div>
             {/* watch video */}

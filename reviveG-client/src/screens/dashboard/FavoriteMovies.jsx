@@ -8,13 +8,9 @@ import {
 } from "../../redux/Actions/userActions";
 import Loader from "../../components/Notifications/Loader";
 import { Empty } from "../../components/Notifications/Empty";
-import { SidebarContext } from "../../context/DrawerContext";
-import { DownloadVideo } from "../../context/Functionalities";
-import FileSaver from "file-saver";
 
 const FavoriteMovies = () => {
    const dispatch = useDispatch();
-   const { progress, setProgress } = useContext(SidebarContext);
    const { isLoading, isError, likedMovies } = useSelector(
       (state) => state.userGetFavoriteMovies
    );
@@ -33,13 +29,7 @@ const FavoriteMovies = () => {
          dispatch(deleteFavoriteMoviesAction());
    };
 
-   //download video
-   const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadVideo(videoUrl, setProgress).then((data) => {
-         setProgress(0);
-         FileSaver.saveAs(data, name);
-      });
-   };
+
 
    //useffect
 
@@ -76,8 +66,6 @@ const FavoriteMovies = () => {
                <Table
                   data={likedMovies}
                   admin={false}
-                  downloadVideo={DownloadMovieVideo}
-                  progress={progress}
                />
             ) : (
                <Empty message='You have no favorite movies' />

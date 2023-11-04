@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import Layout from "../Layout/Layout";
 import { useParams } from "react-router-dom";
 import MovieInfo from "../components/single/MovieInfo";
@@ -8,16 +7,13 @@ import Titles from "../components/Titles";
 import ShareModal from "../components/Modals/ShareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
-import { SidebarContext } from "../context/DrawerContext";
-import FileSaver from "file-saver";
 import Loader from "../components/Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
 import { BsCollectionFill } from "react-icons/bs";
-import { DownloadVideo } from "../context/Functionalities";
 import Movie from "../components/Movie";
 const SingleMovie = () => {
    const [modalOpen, setModalOpen] = useState(false);
-   const { progress, setProgress } = useContext(SidebarContext);
+ 
 
    const sameClass = "w-full gap-6 flex-colo min-h-screen";
    const { id } = useParams();
@@ -33,16 +29,6 @@ const SingleMovie = () => {
    //related movies
 
    const RelatedMovies = movies?.filter((m) => m?.category === m?.category);
-
-   //download video
-   const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadVideo(videoUrl, setProgress)
-         .then((data) => {
-            setProgress(0);
-            FileSaver.saveAs(data, name);
-         })
-         .catch((err) => toast.error("Failed to download a video"));
-   };
 
    //useEffect
    useEffect(() => {
@@ -72,8 +58,6 @@ const SingleMovie = () => {
                <MovieInfo
                   movie={movie}
                   setModalOpen={setModalOpen}
-                  DownloadMovieVideo={DownloadMovieVideo}
-                  progress={progress}
                />
                <div className='container mx-auto min-h-screen px-2 my-6'>
                   <MovieRates movie={movie} />

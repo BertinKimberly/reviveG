@@ -7,7 +7,7 @@ import { GoEye } from "react-icons/go";
 const Head = "text-xs text-left text-main font-semibold px-6 py-2 uppercase";
 const Text = "text-sm text-left  px-5 py-3 leading-6 whitespace-nowrap  ";
 
-const Rows = ({ movie, admin, onDeleteHandler, downloadVideo, progress }) => {
+const Rows = ({ movie, admin, onDeleteHandler }) => {
    return (
       <tr>
          <td className={`${Text}`}>
@@ -42,13 +42,12 @@ const Rows = ({ movie, admin, onDeleteHandler, downloadVideo, progress }) => {
                </>
             ) : (
                <>
-                  <button
-                     onClick={() => downloadVideo(movie?.video, movie?.name)}
-                     disabled={progress > 0 && progress < 100}
+                  <a
+                     href={movie?.video}
                      className='bg-main font-medium transitions flex-rows gap-2 border-border text-white '
                   >
                      Download <FaCloudDownloadAlt className='text-green-500' />
-                  </button>
+                  </a>
                   <Link
                      to={`/movie/${movie?._id}`}
                      className='bg-main font-medium transitions hover:bg-subMain border-subMain text-white '
@@ -61,7 +60,7 @@ const Rows = ({ movie, admin, onDeleteHandler, downloadVideo, progress }) => {
       </tr>
    );
 };
-const Table = ({ data, admin, onDeleteHandler, downloadVideo, progress }) => {
+const Table = ({ data, admin, onDeleteHandler }) => {
    return (
       <div className='overflow-x-scroll overflow-hidden relative w-full'>
          <table className='w-full table-auto border border-border divide-y divide-border'>
@@ -117,8 +116,6 @@ const Table = ({ data, admin, onDeleteHandler, downloadVideo, progress }) => {
                      key={movie._id}
                      movie={movie}
                      admin={admin}
-                     downloadVideo={downloadVideo}
-                     progress={progress}
                      onDeleteHandler={onDeleteHandler}
                   />
                ))}
