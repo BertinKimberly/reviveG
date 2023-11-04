@@ -10,6 +10,7 @@ import Loader from "../../components/Notifications/Loader";
 import { Empty } from "../../components/Notifications/Empty";
 import { SidebarContext } from "../../context/DrawerContext";
 import { DownloadVideo } from "../../context/Functionalities";
+import FileSaver from "file-saver";
 
 const FavoriteMovies = () => {
    const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Rating from "../Stars";
 import { Autoplay, Navigation } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
-import { IfMovieLiked } from "../../context/Functionalities";
+import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { Empty } from "../Notifications/Empty";
 import Loader from "../Notifications/Loader";
 import NoImage from "../../assets/NoImage.jpg";

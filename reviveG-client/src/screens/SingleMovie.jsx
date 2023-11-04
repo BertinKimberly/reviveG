@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import Layout from "../Layout/Layout";
 import { useParams } from "react-router-dom";
 import MovieInfo from "../components/single/MovieInfo";
@@ -35,10 +36,12 @@ const SingleMovie = () => {
 
    //download video
    const DownloadMovieVideo = async (videoUrl, name) => {
-      await DownloadVideo(videoUrl, setProgress).then((data) => {
-         setProgress(0);
-         FileSaver.saveAs(data, name);
-      });
+      await DownloadVideo(videoUrl, setProgress)
+         .then((data) => {
+            setProgress(0);
+            FileSaver.saveAs(data, name);
+         })
+         .catch((err) => toast.error("Failed to download a video"));
    };
 
    //useEffect
@@ -81,7 +84,7 @@ const SingleMovie = () => {
                            title='Related Movies'
                            Icon={BsCollectionFill}
                         />
-                        <div className='grid sm:mt-10 mt-6 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-4 gap-6'>
+                        <div className='grid sm:mt-10 mt-6 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-4 gap-6'>
                            {RelatedMovies.map((movie) => (
                               <Movie
                                  movie={movie}

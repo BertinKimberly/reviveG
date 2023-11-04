@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
-// import Banner from "../components/Home/Banner";
+import Banner from "../components/Home/Banner";
 import PopularMovies from "../components/Home/PopularMovies";
 import Promos from "../components/Home/Promos";
 import TopRated from "../components/Home/TopRated";
@@ -50,10 +50,10 @@ const HomeScreen = () => {
    return (
       <Layout>
          <div className='container mx-auto min-h-screen px-2 mb-6'>
-            {/* <Banner
+            <Banner
                movies={movies}
                isLoading={isLoading}
-            /> */}
+            />
             <PopularMovies
                movies={randomMovies}
                isLoading={randomLoading}

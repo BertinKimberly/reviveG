@@ -14,6 +14,7 @@ import Layout from "../Layout/Layout";
 import { BiArrowBack } from "react-icons/bi";
 import { RiMovie2Line } from "react-icons/ri";
 import Loader from "../components/Notifications/Loader";
+import FileSaver from "file-saver";
 
 const WatchPage = () => {
    const { isLoading, isError, movie } = useSelector(

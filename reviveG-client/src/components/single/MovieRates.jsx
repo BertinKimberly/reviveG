@@ -45,7 +45,7 @@ const MovieRates = ({ movie }) => {
 
    const { isLoading, isError } = useSelector((state) => state.createReview);
    const { userInfo } = useSelector((state) => state.userLogin);
-   console.log("Mana mfasha kbx", isError);
+
    //validate review
 
    const {
