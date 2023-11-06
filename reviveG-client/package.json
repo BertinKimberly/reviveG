@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.3.2",
+    "@reduxjs/toolkit": "^1.9.7",
     "@tailwindcss/line-clamp": "^0.4.4",
     "aos": "^2.3.4",
     "file-saver": "^2.0.5",
