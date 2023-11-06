@@ -16,7 +16,12 @@ dotenv.config();
 const app = express();
 
 // CORS middleware
-app.use(cors());
+const corsOptions = {
+  origin: 'https://reviveg.onrender.com',
+  methods: ['GET','POST','PUT','DELETE'],
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
