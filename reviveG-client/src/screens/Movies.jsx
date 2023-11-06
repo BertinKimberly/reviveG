@@ -81,7 +81,7 @@ const MoviesPage = () => {
                <span className='font-bold text-subMain'>
                   {movies ? movies.length : 0}
                </span>{" "}
-               items Found {search && `for ${search}`}
+               items Found {search && `for " ${search}  "`}
             </p>
             {isLoading ? (
                <div className={sameClass}>
