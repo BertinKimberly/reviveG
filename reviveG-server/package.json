@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "npm i && node index.js"
+    "start": "npm i && nodemon index.js"
   },
   "author": "",
   "license": "ISC",
