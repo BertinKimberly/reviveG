@@ -38,7 +38,6 @@ const EditMovie = () => {
       isSuccess,
    } = useSelector((state) => state.updateMovie);
 
-   const { casts } = useSelector((state) => state.casts);
 
    //validate movie
 
@@ -60,14 +59,10 @@ const EditMovie = () => {
             image: imageWithoutTitle,
             titleImage: imageTitle,
             video: videoUrl,
-            casts: casts.length > 0 ? casts : movie?.casts,
          })
       );
    };
 
-   //delete cast handler
-
-  
    //useEffect
    useEffect(() => {
       if (movie?._id !== id) {
