@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Notifications/Loader";
-import NoImage from "../../assets/NoImage.jpg";
+import NoImage from "../../assets/noImage.jpg";
 import { Autoplay } from "swiper/modules";
 import { Empty } from "../Notifications/Empty";
 
