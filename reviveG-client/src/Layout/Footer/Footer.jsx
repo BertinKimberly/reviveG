@@ -28,20 +28,12 @@ const Footer = () => {
          title: "Top Categories",
          links: [
             {
-               name: "Action",
-               link: "#",
+               name: "New Testament",
+               link: "/movies?category=New Testament",
             },
             {
-               name: "Romantic",
-               link: "#",
-            },
-            {
-               name: "Drama",
-               link: "#",
-            },
-            {
-               name: "Historical",
-               link: "#",
+               name: "Old Testament",
+               link: "/movies?category=Old Testament",
             },
          ],
       },
@@ -99,15 +91,11 @@ const Footer = () => {
                <div className='pb-3 5 sm:pb-0 col-span-2 lg:col-span-3'>
                   <Link to='/'>reviveG</Link>
                   <p className='leading-7 text-sm text-border mt-3'>
-                     <span>
-                        {" "}
-                        Lorem 290 Bertin Road, Suite 200, <br /> New York, NY
-                        10007
-                     </span>
+                     <span>The gospel video streaming app</span>
                      <br />
-                     <span>Tell: +25000000045</span>
+                     <span>Kigali-Rwanda</span>
                      <br />
-                     <span>Email: iradukundabertin082@gmail.com</span>
+                     <span>Email: reviveg100@gmail.com</span>
                      <br />
                   </p>
                </div>

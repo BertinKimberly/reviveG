@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import Head from "../components/Head";
-import { FaFacebook, FaMapMarker, FaPhone, FaVoicemail } from "react-icons/fa";
-
+import { FaFacebook, FaMapMarker,  FaVoicemail } from "react-icons/fa";
+import Contact from "../assets/contact.avif"
 const ContactUs = () => {
    const ContactData = [
       {
@@ -10,7 +10,7 @@ const ContactUs = () => {
          title: "Email Us",
          info: "Interactively grow backend ideas for cross-platform models",
          icon: FaVoicemail,
-         contact: "reviveG@gmail.com",
+         contact: "reviveg100@gmail.com",
       },
       {
          id: 2,
@@ -22,7 +22,7 @@ const ContactUs = () => {
       {
          id: 3,
          title: "Location",
-         info: "Interactively grow backend ideas for cross-platform models",
+         info: "Rwanda",
          icon: FaMapMarker,
          contact: "",
       },
@@ -30,7 +30,7 @@ const ContactUs = () => {
    return (
       <Layout>
          <div className='min-height-screen container mx-auto px-2 my-6'>
-            <Head title='Contact Us' />
+            <Head title='Contact Us' image={Contact}/>
             <div className='grid mg:grid-cols-2 gap-6 lg:mt-20 mt-10 lg:grid-cols-3 xl:gap-8'>
                {ContactData.map((item) => (
                   <div

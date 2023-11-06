@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaHeart, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { CgUser } from "react-icons/cg";
+import Logo from "../../assets/logo.png";
 import Avatar from "../../assets/user.png";
 const Navbar = () => {
    const [search, setSearch] = useState("");
@@ -28,7 +29,8 @@ const Navbar = () => {
          <div className='bg-main shadow-md sticky top-0 z-20'>
             <div className='container mx-auto py-6 px-2 lg:grid gap-10 grid-cols-7  justify-between items-center '>
                <div className='col-span-1 lg:block hidden'>
-                  <Link to='/'>reviveG</Link>
+                  
+                  <Link to='/' className="flex gap-2 items-center"><img src={Logo} alt="logo" className="w-4 h-4"/>reviveG</Link>
                </div>
                <div className='col-span-3'>
                   <form
