@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { Empty } from "../Notifications/Empty";
 import Loader from "../Notifications/Loader";
-import NoImage from "../../assets/NoImage.jpg";
+import NoImage from "../../assets/noImage.jpg";
 const SwiperTop = ({ prevEl, nextEl, movies }) => {
    const [slidesPerView, setSlidesPerView] = useState(4); // Default number of slides
 
