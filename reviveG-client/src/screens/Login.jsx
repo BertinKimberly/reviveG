@@ -84,7 +84,9 @@ const Login = () => {
                      name='password'
                      register={register("password")}
                   />
-                  {errors.email && <InlineError text={errors.email.message} />}
+                  {errors.password && (
+                     <InlineError text={errors.password.message} />
+                  )}
                </div>
 
                <button

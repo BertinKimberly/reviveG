@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import Head from "../components/Head";
-import { FaMapMarker, FaPhone, FaVoicemail } from "react-icons/fa";
+import { FaFacebook, FaMapMarker, FaPhone, FaVoicemail } from "react-icons/fa";
 
 const ContactUs = () => {
    const ContactData = [
@@ -14,10 +14,10 @@ const ContactUs = () => {
       },
       {
          id: 2,
-         title: "Call Us",
-         info: "Interactively grow backend ideas for cross-platform models",
-         icon: FaPhone,
-         contact: "+2500000005",
+         title: "Message Us",
+         info: "message us on facebook",
+         icon: FaFacebook,
+         contact: "reviveg",
       },
       {
          id: 3,
@@ -37,10 +37,10 @@ const ContactUs = () => {
                      key={item.id}
                      className='border border-border flex-colo p-10 bg-dry rounded-lg text-center'
                   >
-                     <span className='flex-colo w-20 h-20 rounded-full bg-main text-white text-2xl mb-4'>
+                     <span className='flex-colo w-20 h-20 rounded-full bg-main text-white text-2xl mb-4 '>
                         <item.icon />
                      </span>
-                     <h5 className='text-2xl font-semibold mb-2'>
+                     <h5 className='text-2xl font-semibold mb-2 '>
                         {item.title}
                      </h5>
                      <p className='mb-0 text-sm text-text leading-7'>
@@ -49,7 +49,7 @@ const ContactUs = () => {
                            className='text-blue-600'
                         >
                            {item.contact}
-                        </a>
+                        </a>{" "}
                         {item.info}
                      </p>
                   </div>

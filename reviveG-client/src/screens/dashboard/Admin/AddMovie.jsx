@@ -8,9 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { movieValidation } from "../../../components/Validation/MovieValidation";
-import {
-   createMovieAction,
-} from "../../../redux/Actions/MoviesActions";
+import { createMovieAction } from "../../../redux/Actions/MoviesActions";
 import ImagePreview from "../../../components/ImagePreview";
 import { InlineError } from "../../../components/Notifications/Error";
 
@@ -29,8 +27,6 @@ const AddMovie = () => {
    const { isLoading, isError, isSuccess } = useSelector(
       (state) => state.createMovie
    );
-
-   const { casts } = useSelector((state) => state.casts);
 
    //validate movie
 
@@ -51,23 +47,12 @@ const AddMovie = () => {
             image: imageWithoutTitle,
             titleImage: imageTitle,
             video: videoUrl,
-            casts,
          })
       );
    };
 
-   //delete cast handler
-
-   const deleteCastHandler = (id) => {
-      dispatch(removeCastAction(id));
-      toast.success("Cast deleted successfully");
-   };
-
    //useEffect
    useEffect(() => {
-      if (modalOpen === false) {
-         setCast();
-      }
       if (isSuccess) {
          reset({
             name: "",
@@ -88,10 +73,9 @@ const AddMovie = () => {
          toast.error("Something went wrong");
          dispatch({ type: "CREATE_MOVIE_RESET" });
       }
-   }, [modalOpen, isSuccess, isError, dispatch, reset, navigate]);
+   }, [isSuccess, isError, dispatch, reset, navigate]);
    return (
       <Sidebar>
-       
          <form
             onSubmit={handleSubmit(onSubmit)}
             className='flex flex-col gap-6'
@@ -209,55 +193,17 @@ const AddMovie = () => {
                </div>
             </div>
 
-            <div className='w-full grid lg:grid-cols-2 gap-6 items-start'>
-               <button
-                  onClick={() => setModalOpen(true)}
-                  className='w-full py-4 bg-main border border-subMain border-dashed text-white rounded'
-               >
-                  Add Cast
-               </button>
-               <div className='grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-4'>
-                  {casts?.length > 0 &&
-                     casts.map((user) => (
-                        <div
-                           key={user.id}
-                           className='p-2 italic text-xs text-text rounded flex-colo bg-main border border-border'
-                        >
-                           <img
-                              src={`${user?.image ? user.image : ""}`}
-                              alt={user.name}
-                              className='w-full h-24 object-cover rounded mb-2'
-                           />
-                           <p>{user.name}</p>
-                           <div className='flex-rows mt-2 w-full gap-2'>
-                              <button
-                                 onClick={() => deleteCastHandler(user?.id)}
-                                 className='w-6 h-6 bg-dry border border-border text-subMain rounded flex-colo'
-                              >
-                                 <FiDelete />
-                              </button>
-                              <button
-                                 onClick={() => setCast(user)}
-                                 className='w-6 h-6 bg-dry border border-border  rounded flex-colo'
-                              >
-                                 <FaEdit />
-                              </button>
-                           </div>
-                        </div>
-                     ))}
-               </div>
-            </div>
-            <div className='flex justify-center items-center my-4 p-2'>
+            <div className='flex justify-end items-center my-4 p-2'>
                <button
                   disabled={isLoading}
                   type='submit'
-                  className='bg-subMain transitions hover:bg-main border border-subMain font-medium text-white py-4 rounded w-full sm:w-auto'
+                  className='bg-subMain transitions hover:bg-main border border-subMain font-medium text-white py-4 rounded w-full sm:w-auto flex gap-2 p-2 items-center'
                >
                   {isLoading ? (
                      "Please wait"
                   ) : (
                      <>
-                        <FiUpload /> Publish Movie
+                        <FiUpload /> Publish
                      </>
                   )}
                </button>

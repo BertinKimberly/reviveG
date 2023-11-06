@@ -20,14 +20,14 @@ const MobileFooter = () => {
    };
    return (
       <>
-         <div className='flex flex-col align-middle h-full bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full'>
+         <div>
             <MenuDrawer
                drawerOpen={mobileDrawer}
                toggleDrawer={toggleDrawer}
             />
          </div>
          <footer className='lg:hidden fixed z-50 bottom-0 w-full px-1'>
-            <div className='bg-dry rounded-md flex-btn w-full p-1'>
+            <div className='bg-dry rounded-md flex-btn w-full p-2'>
                <NavLink
                   to='/movies'
                   className={Hover}

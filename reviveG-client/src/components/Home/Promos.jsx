@@ -8,18 +8,17 @@ const Promos = () => {
             <div className='flex lg:gap-10 gap-6 flex-col'>
                <h1 className='xl:text-3xl text-xl capitalize font-sans font-medium  text-white xl:leading-loose'>
                   DownLoad your favorite movies & Watch offline <br /> Enjoy
-                  Accordingly
+                  Accordingly For Free
                </h1>
                <p className='text-text text-sm xl:text-base leading-6 xl:leading-8'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Cumque accusantium beatae mollitia blanditiis, dignissimos
-                  quidem, deleniti minima dolorem itaque odio, dolore atque.
-                  Veritatis, adipisci vitae voluptates saepe quasi qui
-                  necessitatibus!
+                  reviveG has a variety of Gospel movies and you can watch them
+                  online or download them to watch offline. <br />
+                  The mobile app will also be available as soon as possible so
+                  that you can download it from play store
                </p>
                <div className='flex gap-4 md:text-lg text-sm'>
                   <div className='flex-colo bg-black text-subMain px-6 py-3 rounded-md font-bold'>
-                     HD 4K
+                     HD 3K
                   </div>
                   <div className='flex-rows gap-4  bg-black text-subMain px-6 py-3 rounded-md font-bold'>
                      <FaUser /> 2K

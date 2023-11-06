@@ -60,6 +60,21 @@ h {
    }
 }
 
+.hide {
+   display: none;
+}
+.show {
+   position: fixed;
+   display: flex;
+   width: 100vw;
+   height: 88vh;
+   background: #0b0f29;
+   flex-direction: column;
+   gap: 2rem;
+   bottom: 64px;
+   left: 0;
+   z-index: 99;
+}
 @media screen and (max-width: 600px) {
    .container {
       @apply px-[0.8rem];

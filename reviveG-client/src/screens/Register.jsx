@@ -6,7 +6,7 @@ import { Input } from "../components/UsedInputs";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { RegisterValidation } from "../components/Validation/UserValidation";
-import { yupResolver } from "@hookform/resolvers/yup"
+import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { InlineError } from "../components/Notifications/Error";
 import { registerAction } from "../redux/Actions/userActions";
@@ -32,7 +32,7 @@ const Register = () => {
    const onSubmit = (data) => {
       dispatch(registerAction(data));
    };
-//useEffect
+   //useEffect
    useEffect(() => {
       if (userInfo) {
          if (userInfo.isAdmin) {
@@ -41,18 +41,17 @@ const Register = () => {
             navigate("/profile");
          }
       }
-   
+
       if (isSuccess) {
          toast.success(`Welcome ${userInfo?.fullName}`);
          dispatch({ type: "USER_REGISTER_RESET" });
       }
-   
+
       if (isError) {
          toast.error(isError);
          dispatch({ type: "USER_REGISTER_RESET" });
       }
    }, [userInfo, isSuccess, isError, navigate, dispatch]);
-   
 
    return (
       <Layout>
@@ -105,7 +104,7 @@ const Register = () => {
                   {isLoading ? (
                      "Loading"
                   ) : (
-                     <p className="flex gap-3 items-center">
+                     <p className='flex gap-3 items-center'>
                         <FaUserCheck /> Sign up
                      </p>
                   )}

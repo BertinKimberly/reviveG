@@ -1,5 +1,4 @@
 import { logoutAction } from "./Actions/userActions";
-import { USER_LOGOUT } from "./Constants/userConstants";
 
 export const ErrorsAction = (error, dispatch, action) => {
    const message =

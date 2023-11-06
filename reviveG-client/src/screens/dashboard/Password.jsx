@@ -95,7 +95,7 @@ const Password = () => {
                <button
                   disabled={isLoading}
                   type='submit'
-                  className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white'
+                  className='bg-main transiitions hover:bg-subMain border border-subMain font-medium text-white p-2'
                >
                   {isLoading ? "Changing..." : "Change Password"}
                </button>

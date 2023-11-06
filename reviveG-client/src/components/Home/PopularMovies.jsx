@@ -25,7 +25,7 @@ const PopularMovies = ({ isLoading, movies }) => {
             </div>
          ) : (
             <div className='mt-6'>
-               <Empty message='It seems like we dont have any movie' />
+               <Empty message='No Movies Found' />
             </div>
          )}
       </div>

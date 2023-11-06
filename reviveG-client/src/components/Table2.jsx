@@ -16,7 +16,7 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
                      <img
                         src={data?.image ? data?.image : Avatar}
                         alt={data?.name}
-                        className='h-full w-full rounded-full object-cover'
+                        className='h-full w-full rounded object-cover'
                      />
                   </div>
                </td>

@@ -10,8 +10,7 @@ import Loader from "../Notifications/Loader";
 const FAQs = () => {
    const { isLoading, faqs } = useSelector((state) => state.getAllFaqs);
 
-   console.log(isLoading);
-   console.log(faqs);
+
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getAllFaqsAction({}));

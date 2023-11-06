@@ -104,9 +104,7 @@ const MoviesPage = () => {
                   <div className='w-24 h-24 rounded-full mb-4 bg-main text-subMain text-4xl flex-colo'>
                      <RiMovie2Line />
                   </div>
-                  <p className='text-border text-sm'>
-                     It seems like we don't have any movies.
-                  </p>
+                  <p className='text-border text-sm'>No Movies Found</p>
                </div>
             )}
          </div>

@@ -15,7 +15,7 @@ const Rows = ({ movie, admin, onDeleteHandler }) => {
                <img
                   src={movie?.image}
                   alt={movie?.name}
-                  className='h-full w-full rounded-full object-cover'
+                  className='h-full w-full rounded object-cover'
                />
             </div>
          </td>

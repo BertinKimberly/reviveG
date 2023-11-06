@@ -51,7 +51,6 @@ export const logoutAction = () => (dispatch) => {
    dispatch({ type: movieConstants.MOVIE_DETAILS_RESET });
    dispatch({ type: movieConstants.CREATE_REVIEW_RESET });
    dispatch({ type: movieConstants.CREATE_MOVIE_RESET });
-   dispatch({ type: movieConstants.RESET_CAST });
    dispatch({ type: movieConstants.UPDATE_MOVIE_RESET });
    dispatch({ type: categoriesConstants.CREATE_CATEGORY_RESET });
    dispatch({ type: categoriesConstants.UPDATE_CATEGORY_RESET });
