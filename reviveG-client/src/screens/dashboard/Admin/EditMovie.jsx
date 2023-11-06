@@ -92,7 +92,6 @@ const EditMovie = () => {
       dispatch,
       id,
       movie,
-      modalOpen,
       setValue,
       isSuccess,
       editError,
