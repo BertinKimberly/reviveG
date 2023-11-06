@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getMovieByIdAction } from "../redux/Actions/MoviesActions";
 import { FaCloud, FaHeart, FaPlay } from "react-icons/fa";
-import NoImage from "../assets/NoImage.jpg";
+import NoImage from "../assets/noImage.jpg";
 import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
 
 import Layout from "../Layout/Layout";
