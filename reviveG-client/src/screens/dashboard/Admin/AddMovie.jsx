@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar";
 import { useForm } from "react-hook-form";
 import { Input, Message, Select } from "../../../components/UsedInputs";
 import Uploader from "../../../components/Uploader";
-import { FiDelete, FiUpload } from "react-icons/fi";
+import { FiUpload } from "react-icons/fi";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

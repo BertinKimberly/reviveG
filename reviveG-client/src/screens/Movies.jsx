@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import Filters from "../components/Filters";
 import Movie from "../components/Movie";
 import Layout from "../Layout/Layout";
-import { BsCaretLeft, BsCaretRight } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMoviesAction } from "../redux/Actions/MoviesActions";
 import Loader from "../components/Notifications/Loader";
