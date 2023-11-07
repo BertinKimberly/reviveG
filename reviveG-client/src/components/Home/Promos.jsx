@@ -1,5 +1,6 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
+import Mobile from "../../assets/mobile.png";
 
 const Promos = () => {
    return (
@@ -25,11 +26,11 @@ const Promos = () => {
                   </div>
                </div>
             </div>
-            <div>
+            <div className="flex items-center justify-center p-3">
                <img
-                  src=''
+                  src={Mobile}
                   alt='Mobile app'
-                  className='w-full object-contain'
+                  className='w-1/2 object-contain'
                />
             </div>
          </div>
