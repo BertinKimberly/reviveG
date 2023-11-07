@@ -17,13 +17,6 @@ const MenuDrawer = ({ drawerOpen, toggleDrawer }) => {
       },
    ];
 
-   const active = "bg-dry text-subMain";
-   const hover = "hover:text-white hover:bg-main";
-   const inActive =
-      "rounded sm:gap-10 font-medium text-sm transitions flex gap-6 items-center p-4";
-   const Hover = ({ isActive }) =>
-      isActive ? `${active} ${hover}` : `${inActive} ${hover}`;
-
    return (
       <div className={`${drawerOpen ? "show" : "hide"}`}>
          <div className='w-full flex-btn h-16 px-6 py-4 bg-dry '>
@@ -41,13 +34,13 @@ const MenuDrawer = ({ drawerOpen, toggleDrawer }) => {
                <FaTimes />
             </button>
          </div>
-         <div className='w-full overflow-y-scroll flex-grow max-h-full items-center justify-center'>
+         <div className='w-full h-full flex-col items-center justify-center p-4 flex gap-3'>
             {Links.map((link, index) => (
                <NavLink
                   to={link.link}
                   key={index}
                   onClick={toggleDrawer}
-                  className={Hover}
+                  className="text-left flex gap-3 hover:bg-main text-white p-2 text-3xl items-center"
                >
                   <link.icon className='text-lg' /> {link.name}
                </NavLink>
