@@ -38,7 +38,6 @@ const EditMovie = () => {
       isSuccess,
    } = useSelector((state) => state.updateMovie);
 
-
    //validate movie
 
    const {
@@ -78,7 +77,7 @@ const EditMovie = () => {
          setImageTitle(movie?.titleImage);
          setVideoUrl(movie?.video);
       }
-     
+
       if (isSuccess) {
          dispatch({ type: "UPDATE_MOVIE_RESET" });
          navigate(`/edit/${id}`);
@@ -88,15 +87,7 @@ const EditMovie = () => {
          toast.error("Something went wrong");
          dispatch({ type: "UPDATE_MOVIE_RESET" });
       }
-   }, [
-      dispatch,
-      id,
-      movie,
-      setValue,
-      isSuccess,
-      editError,
-      navigate,
-   ]);
+   }, [dispatch, id, movie, setValue, isSuccess, editError, navigate]);
    return (
       <Sidebar>
          {isLoading ? (
@@ -177,16 +168,17 @@ const EditMovie = () => {
                         name='imagewithoutTitle'
                      />
                   </div>
-               </div>
-               <div className='flex flex-col gap-2'>
-                  <p className='text-border font-semibold text-sm'>
-                     Image with Title
-                  </p>
-                  <Uploader setImageUrl={setImageTitle} />
-                  <ImagePreview
-                     image={imageTitle}
-                     name='imageTitle'
-                  />
+
+                  <div className='flex flex-col gap-2'>
+                     <p className='text-border font-semibold text-sm'>
+                        Image with Title
+                     </p>
+                     <Uploader setImageUrl={setImageTitle} />
+                     <ImagePreview
+                        image={imageTitle}
+                        name='imageTitle'
+                     />
+                  </div>
                </div>
                <div className='w-full'>
                   <Message
@@ -228,17 +220,17 @@ const EditMovie = () => {
                   </div>
                </div>
 
-               <div className='flex justify-end items-center my-4'>
+               <div className='flex justify-end items-center my-4 p-2'>
                   <button
                      disabled={isLoading}
                      type='submit'
-                     className='bg-subMain transitions hover:bg-main border border-subMain font-medium text-white py-4 rounded w-full sm:w-auto'
+                     className='bg-subMain transitions hover:bg-main border border-subMain font-medium text-white py-4 rounded w-full sm:w-auto flex gap-2 p-2 items-center'
                   >
                      {isLoading ? (
-                        "Updating..."
+                        "Please wait"
                      ) : (
                         <>
-                           <FiUpload /> Publish Movie
+                           <FiUpload /> Publish
                         </>
                      )}
                   </button>
