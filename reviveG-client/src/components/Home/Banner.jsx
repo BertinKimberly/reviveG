@@ -49,7 +49,7 @@ const SwiperTop = ({ sameClass, movies }) => {
                   </div>
                   <div className='flex gap-5 items-center'>
                      <Link
-                        to={`/movie/${movie?._id}`}
+                        to={`/watch/${movie?._id}`}
                         className='bg-subMain hover:text-main transitions text-white px-8 py-3 rounded font-medium sm:text-sm text-xs'
                      >
                         Watch

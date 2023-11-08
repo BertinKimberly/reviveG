@@ -1,7 +1,7 @@
 export const Movies = [
    {
-      name: "Jesus",
-      desc: "The movie about Jesus",
+      name: "",
+      desc: "",
       titleImage: "1a.jpg",
       image: "1.jpg",
       category: "New Testament",

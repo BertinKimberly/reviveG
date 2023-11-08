@@ -4,8 +4,7 @@ import { Movies } from "../MoviesData.js";
 //*****************PUBLIC CONTROLLERS********************* */
 
 export const importMovies = asyncHandler(async (req, res) => {
-   await Movie.deleteMany({});
-
+ 
    const movies = await Movie.insertMany(Movies);
    res.status(201).json(movies);
 });

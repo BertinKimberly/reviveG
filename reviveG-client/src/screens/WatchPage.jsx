@@ -100,7 +100,7 @@ const WatchPage = () => {
                         <img
                            src={movie?.image ? movie.image : NoImage}
                            alt={movie?.name}
-                           className='w-full h-full object-cover rounded-lg'
+                           className='w-full max-h-screen object-cover rounded-lg'
                         />
                      </>
                   )}
