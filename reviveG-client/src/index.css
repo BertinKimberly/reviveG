@@ -56,7 +56,7 @@ h {
 
 @media screen and (max-width: 992px) {
    .container {
-      @apply px-[1rem];
+      @apply px-[0.8rem];
    }
 }
 
