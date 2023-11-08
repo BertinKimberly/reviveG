@@ -68,7 +68,7 @@ const Footer = () => {
                      key={index}
                      className='col-span-1 md:col-span-2 lg:col-span-3 pb-3.5 sm:pb-0'
                   >
-                     <h3 className='text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5'>
+                     <h3 className='text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5 text-border'>
                         {link.title}
                      </h3>
                      <ul className='text-sm flex flex-col space-y-3'>
@@ -79,7 +79,7 @@ const Footer = () => {
                            >
                               <Link
                                  to={text.link}
-                                 className='text-border inline-block w-full hover:text-subMain'
+                                 className='inline-block w-full hover:text-subMain'
                               >
                                  {text.name}
                               </Link>
@@ -89,8 +89,8 @@ const Footer = () => {
                   </div>
                ))}
                <div className='pb-3 5 sm:pb-0 col-span-2 lg:col-span-3'>
-                  <Link to='/'>reviveG</Link>
-                  <p className='leading-7 text-sm text-border mt-3'>
+                  <Link to='/' className="text-border">reviveG</Link>
+                  <p className='leading-7 text-sm mt-3'>
                      <span>The gospel video streaming app</span>
                      <br />
                      <span>Kigali-Rwanda</span>
@@ -101,6 +101,13 @@ const Footer = () => {
                </div>
             </div>
          </div>
+         <div className='flex w-full items-center justify-center'>
+            <hr className='w-3/4 ' />
+         </div>
+
+         <p className="text-center mt-2 text-border">
+            &copy;<span className="mx-2">2023</span>reviveG
+         </p>
       </div>
    );
 };
