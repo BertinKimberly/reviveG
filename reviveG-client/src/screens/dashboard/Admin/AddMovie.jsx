@@ -11,6 +11,7 @@ import { movieValidation } from "../../../components/Validation/MovieValidation"
 import { createMovieAction } from "../../../redux/Actions/MoviesActions";
 import ImagePreview from "../../../components/ImagePreview";
 import { InlineError } from "../../../components/Notifications/Error";
+import toast from "react-hot-toast";
 
 const AddMovie = () => {
    const [imageWithoutTitle, setImageWithoutTitle] = useState("");
