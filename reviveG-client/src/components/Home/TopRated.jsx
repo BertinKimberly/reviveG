@@ -11,7 +11,7 @@ import { IfMovieLiked, LikeMovie } from "../../context/Functionalities";
 import { Empty } from "../Notifications/Empty";
 import Loader from "../Notifications/Loader";
 import NoImage from "../../assets/noImage.jpg";
-const SwiperTop = ({ prevEl, nextEl, movies }) => {
+const SwiperLeft = ({ prevEl, nextEl, movies }) => {
    const [slidesPerView, setSlidesPerView] = useState(4); // Default number of slides
 
    // Function to update the number of slides based on screen width
@@ -109,7 +109,7 @@ const TopRated = ({ movies, isLoading }) => {
          {isLoading ? (
             <Loader />
          ) : movies?.length > 0 ? (
-            <SwiperTop
+            <SwiperLeft
                nextEl={nextEl}
                prevEl={prevEl}
                movies={movies}
