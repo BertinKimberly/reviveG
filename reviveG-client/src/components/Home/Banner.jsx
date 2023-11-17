@@ -70,9 +70,9 @@ const SwiperTop = ({ sameClass, movies }) => {
 };
 
 const Banner = ({ movies, isLoading }) => {
-   const sameClass = "w-full flex-colo xl:h-96 bg-dry lg:h-64 h-48";
+   const sameClass = "w-full flex-colo xl:h-96 bg-dry lg:h-64 h-48 mt-[400px]";
    return (
-      <div className='relative w-full  '>
+      <div className='relative w-full h-full '>
          {isLoading ? (
             <Loader />
          ) : movies?.length > 0 ? (

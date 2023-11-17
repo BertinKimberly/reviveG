@@ -109,30 +109,32 @@ const TopRated = ({ movies, isLoading }) => {
          {isLoading ? (
             <Loader />
          ) : movies?.length > 0 ? (
-            <SwiperLeft
-               nextEl={nextEl}
-               prevEl={prevEl}
-               movies={movies}
-            />
+            <>
+               <SwiperLeft
+                  nextEl={nextEl}
+                  prevEl={prevEl}
+                  movies={movies}
+               />
+               <div className='mt-10'>
+                  <div className='w-full px-1 flex-rows gap-6 pt-12 '>
+                     <button
+                        className={classNames}
+                        ref={(node) => setPrevEl(node)}
+                     >
+                        <BsCaretLeft />
+                     </button>
+                     <button
+                        className={classNames}
+                        ref={(node) => setNextEl(node)}
+                     >
+                        <BsCaretRight />
+                     </button>
+                  </div>
+               </div>
+            </>
          ) : (
             <Empty message='No movies' />
          )}
-         <div className='mt-10'>
-            <div className='w-full px-1 flex-rows gap-6 pt-12 '>
-               <button
-                  className={classNames}
-                  ref={(node) => setPrevEl(node)}
-               >
-                  <BsCaretLeft />
-               </button>
-               <button
-                  className={classNames}
-                  ref={(node) => setNextEl(node)}
-               >
-                  <BsCaretRight />
-               </button>
-            </div>
-         </div>
       </div>
    );
 };
