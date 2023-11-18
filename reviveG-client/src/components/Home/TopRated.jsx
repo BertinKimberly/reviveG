@@ -21,7 +21,7 @@ const SwiperLeft = ({ prevEl, nextEl, movies }) => {
          setSlidesPerView(4); // Show 4 slides on large screens
       } else if (screenWidth >= 768) {
          setSlidesPerView(3); // Show 3 slides on medium screens
-      } else if (screenWidth >= 400) {
+      } else if (screenWidth >= 500) {
          setSlidesPerView(2); // Show 2 slides on small screens
       } else {
          setSlidesPerView(1);

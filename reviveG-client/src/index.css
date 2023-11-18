@@ -4,12 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+body{
+   @apply bg-main bg-[url('./assets/texture.png')]
+}
 body,
 html {
    font-family: "Roboto", sans-serif;
    font-weight: 400;
 }
-
 input:focus,
 textarea:focus,
 select:focus {
