@@ -36,6 +36,12 @@ const Navbar = () => {
                      onSubmit={handleSearch}
                      className='w-full text-sm bg-dryGray rounded flex-btn gap-4'
                   >
+                        <button
+                        type='submit'
+                        className='bg-subMain w-12 text-white flex-colo h-12 rounded'
+                     >
+                        <FaSearch />
+                     </button>
                      <input
                         type='search'
                         placeholder='Search Movie'
@@ -43,12 +49,7 @@ const Navbar = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         className='w-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black'
                      />
-                     <button
-                        type='submit'
-                        className='bg-subMain w-12 text-white flex-colo h-12 rounded'
-                     >
-                        <FaSearch />
-                     </button>
+                  
                   </form>
                </div>
                <div className='col-span-3 font-medium text-sm hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-end items-center'>
