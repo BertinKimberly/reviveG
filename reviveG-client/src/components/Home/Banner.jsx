@@ -1,4 +1,6 @@
 import React from "react";
+import { intros } from "./intros";
+import Typewriter from "typewriter-effect";
 import { Swiper, SwiperSlide } from "swiper/react";
 import FlexMovieItems from "../FlexMovieItems";
 import { Link } from "react-router-dom";
@@ -59,7 +61,7 @@ const SwiperTop = ({ sameClass, movies }) => {
                         disabled={isLiked(movie) || isLoading}
                         className='bg-white hover:text-subMain transitions text-white px-4 py-3 rounded text-sm bg-opacity-30 '
                      >
-                        <FaHeart/>
+                        <FaHeart />
                      </button>
                   </div>
                </div>
@@ -73,28 +75,35 @@ const Banner = ({ movies, isLoading }) => {
    const sameClass = "w-full flex-colo xl:h-96 bg-dry lg:h-64 h-48 ";
    return (
       <>
-            <div className='flex lg:gap-10 gap-6 flex-col mt-9 pb-6 pl-3'>
-               <h1 className='xl:text-3xl text-xl capitalize font-sans font-medium  text-white xl:leading-loose'>
-                  Have you searched for Gospel Movies and found few and poor quality Movies ? <br/> On ReviveG you will not face such a challenge </h1>
-               <p className='text-text text-sm xl:text-base leading-6 xl:leading-8'>
-                  reviveG has a variety of Gospel movies and you can watch them
-                  online or download them to watch offline.
-               </p>
+         <div className='flex lg:gap-10 gap-6 flex-col mt-9 pb-6 pl-3'>
+            <h1 className='xl:text-3xl text-xl capitalize font-sans font-medium  text-white xl:leading-loose'>
+               <Typewriter
+                  options={{
+                     strings: intros,
+                     autoStart: true,
+                     loop: true,
+                  }}
+               />
+            </h1>
+            <p className='text-text text-sm xl:text-base leading-6 xl:leading-8'>
+               reviveG has a variety of Gospel movies and you can watch them
+               online or download them to watch offline.
+            </p>
             <h4>KNOW MORE ABOUT GOSPEL BY THE HELP OF REVIVEG</h4>
-            </div>
-         
-      <div className='relative w-full mt-2 '>
-         {isLoading ? (
-            <Loader />
-         ) : movies?.length > 0 ? (
-            <SwiperTop
-               sameClass={sameClass}
-               movies={movies}
-            />
-         ) : (
-            <Empty message='No movies' />
-         )}
-      </div>
+         </div>
+
+         <div className='relative w-full mt-2 '>
+            {isLoading ? (
+               <Loader />
+            ) : movies?.length > 0 ? (
+               <SwiperTop
+                  sameClass={sameClass}
+                  movies={movies}
+               />
+            ) : (
+               <Empty message='No movies' />
+            )}
+         </div>
       </>
    );
 };

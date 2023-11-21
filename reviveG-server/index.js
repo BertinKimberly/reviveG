@@ -13,6 +13,7 @@ import { faqRoute } from "./routes/faqRouter.js";
 
 dotenv.config();
 
+
 const app = express();
 
 
