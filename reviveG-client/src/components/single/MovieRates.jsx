@@ -151,7 +151,7 @@ const MovieRates = ({ movie }) => {
                               />
                            </div>
                            <div className='col-span-7 flex flex-col gap-2'>
-                              <h2>{review?.fullName}</h2>
+                              <h2 className="mb-2">{review?.userName}</h2>
                               <p className='text-xs leading-6 font-medium text-text'>
                                  {review?.comment}
                               </p>
