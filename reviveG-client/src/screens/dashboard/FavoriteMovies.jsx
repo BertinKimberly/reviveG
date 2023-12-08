@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Table from "../../components/Table";
 import Sidebar from "./Sidebar";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
    deleteFavoriteMoviesAction,
@@ -28,8 +29,6 @@ const FavoriteMovies = () => {
       window.confirm("Are you sure you want to delete all movies") &&
          dispatch(deleteFavoriteMoviesAction());
    };
-
-
 
    //useffect
 
