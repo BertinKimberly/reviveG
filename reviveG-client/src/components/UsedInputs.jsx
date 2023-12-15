@@ -62,7 +62,6 @@ export const Input = ({
             name={name}
             onChange={onChange}
             {...register}
-            required
             placeholder={placeholder}
             className={`w-full text-sm mt-2 p-4 border border-border rounded text-white ${
                bg ? "bg-main" : "bg-dry"

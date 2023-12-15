@@ -68,7 +68,6 @@ const Login = () => {
                   <Input
                      label='Email'
                      placeholder='Enter your email'
-                     type='email'
                      name='email'
                      register={register("email")}
                      bg={true}
