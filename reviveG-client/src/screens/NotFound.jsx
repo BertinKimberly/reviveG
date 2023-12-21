@@ -15,7 +15,7 @@ const NotFound = () => {
             />
             <h1 className='lg:text-4xl font-bold'>Page Not Found</h1>
             <p className='font-medium text-border leading-6'>
-               {" "}
+              
                It seems that the page you requested could not be found.
             </p>
             <Link
