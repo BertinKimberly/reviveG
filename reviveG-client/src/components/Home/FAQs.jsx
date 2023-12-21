@@ -1,4 +1,4 @@
-import react, { useEffect } from "react";
+import { useEffect } from "react";
 import { FaQuestion } from "react-icons/fa";
 import "./Faqs.css";
 import Titles from "../Titles";
