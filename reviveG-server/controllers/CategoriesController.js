@@ -2,7 +2,6 @@ import Category from "../models/CategoryModel.js";
 import asyncHandler from "express-async-handler";
 
 // **************PUBLIC CONTROLLERS******************
-
 export const getCategories = asyncHandler(async (req, res) => {
    try {
       const categories = await Category.find({});
